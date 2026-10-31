@@ -3,65 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>لعبة جمع الفلوس - العب واربح!</title>
+<title>لعبة جمع الفلوس - تحدي الأصدقاء!</title>
 <script>(function(s){s.dataset.zone='12158379',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script>(function(s){s.dataset.zone='12159570',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:linear-gradient(135deg,#667eea,#764ba2);font-family:system-ui;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white}
-#gameBox{background:white;border-radius:20px;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,.3);width:95%;max-width:380px}
-#header{display:flex;justify-content:space-between;color:#333;font-weight:bold;font-size:18px;margin-bottom:10px}
+body{background:linear-gradient(135deg,#667eea,#764ba2);font-family:system-ui;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:10px;color:white}
+#gameBox{background:white;border-radius:20px;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);width:98%;max-width:400px}
+#header{display:flex;justify-content:space-between;color:#333;font-weight:bold;font-size:17px;margin-bottom:8px}
 #canvas{background:linear-gradient(#87CEEB,#E0F6FF);border-radius:15px;display:block;width:100%;touch-action:none}
-#controls{text-align:center;margin-top:12px}
-button{background:#764ba2;color:white;border:none;padding:12px 25px;border-radius:25px;font-size:18px;font-weight:bold;cursor:pointer;width:100%}
-button:active{transform:scale(0.95)}
-#msg{color:#333;text-align:center;margin-top:8px;font-size:14px}
+.btn{border:none;padding:12px;border-radius:25px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;margin-top:8px}
+#playBtn{background:#764ba2;color:white}
+#shareBtn{background:#25D366;color:white;display:none}
+#board{background:#f7f7ff;border-radius:12px;padding:10px;margin-top:10px;color:#333}
+#board h3{font-size:14px;margin-bottom:5px;text-align:center}
+#board ol{padding-right:20px;font-size:13px}
+#msg{color:#555;text-align:center;margin-top:6px;font-size:13px}
+.badge{display:inline-block;background:#ffeaa7;color:#333;padding:2px 8px;border-radius:10px;font-size:11px;margin-left:5px}
 </style>
 </head>
 <body>
 <div id="gameBox">
-<div id="header"><span>النقاط: <b id="score">0</b></span><span>أفضل: <b id="best">0</b></span></div>
-<canvas id="canvas" width="350" height="450"></canvas>
-<div id="controls"><button id="btn">إبدأ اللعب 🎮</button><div id="msg">اضغط الشاشة عشان تطير وتجمع 💵 وتتجنب 💣</div></div>
+<div id="header"><span>💰 <b id="score">0</b> <span id="level" class="badge">مستوى 1</span></span><span>👑 <b id="best">0</b></span></div>
+<canvas id="canvas" width="360" height="420"></canvas>
+<button id="playBtn" class="btn">إبدأ اللعب 🎮</button>
+<button id="shareBtn" class="btn">شارك نتيجتك واتساب 📲</button>
+<div id="msg">اضغط لتطير، اجمع 💵 وتجنب 💣 - كل 10 نقاط السرعة بتزيد!</div>
+<div id="board"><h3>🏆 المتصدرين (على جهازك)</h3><ol id="topList"><li>لا يوجد بعد</li></ol></div>
 </div>
 <script>
-const c=document.getElementById('canvas'),ctx=c.getContext('2d'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),btn=document.getElementById('btn');
-let score,best=localStorage.getItem('best')||0,player,y,vy,coins,bombs,game,frame;
+const c=document.getElementById('canvas'),ctx=c.getContext('2d'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),levelEl=document.getElementById('level'),playBtn=document.getElementById('playBtn'),shareBtn=document.getElementById('shareBtn'),topList=document.getElementById('topList'),msg=document.getElementById('msg');
+let score,best=parseInt(localStorage.getItem('best')||0),player,y,vy,coins,bombs,game,frame,speed;
 bestEl.textContent=best;
-function reset(){
-score=0;scoreEl.textContent=0;y=200;vy=0;player={x:70,y:200,w:30,h:30};coins=[];bombs=[];frame=0;
-}
-function spawn(){
-if(frame%90===0){coins.push({x:350,y:Math.random()*350+50,w:25,h:25})}
-if(frame%150===0){bombs.push({x:350,y:Math.random()*350+50,w:28,h:28})}
-}
+let leaders=JSON.parse(localStorage.getItem('leaders')||'[]');
+function renderLeaders(){if(leaders.length===0){topList.innerHTML='<li>لا يوجد بعد - كن الأول!</li>';return}topList.innerHTML=leaders.slice(0,5).map((s,i)=>`<li>${s} نقطة ${i===0?'👑':''}</li>`).join('')}
+renderLeaders();
+function reset(){score=0;frame=0;speed=3;y=200;vy=0;player={x:70,y:200,w:30,h:30};coins=[];bombs=[];scoreEl.textContent=0;levelEl.textContent='مستوى 1';shareBtn.style.display='none';}
+function spawn(){let coinRate=Math.max(40,90-score*2);let bombRate=Math.max(60,150-score);if(frame%coinRate===0)coins.push({x:360,y:Math.random()*320+40,w:25,h:25});if(frame%bombRate===0)bombs.push({x:360,y:Math.random()*320+40,w:28,h:28});}
 function loop(){
-if(!game)return;
-frame++;ctx.clearRect(0,0,c.width,c.height);
-vy+=0.5;y+=vy;player.y=y;
+if(!game)return;frame++;ctx.clearRect(0,0,c.width,c.height);
+vy+=0.45;y+=vy;player.y=y;
+let currentSpeed=speed+score*0.08;
+let level=Math.floor(score/10)+1;levelEl.textContent=`مستوى ${level}`;if(level>1)levelEl.style.background='#fab1a0';
 spawn();
-// player
 ctx.font='30px Arial';ctx.fillText('🦅',player.x-5,player.y+25);
-// coins
-coins.forEach((co,i)=>{
-co.x-=3;ctx.fillText('💵',co.x,co.y);
-if(co.x<player.x+player.w&&co.x+co.w>player.x&&co.y<player.y+player.h&&co.y+co.h>player.y){score++;scoreEl.textContent=score;coins.splice(i,1);if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('best',best)}}
-if(co.x<-30)coins.splice(i,1);
-});
-bombs.forEach((b,i)=>{
-b.x-=4;ctx.fillText('💣',b.x,b.y);
-if(b.x<player.x+player.w&&b.x+b.w>player.x&&b.y<player.y+player.h&&b.y+b.h>player.y){endGame()}
-if(b.x<-30)bombs.splice(i,1);
-});
-if(y>420||y<0)endGame();
+coins.forEach((co,i)=>{co.x-=currentSpeed;ctx.fillText('💵',co.x,co.y);if(co.x<player.x+player.w&&co.x+co.w>player.x&&co.y<player.y+player.h&&co.y+co.h>player.y){score++;scoreEl.textContent=score;coins.splice(i,1);if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('best',best)}}if(co.x<-30)coins.splice(i,1);});
+bombs.forEach((b,i)=>{b.x-=currentSpeed+0.5;ctx.fillText('💣',b.x,b.y);if(b.x<player.x+player.w&&b.x+b.w>player.x&&b.y<player.y+player.h&&b.y+b.h>player.y){endGame()}if(b.x<-30)bombs.splice(i,1);});
+if(y>390||y<0)endGame();
 requestAnimationFrame(loop);
 }
-function endGame(){game=false;btn.style.display='block';btn.textContent=`انتهت! نقاطك ${score} - العب مرة ثانية 🔄`;document.getElementById('msg').textContent=score>10?'وحش! شارك اللعبة مع صحابك!':'حاول مرة ثانية!'}
-function jump(){if(!game){reset();game=true;btn.style.display='none';loop();}vy=-8}
+function endGame(){
+game=false;playBtn.style.display='block';playBtn.textContent=`انتهت! جبت ${score} - العب مرة ثانية 🔄`;msg.textContent=score>=20?'🔥 وحش! شارك نتيجتك وخلي صحابك يتحدوك!':'حاول تكسر رقمك القياسي!';
+leaders.push(score);leaders.sort((a,b)=>b-a);leaders=leaders.slice(0,10);localStorage.setItem('leaders',JSON.stringify(leaders));renderLeaders();
+if(score>0){shareBtn.style.display='block';shareBtn.dataset.score=score;}
+}
+function jump(){if(!game){reset();game=true;playBtn.style.display='none';msg.textContent='يلا!';loop();}vy=-7.5}
 c.addEventListener('touchstart',e=>{e.preventDefault();jump()},{passive:false});
 c.addEventListener('mousedown',jump);
-btn.addEventListener('click',jump);
+playBtn.addEventListener('click',jump);
+shareBtn.addEventListener('click',()=>{
+let s=shareBtn.dataset.score;
+let text=`🎮 جبت ${s} نقطة بلعبة جمع الفلوس! 💰\nهل بتقدر تجيب أكتر مني؟ جرب هون:\nhttps://mhammadjamal576-byte.github.io`;
+let url=`https://wa.me/?text=${encodeURIComponent(text)}`;
+window.open(url,'_blank');
+});
 reset();
 </script>
 </body>
-</html>
+  </html>
