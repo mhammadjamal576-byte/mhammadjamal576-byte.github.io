@@ -2,23 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Collect Money Challenge / تحدي جمع الفلوس</title>
 <style>
-  body{margin:0;font-family:'Segoe UI',sans-serif;background:#070510;color:white;text-align:center;overflow:hidden}
+  body{margin:0;font-family:'Segoe UI',sans-serif;background:#070510;color:white;text-align:center;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
   #top{padding:10px;display:flex;justify-content:space-between;align-items:center;background:#1a1033;border-bottom:2px solid #facc15}
-  #game{position:relative;width:100vw;height:76vh;background:radial-gradient(circle at 50% 0%, #2a1a5e 0%, #070510 65%);overflow:hidden}
-  .coin{position:absolute;font-size:34px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px gold);transition:transform .1s}
-  .coin:active{transform:scale(1.4)}
-  .bomb{position:absolute;font-size:34px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px red)}
+  #game{position:relative;width:100vw;height:76vh;background:radial-gradient(circle at 50% 0%, #2a1a5e 0%, #070510 65%);overflow:hidden;touch-action:none}
+  .coin{position:absolute;font-size:38px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px gold);padding:14px;margin:-14px;touch-action:manipulation;z-index:2}
+  .bomb{position:absolute;font-size:38px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px red);padding:14px;margin:-14px;touch-action:manipulation;z-index:2}
   @keyframes fall{from{top:-60px}to{top:80vh}}
   @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(0)}}
   #timer{font-weight:bold;background:#facc15;padding:6px 12px;border-radius:20px;color:black;font-size:16px;box-shadow:0 0 15px #facc15}
   #score{font-size:17px;font-weight:bold;color:#fde68a}
-  button.lang{background:#facc15;border:none;padding:8px 16px;border-radius:20px;font-weight:900;cursor:pointer;color:#111}
+  button.lang{background:#facc15;border:none;padding:8px 16px;border-radius:20px;font-weight:900;cursor:pointer;color:#111;touch-action:manipulation}
   #soundBtn{background:#27272a;border:1px solid #444;color:white;padding:8px 10px;border-radius:50%;cursor:pointer;font-size:16px}
   #centerMsg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,5,30,0.95);padding:22px;border-radius:18px;display:none;z-index:10;width:86%;border:2px solid #facc15;box-shadow:0 0 30px rgba(250,204,21,.5)}
-  .bigBtn{padding:12px 24px;border-radius:12px;border:none;background:#22c55e;font-weight:900;font-size:16px;cursor:pointer;width:100%;margin-top:10px}
+  .bigBtn{padding:14px 24px;border-radius:12px;border:none;background:#22c55e;font-weight:900;font-size:17px;cursor:pointer;width:100%;margin-top:10px;touch-action:manipulation}
   .adBox{background:#111827;border:1px dashed #444;padding:8px;font-size:12px;color:#9ca3af}
 </style>
 <script src="https://alwingulla.com/88/tag.min.js" data-zone="12159570" async data-cfasync="false"></script>
@@ -41,7 +40,6 @@
   <span class="ar">اضغط الفلوس 💰 لا تكبس القنبلة 💣 | كومبو x3 = +5 بونص!</span>
   <span class="en" style="display:none">Tap money 💰 DON'T tap bomb 💣 | Combo x3 = +5 bonus!</span>
 </div>
-
 <div class="adBox">🎮 AD - PLAY & WIN - AD</div>
 
 <script>
@@ -51,14 +49,10 @@ let scoreEl=document.getElementById('score');
 let timerEl=document.getElementById('timer');
 let audioCtx=null;
 
-function getAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function getAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); return audioCtx; }
 function beep(freq,dur,type='sine',vol=0.2){
   if(!soundOn) return;
-  try{
-    let ctx=getAudio(); let o=ctx.createOscillator(); let g=ctx.createGain();
-    o.type=type; o.frequency.value=freq; g.gain.value=vol;
-    o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+dur);
-  }catch(e){}
+  try{ let ctx=getAudio(); let o=ctx.createOscillator(); let g=ctx.createGain(); o.type=type; o.frequency.value=freq; g.gain.value=vol; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+dur); }catch(e){}
 }
 function playCoin(){ beep(900,0.08,'sine',0.25); setTimeout(()=>beep(1400,0.12,'sine',0.25),60); }
 function playBomb(){ beep(150,0.4,'sawtooth',0.4); }
@@ -76,13 +70,18 @@ function toggleLang(){
 function updateScore(){ scoreEl.textContent = lang==='ar' ? `النقاط: ${score} | Score: ${score}` : `Score: ${score} | النقاط: ${score}`; }
 
 function spawnItem(){
-  let isBomb = Math.random() < 0.18; // 18% bomb
+  let isBomb = Math.random() < 0.18;
   let el=document.createElement('div');
   el.className=isBomb?'bomb':'coin';
-  if(isBomb){ el.textContent='💣'; } else { el.textContent=['💰','💵','💲','🪙','💎'][Math.floor(Math.random()*5)]; }
-  el.style.left=Math.random()*85+'vw';
+  el.textContent=isBomb?'💣':['💰','💵','💲','🪙','💎'][Math.floor(Math.random()*5)];
+  el.style.left=Math.random()*82+'vw';
   el.style.animationDuration=(2+Math.random()*2)+'s';
-  el.onclick=()=>{
+  
+  // إصلاح اللمس - هذا هو التعديل المهم
+  let handled=false;
+  function handleTap(e){
+    if(handled) return; handled=true;
+    e.preventDefault();
     if(isBomb){
       score=Math.max(0,score-10); combo=0; playBomb();
       el.style.animation='pop .2s forwards'; el.textContent='💥';
@@ -97,7 +96,10 @@ function spawnItem(){
       setTimeout(()=>el.remove(),150);
     }
     updateScore();
-  };
+  }
+  el.addEventListener('pointerdown', handleTap);
+  el.addEventListener('touchstart', handleTap, {passive:false});
+
   game.appendChild(el);
   setTimeout(()=>el.remove(),5000);
 }
@@ -111,7 +113,6 @@ let interval=setInterval(()=>{
     clearInterval(interval); playEnd();
     let msg=document.getElementById('centerMsg');
     msg.style.display='block';
-    // 3 sec ad delay = more profit
     if(lang==='ar'){
       msg.innerHTML=`<h2 style="color:#facc15">انتهى الوقت! ⏰</h2><p style="font-size:20px">جبت <b>${score}</b> نقطة</p><p style="font-size:13px;color:#aaa">جارٍ تحميل نتيجتك... لا تسكر الصفحة</p><div class="adBox" style="margin:12px 0">🔥 إعلان - جاري التحميل...</div><p id="countdown">العب مرة ثانية بعد 3...</p>`;
     } else {
