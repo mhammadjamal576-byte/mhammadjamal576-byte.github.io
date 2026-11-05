@@ -5,91 +5,131 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collect Money Challenge / تحدي جمع الفلوس</title>
 <style>
-  body { margin:0; font-family: sans-serif; background:#0f172a; color:white; text-align:center; overflow:hidden; }
-  #top { padding:10px; display:flex; justify-content:space-between; align-items:center; background:#1e293b; }
-  #game { position:relative; width:100vw; height:80vh; background:linear-gradient(#38bdf8,#0f172a); overflow:hidden; }
-  .coin { position:absolute; font-size:30px; cursor:pointer; animation: fall linear; user-select:none; }
-  @keyframes fall { from { top:-50px } to { top:85vh } }
-  #timer { font-weight:bold; background:#22c55e; padding:5px 10px; border-radius:10px; color:black; }
-  #score { font-size:18px; font-weight:bold; }
-  button.lang { background:#22c55e; border:none; padding:8px 14px; border-radius:20px; font-weight:bold; cursor:pointer; }
-  #centerMsg { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.85); padding:20px; border-radius:15px; display:none; z-index:10; width:80%; }
+  body{margin:0;font-family:'Segoe UI',sans-serif;background:#070510;color:white;text-align:center;overflow:hidden}
+  #top{padding:10px;display:flex;justify-content:space-between;align-items:center;background:#1a1033;border-bottom:2px solid #facc15}
+  #game{position:relative;width:100vw;height:76vh;background:radial-gradient(circle at 50% 0%, #2a1a5e 0%, #070510 65%);overflow:hidden}
+  .coin{position:absolute;font-size:34px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px gold);transition:transform .1s}
+  .coin:active{transform:scale(1.4)}
+  .bomb{position:absolute;font-size:34px;cursor:pointer;animation:fall linear;user-select:none;filter:drop-shadow(0 0 12px red)}
+  @keyframes fall{from{top:-60px}to{top:80vh}}
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(0)}}
+  #timer{font-weight:bold;background:#facc15;padding:6px 12px;border-radius:20px;color:black;font-size:16px;box-shadow:0 0 15px #facc15}
+  #score{font-size:17px;font-weight:bold;color:#fde68a}
+  button.lang{background:#facc15;border:none;padding:8px 16px;border-radius:20px;font-weight:900;cursor:pointer;color:#111}
+  #soundBtn{background:#27272a;border:1px solid #444;color:white;padding:8px 10px;border-radius:50%;cursor:pointer;font-size:16px}
+  #centerMsg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(10,5,30,0.95);padding:22px;border-radius:18px;display:none;z-index:10;width:86%;border:2px solid #facc15;box-shadow:0 0 30px rgba(250,204,21,.5)}
+  .bigBtn{padding:12px 24px;border-radius:12px;border:none;background:#22c55e;font-weight:900;font-size:16px;cursor:pointer;width:100%;margin-top:10px}
+  .adBox{background:#111827;border:1px dashed #444;padding:8px;font-size:12px;color:#9ca3af}
 </style>
 <script src="https://alwingulla.com/88/tag.min.js" data-zone="12159570" async data-cfasync="false"></script>
 <script src="https://alwingulla.com/88/tag.min.js" data-zone="12159491" async data-cfasync="false"></script>
 </head>
 <body>
+
 <div id="top">
   <div id="score">النقاط: 0 | Score: 0</div>
-  <button class="lang" onclick="toggleLang()">EN / AR</button>
+  <div style="display:flex;gap:6px;align-items:center">
+    <button id="soundBtn" onclick="toggleSound()">🔊</button>
+    <button class="lang" onclick="toggleLang()">EN / AR</button>
+  </div>
   <div id="timer">60s</div>
 </div>
-<div id="game">
-  <div id="centerMsg"></div>
-</div>
-<div id="info" style="padding:8px; font-size:14px;">
-  <span class="ar">اضغط على الفلوس 💰 لجمعها!</span>
-  <span class="en" style="display:none">Tap the money 💰 to collect!</span>
+
+<div id="game"><div id="centerMsg"></div></div>
+
+<div id="info" style="padding:8px;font-size:14px;background:#0f0a2e">
+  <span class="ar">اضغط الفلوس 💰 لا تكبس القنبلة 💣 | كومبو x3 = +5 بونص!</span>
+  <span class="en" style="display:none">Tap money 💰 DON'T tap bomb 💣 | Combo x3 = +5 bonus!</span>
 </div>
 
+<div class="adBox">🎮 AD - PLAY & WIN - AD</div>
+
 <script>
-let score=0;
-let time=60;
-let lang='ar';
+let score=0, time=60, lang='ar', soundOn=true, combo=0, lastTap=0;
 let game=document.getElementById('game');
 let scoreEl=document.getElementById('score');
 let timerEl=document.getElementById('timer');
-let infoAr=document.querySelector('.ar');
-let infoEn=document.querySelector('.en');
+let audioCtx=null;
+
+function getAudio(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function beep(freq,dur,type='sine',vol=0.2){
+  if(!soundOn) return;
+  try{
+    let ctx=getAudio(); let o=ctx.createOscillator(); let g=ctx.createGain();
+    o.type=type; o.frequency.value=freq; g.gain.value=vol;
+    o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+dur);
+  }catch(e){}
+}
+function playCoin(){ beep(900,0.08,'sine',0.25); setTimeout(()=>beep(1400,0.12,'sine',0.25),60); }
+function playBomb(){ beep(150,0.4,'sawtooth',0.4); }
+function playClick(){ beep(600,0.05,'square',0.1); }
+function playEnd(){ beep(500,0.15,'sine',0.3); setTimeout(()=>beep(700,0.15,'sine',0.3),150); setTimeout(()=>beep(1000,0.3,'sine',0.3),300); }
+function playTick(){ beep(1200,0.05,'square',0.15); }
+function toggleSound(){ soundOn=!soundOn; document.getElementById('soundBtn').textContent=soundOn?'🔊':'🔇'; if(soundOn) playClick(); }
 
 function toggleLang(){
-  if(lang==='ar'){
-    lang='en';
-    document.documentElement.dir='ltr';
-    infoAr.style.display='none';
-    infoEn.style.display='inline';
-  } else {
-    lang='ar';
-    document.documentElement.dir='rtl';
-    infoAr.style.display='inline';
-    infoEn.style.display='none';
-  }
+  playClick();
+  if(lang==='ar'){ lang='en'; document.documentElement.dir='ltr'; document.querySelector('.ar').style.display='none'; document.querySelector('.en').style.display='inline'; }
+  else{ lang='ar'; document.documentElement.dir='rtl'; document.querySelector('.ar').style.display='inline'; document.querySelector('.en').style.display='none'; }
   updateScore();
 }
-function updateScore(){
-  if(lang==='ar') scoreEl.textContent=`النقاط: ${score} | Score: ${score}`;
-  else scoreEl.textContent=`Score: ${score} | النقاط: ${score}`;
-}
-function spawnCoin(){
-  let coin=document.createElement('div');
-  coin.className='coin';
-  coin.textContent=['💰','💵','💲','🪙'][Math.floor(Math.random()*4)];
-  coin.style.left=Math.random()*85+'vw';
-  coin.style.animationDuration=(2+Math.random()*2.5)+'s';
-  coin.onclick=()=>{
-    score+= (Math.random()>0.85?5:1);
+function updateScore(){ scoreEl.textContent = lang==='ar' ? `النقاط: ${score} | Score: ${score}` : `Score: ${score} | النقاط: ${score}`; }
+
+function spawnItem(){
+  let isBomb = Math.random() < 0.18; // 18% bomb
+  let el=document.createElement('div');
+  el.className=isBomb?'bomb':'coin';
+  if(isBomb){ el.textContent='💣'; } else { el.textContent=['💰','💵','💲','🪙','💎'][Math.floor(Math.random()*5)]; }
+  el.style.left=Math.random()*85+'vw';
+  el.style.animationDuration=(2+Math.random()*2)+'s';
+  el.onclick=()=>{
+    if(isBomb){
+      score=Math.max(0,score-10); combo=0; playBomb();
+      el.style.animation='pop .2s forwards'; el.textContent='💥';
+      setTimeout(()=>el.remove(),200);
+    } else {
+      let now=Date.now();
+      if(now-lastTap<800) combo++; else combo=1;
+      lastTap=now;
+      let add = combo>=3 ? 5 : (Math.random()>0.85?5:1);
+      score+=add; playCoin();
+      el.style.animation='pop .15s forwards';
+      setTimeout(()=>el.remove(),150);
+    }
     updateScore();
-    coin.remove();
   };
-  game.appendChild(coin);
-  setTimeout(()=>coin.remove(),5000);
+  game.appendChild(el);
+  setTimeout(()=>el.remove(),5000);
 }
-setInterval(()=>{ if(Math.random()>0.2) spawnCoin(); },350);
+
+setInterval(()=>{ if(Math.random()>0.15) spawnItem(); },320);
+
 let interval=setInterval(()=>{
-  time--;
-  timerEl.textContent=time+'s';
+  time--; timerEl.textContent=time+'s';
+  if(time<=5 && time>0){ playTick(); timerEl.style.background='#ef4444'; timerEl.style.color='white'; }
   if(time<=0){
-    clearInterval(interval);
+    clearInterval(interval); playEnd();
     let msg=document.getElementById('centerMsg');
     msg.style.display='block';
+    // 3 sec ad delay = more profit
     if(lang==='ar'){
-      msg.innerHTML=`<h2>انتهى الوقت! ⏰</h2><p>جبت ${score} نقطة</p><p>تقدر تجيب 100؟ تحدى أصحابك!</p><button onclick="location.reload()" style="padding:10px 20px; border-radius:10px; border:none; background:#22c55e; font-weight:bold;">العب مرة ثانية / Play Again</button>`;
+      msg.innerHTML=`<h2 style="color:#facc15">انتهى الوقت! ⏰</h2><p style="font-size:20px">جبت <b>${score}</b> نقطة</p><p style="font-size:13px;color:#aaa">جارٍ تحميل نتيجتك... لا تسكر الصفحة</p><div class="adBox" style="margin:12px 0">🔥 إعلان - جاري التحميل...</div><p id="countdown">العب مرة ثانية بعد 3...</p>`;
     } else {
-      msg.innerHTML=`<h2>Time's Up! ⏰</h2><p>You got ${score} points</p><p>Can you beat 100? Challenge friends!</p><button onclick="location.reload()" style="padding:10px 20px; border-radius:10px; border:none; background:#22c55e; font-weight:bold;">Play Again / العب مرة ثانية</button>`;
+      msg.innerHTML=`<h2 style="color:#facc15">Time's Up! ⏰</h2><p style="font-size:20px">You got <b>${score}</b> points</p><p style="font-size:13px;color:#aaa">Loading your result... don't close</p><div class="adBox" style="margin:12px 0">🔥 AD - Loading...</div><p id="countdown">Play again in 3...</p>`;
     }
+    let c=3;
+    let cd=setInterval(()=>{
+      c--; let el=document.getElementById('countdown');
+      if(el) el.textContent = lang==='ar' ? `العب مرة ثانية بعد ${c}...` : `Play again in ${c}...`;
+      if(c<=0){
+        clearInterval(cd);
+        msg.innerHTML += `<button class="bigBtn" onclick="location.reload()">${lang==='ar'?'العب مرة ثانية 🔁 / Play Again':'Play Again 🔁 / العب مرة ثانية'}</button><p style="font-size:12px;margin-top:10px">${lang==='ar'?'تحدى أصحابك! ابعت الرابط':'Challenge friends! Share link'}</p>`;
+      }
+    },1000);
   }
 },1000);
-for(let i=0;i<5;i++) setTimeout(spawnCoin, i*200);
+
+for(let i=0;i<5;i++) setTimeout(spawnItem,i*200);
 </script>
 </body>
 </html>
