@@ -1,139 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Number Drop - Fun Learning Game for Kids!</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Comic Sans MS',Arial}
-body{background:linear-gradient(180deg,#6EC6FF,#A0E7FF,#FFF9C4);min-height:100vh;text-align:center;overflow-x:hidden}
-.ad{background:#fff;border:2px dashed #bbb;margin:8px auto;padding:10px;max-width:480px;border-radius:12px;font-size:12px;color:#999}
-.top{padding:12px}
-.logo{font-size:32px;font-weight:bold;color:#fff;text-shadow:0 3px 0 #FF6B6B,0 5px 10px rgba(0,0,0,.2)}
-.sub{color:#fff;font-size:15px;background:#FF6B6B;display:inline-block;padding:5px 15px;border-radius:20px;margin:6px 0}
-.card{background:#fff;margin:10px auto;max-width:480px;padding:15px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,.15)}
-#target{font-size:20px}
-#target b{font-size:48px;color:#4A90E2;display:block}
-#stats{font-size:16px;margin:8px 0}
-#msg{font-size:24px;font-weight:bold;min-height:35px}
-#gameArea{position:relative;height:420px;overflow:hidden;background:linear-gradient(#fff,#D6F5FF);border-radius:20px;margin:10px}
-.num{position:absolute;top:-90px;width:85px;height:85px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:bold;cursor:pointer;color:#fff;box-shadow:0 8px 0 rgba(0,0,0,.2),0 12px 20px rgba(0,0,0,.3);border:3px solid #fff;user-select:none;transition:transform .1s}
-.num:active{transform:scale(.9)}
-.c1{background:radial-gradient(circle at 30% 30%,#FF9A9A,#FF4757)}
-.c2{background:radial-gradient(circle at 30% 30%,#FFE29A,#FFA502)}
-.c3{background:radial-gradient(circle at 30% 30%,#A8E063,#2ED573)}
-.c4{background:radial-gradient(circle at 30% 30%,#A29BFE,#6C5CE7)}
-.c5{background:radial-gradient(circle at 30% 30%,#74B9FF,#0984E3)}
-.wrong{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-12px)}75%{transform:translateX(12px)}}
-@keyframes pop{0%{transform:scale(.5)}100%{transform:scale(1.2)}}
-#startBtn{background:linear-gradient(#FF6B6B,#FF4757);color:#fff;border:none;padding:16px 40px;font-size:24px;border-radius:50px;cursor:pointer;box-shadow:0 6px 0 #C0392B}
-#modes button{border:none;padding:10px 18px;margin:4px;border-radius:20px;font-size:16px;cursor:pointer;background:#eee}
-#modes button.active{background:#4A90E2;color:#fff}
-#confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;display:none;font-size:30px}
-.footer{font-size:12px;color:#666;padding:10px}
-</style>
-</head>
-<body>
-
-<!-- اعلان 1 : فوق -->
-<div class="ad">AD 1 - TOP BANNER<br>Put your AdSense / AdMob code here</div>
-
-<div class="top">
-<div class="logo">🌈 NUMBER DROP 🎈</div>
-<div class="sub">Learn Numbers • Letters • Colors - Fun for Kids!</div>
-</div>
-
-<div class="card">
-<div id="modes">
-<button onclick="setMode('numbers')" id="btn-numbers" class="active">🔢 Numbers</button>
-<button onclick="setMode('letters')" id="btn-letters">🔤 Letters</button>
-<button onclick="setMode('colors')" id="btn-colors">🎨 Colors</button>
-</div>
-<div id="target">Find Number <b id="targetNum">?</b></div>
-<div id="stats">⭐ Score: <span id="scoreVal">0</span> | 🏆 Level: <span id="levelVal">1</span> | ❤️ <span id="lives">3</span></div>
-<button id="startBtn" onclick="startGame()">▶ PLAY NOW!</button>
-<div id="msg"></div>
-<div id="gameArea"></div>
-<button onclick="toggleSound()" style="padding:8px 15px;border-radius:20px;border:1px solid #ccc;background:#fff;cursor:pointer">🔊 Sound: <span id="soundState">ON</span></button>
-</div>
-
-<!-- اعلان 2 : بالنص - بيطلع بين المراحل -->
-<div class="ad" id="ad2">AD 2 - BETWEEN LEVELS<br>Put your AdSense / AdMob code here</div>
-
-<div class="card" style="font-size:14px;line-height:1.8">
-<b>👨‍👩‍👧 For Parents:</b><br>
-✅ Safe for kids 2-6 years<br>
-✅ Learn English Numbers, Letters & Colors<br>
-✅ No violent content - 100% Educational<br>
-✅ New levels every 50 points!
-</div>
-
-<!-- اعلان 3 : تحت -->
-<div class="ad">AD 3 - BOTTOM BANNER<br>Put your AdSense / AdMob code here</div>
-<div class="footer">© 2026 Number Drop - Made with ❤️ for Kids</div>
-<div id="confetti">🎉⭐🎈🎉⭐🎈🎉⭐🎈</div>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Number Drop - Fun Learning Game!</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Comic Sans MS',Arial}body{background:linear-gradient(#6EC6FF,#FFF9C4);text-align:center}.ad{background:#fff;border:1px solid #eee;margin:8px auto;padding:8px;max-width:480px;border-radius:10px;font-size:11px;color:#ccc}.card{background:#fff;margin:10px auto;max-width:480px;padding:15px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,.15)}#target{font-size:24px}#target b{font-size:60px;color:#4A90E2;display:block}#stats{font-size:18px;margin:8px 0}#msg{font-size:26px;font-weight:bold;min-height:35px}#gameArea{position:relative;height:440px;overflow:hidden;background:linear-gradient(#fff,#D6F5FF);border-radius:20px;margin:10px}.num{position:absolute;top:-120px;width:110px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:58px;font-weight:bold;cursor:pointer;color:#fff;box-shadow:0 8px 0 rgba(0,0,0,.2);border:4px solid #fff}.c1{background:radial-gradient(circle at 30% 30%,#FF9A9A,#FF4757)}.c2{background:radial-gradient(circle at 30% 30%,#FFE29A,#FFA502)}.c3{background:radial-gradient(circle at 30% 30%,#A8E063,#2ED573)}.watermark{background:#FF6B6B;color:#fff;padding:8px;border-radius:20px;font-size:15px;margin-top:8px;display:inline-block}button{border:none;padding:12px 22px;margin:4px;border-radius:20px;font-size:17px;cursor:pointer}#startBtn{background:linear-gradient(#FF6B6B,#FF4757);color:#fff;padding:18px 45px;font-size:26px;border-radius:50px;box-shadow:0 6px 0 #C0392B}.active{background:#4A90E2!important;color:#fff!important}</style></head><body>
+<div class="ad" id="ad1">✨ Sponsored ✨</div>
+<div class="card"><h1 style="font-size:30px">🌈 NUMBER DROP 🎈</h1><div><button onclick="setMode('numbers')" id="btn-numbers" class="active">🔢 Numbers</button><button onclick="setMode('letters')" id="btn-letters">🔤 Letters</button><button onclick="setMode('colors')" id="btn-colors">🎨 Colors</button></div><div id="target">Find Number <b id="targetNum">?</b></div><div id="stats">⭐ <span id="scoreVal">0</span> | 🏆 Level <span id="levelVal">1</span> | ❤️ <span id="lives">3</span></div><button id="startBtn" onclick="startGame()">▶ PLAY NOW!</button><div id="msg"></div><div id="gameArea"></div><button onclick="toggleSound()">🔊 Sound: <span id="soundState">ON</span></button><div class="watermark">▶ Follow @KidsGamesHub on YouTube ❤️</div></div>
+<div class="ad" id="ad2">✨ Sponsored ✨</div>
+<div class="card" style="font-size:14px">👨‍👩‍👧 For Parents: Safe for kids 2-6 years | Learn Numbers, Letters & Colors</div>
+<div class="ad" id="ad3">✨ Sponsored ✨</div>
 <script>
-let mode='numbers', target='4', score=0, level=1, lives=3, gameOn=false, speed=2.2, soundOn=true;
+if(location.search.includes('clean')){document.querySelectorAll('.ad').forEach(a=>a.style.display='none')}
+let mode='numbers',target='4',score=0,level=1,lives=3,gameOn=false,speed=0.9,soundOn=true;
 let colorsList=[{name:'RED',code:'#FF4757'},{name:'BLUE',code:'#0984E3'},{name:'GREEN',code:'#2ED573'},{name:'YELLOW',code:'#FFA502'},{name:'PURPLE',code:'#6C5CE7'}];
 let lettersList=['A','B','C','D','E','F','G','H'];
-
-function setMode(m){mode=m; document.querySelectorAll('#modes button').forEach(b=>b.classList.remove('active')); document.getElementById('btn-'+m).classList.add('active'); if(gameOn) newRound();}
-
-function speak(t){ if(!soundOn) return; try{let u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=0.85; u.pitch=1.2; speechSynthesis.speak(u);}catch(e){} }
-
-function playSound(type){
- if(!soundOn) return;
- try{
-  let ctx=new (window.AudioContext||window.webkitAudioContext)();
-  let o=ctx.createOscillator(), g=ctx.createGain(); o.connect(g); g.connect(ctx.destination);
-  if(type==='correct'){o.frequency.setValueAtTime(523,ctx.currentTime); o.frequency.setValueAtTime(659,ctx.currentTime+0.12); o.frequency.setValueAtTime(784,ctx.currentTime+0.24); o.frequency.setValueAtTime(1046,ctx.currentTime+0.36);}
-  else{o.frequency.setValueAtTime(220,ctx.currentTime); o.frequency.setValueAtTime(150,ctx.currentTime+0.15);}
-  o.start(); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5); o.stop(ctx.currentTime+0.5);
- }catch(e){}
-}
-function toggleSound(){soundOn=!soundOn; document.getElementById('soundState').innerText=soundOn?'ON':'OFF';}
-
-function newRound(){
- document.getElementById('gameArea').innerHTML='';
- let options=[];
- if(mode==='numbers'){ target=String(Math.floor(Math.random()*10)); while(options.length<3){let r=String(Math.floor(Math.random()*10)); if(!options.includes(r)) options.push(r);} if(!options.includes(target)) options[0]=target; document.getElementById('target').innerHTML='Find Number <b>'+target+'</b>'; speak("Find number "+target); }
- if(mode==='letters'){ target=lettersList[Math.floor(Math.random()*lettersList.length)]; options=[target]; while(options.length<3){let r=lettersList[Math.floor(Math.random()*lettersList.length)]; if(!options.includes(r)) options.push(r);} document.getElementById('target').innerHTML='Find Letter <b>'+target+'</b>'; speak("Find letter "+target); }
- if(mode==='colors'){ let c=colorsList[Math.floor(Math.random()*colorsList.length)]; target=c.name; options=[c]; while(options.length<3){let r=colorsList[Math.floor(Math.random()*colorsList.length)]; if(!options.includes(r.name)) options.push(r);} document.getElementById('target').innerHTML='Find Color <b style="color:'+c.code+'">'+target+'</b>'; speak("Find color "+target); }
- options=options.sort(()=>Math.random()-0.5);
- options.forEach((item,i)=>{
-  let el=document.createElement('div'); el.className='num c'+(i+1);
-  if(mode==='colors'){ el.innerText='●'; el.style.background=item.code; el.style.fontSize='60px'; }
-  else el.innerText=item.name||item;
-  el.style.left=(8+i*30)+'%';
-  el.onclick=()=>checkAnswer(item,el);
-  document.getElementById('gameArea').appendChild(el);
-  fall(el);
- });
-}
-
-function fall(el){
- let top=-90; let id=setInterval(()=>{ if(!gameOn){clearInterval(id);return;} top+=speed; el.style.top=top+'px'; if(top>400){clearInterval(id); el.remove();} },16);
-}
-
-function checkAnswer(item,el){
- let isCorrect = mode==='colors' ? item.name===target : (item===target || item.name===target);
- if(isCorrect){
-  playSound('correct'); document.getElementById('msg').innerText='🎉 Great Job! Excellent!'; document.getElementById('msg').style.color='green'; speak("Great Job! Excellent!");
-  score+=10; document.getElementById('scoreVal').innerText=score;
-  document.getElementById('confetti').style.display='block'; setTimeout(()=>document.getElementById('confetti').style.display='none',1000);
-  if(score%50===0){ level++; speed+=0.5; document.getElementById('levelVal').innerText=level; speak("Level Up! Amazing!"); document.getElementById('msg').innerText='🏆 LEVEL UP! You are Amazing!'; document.getElementById('ad2').scrollIntoView({behavior:'smooth'}); }
-  setTimeout(newRound,1200);
- } else {
-  playSound('wrong'); el.classList.add('wrong'); document.getElementById('msg').innerText='Oops! Try Again 💪'; document.getElementById('msg').style.color='red'; speak("Oops, try again");
-  lives--; document.getElementById('lives').innerText=lives;
-  setTimeout(()=>el.classList.remove('wrong'),400);
-  if(lives<=0){ gameOn=false; document.getElementById('msg').innerText='Game Over! Press PLAY to try again ❤️'; speak("Game over, try again"); lives=3; document.getElementById('lives').innerText=3; document.getElementById('startBtn').style.display='inline-block'; }
- }
-}
-
-function startGame(){ gameOn=true; score=0; level=1; lives=3; speed=2.2; document.getElementById('scoreVal').innerText='0'; document.getElementById('levelVal').innerText='1'; document.getElementById('lives').innerText='3'; document.getElementById('startBtn').style.display='none'; speak("Hello! Let's learn and play!"); setTimeout(newRound,800); }
-</script>
-</body>
-  </html>
+function setMode(m){mode=m;document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));document.getElementById('btn-'+m).classList.add('active');if(gameOn)newRound()}
+function speak(t){if(!soundOn)return;try{let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=0.85;u.pitch=1.2;speechSynthesis.speak(u)}catch(e){}}
+function playSound(t){if(!soundOn)return;try{let ctx=new(window.AudioContext||window.webkitAudioContext)();let o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);if(t==='correct'){[523,659,784,1046].forEach((f,i)=>{let o2=ctx.createOscillator(),g2=ctx.createGain();o2.connect(g2);g2.connect(ctx.destination);o2.frequency.value=f;g2.gain.value=0.2;o2.start(ctx.currentTime+i*0.12);o2.stop(ctx.currentTime+i*0.12+0.3)})}else{o.frequency.setValueAtTime(220,ctx.currentTime);o.frequency.setValueAtTime(150,ctx.currentTime+0.15);o.start();g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);o.stop(ctx.currentTime+0.5)}}catch(e){}}
+function toggleSound(){soundOn=!soundOn;document.getElementById('soundState').innerText=soundOn?'ON':'OFF'}
+function newRound(){document.getElementById('gameArea').innerHTML='';let options=[];if(mode==='numbers'){target=String(Math.floor(Math.random()*10));while(options.length<3){let r=String(Math.floor(Math.random()*10));if(!options.includes(r))options.push(r)}if(!options.includes(target))options[0]=target;document.getElementById('target').innerHTML='Find Number <b>'+target+'</b>';speak("Find number "+target)}if(mode==='letters'){target=lettersList[Math.floor(Math.random()*lettersList.length)];options=[target];while(options.length<3){let r=lettersList[Math.floor(Math.random()*lettersList.length)];if(!options.includes(r))options.push(r)}document.getElementById('target').innerHTML='Find Letter <b>'+target+'</b>';speak("Find letter "+target)}if(mode==='colors'){let c=colorsList[Math.floor(Math.random()*colorsList.length)];target=c.name;options=[c];while(options.length<3){let r=colorsList[Math.floor(Math.random()*colorsList.length)];if(!options.includes(r.name))options.push(r)}document.getElementById('target').innerHTML='Find Color <b style="color:'+c.code+'">'+target+'</b>';speak("Find color "+target)}options=options.sort(()=>Math.random()-0.5);options.forEach((item,i)=>{let el=document.createElement('div');el.className='num c'+(i+1);if(mode==='colors'){el.innerText='●';el.style.background=item.code;el.style.fontSize='70px'}else el.innerText=item.name||item;el.style.left=(5+i*30)+'%';el.onclick=()=>checkAnswer(item,el);document.getElementById('gameArea').appendChild(el);fall(el)})}
+function fall(el){let top=-120;let id=setInterval(()=>{if(!gameOn){clearInterval(id);return}top+=speed;el.style.top=top+'px';if(top>440){clearInterval(id);el.remove()}},16)}
+function checkAnswer(item,el){let isCorrect=mode==='colors'?item.name===target:(item===target||item.name===target);if(isCorrect){playSound('correct');document.getElementById('msg').innerText='🎉 Great Job! Excellent! 👏';document.getElementById('msg').style.color='green';speak("Great Job! Excellent!");score+=10;document.getElementById('scoreVal').innerText=score;if(score%50===0){level++;speed+=0.2;document.getElementById('levelVal').innerText=level;speak("Level Up! Amazing!");document.getElementById('msg').innerText='🏆 LEVEL UP! You are Amazing!'}setTimeout(newRound,1400)}else{playSound('wrong');document.getElementById('msg').innerText='Oops! Try Again 💪';document.getElementById('msg').style.color='red';speak("Oops, try again");lives--;document.getElementById('lives').innerText=lives;if(lives<=0){gameOn=false;document.getElementById('msg').innerText='Game Over! Press PLAY again ❤️';lives=3;document.getElementById('lives').innerText=3;document.getElementById('startBtn').style.display='inline-block'}}}
+function startGame(){gameOn=true;score=0;level=1;lives=3;speed=0.9;document.getElementById('scoreVal').innerText='0';document.getElementById('levelVal').innerText='1';document.getElementById('lives').innerText='3';document.getElementById('startBtn').style.display='none';speak("Hello! Let's learn and play!");setTimeout(newRound,800)}
+</script></body></html>
