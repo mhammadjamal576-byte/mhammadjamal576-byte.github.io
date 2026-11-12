@@ -18,10 +18,14 @@ function fall(el){let top=-120;let id=setInterval(()=>{if(!gameOn){clearInterval
 function checkAnswer(item,el){let isCorrect=mode==='colors'?item.name===target:(item===target||item.name===target);if(isCorrect){playSound('correct');document.getElementById('msg').innerText='🎉 Great Job! Excellent! 👏';document.getElementById('msg').style.color='green';speak("Great Job! Excellent!");score+=10;document.getElementById('scoreVal').innerText=score;if(score%50===0){level++;speed+=0.2;document.getElementById('levelVal').innerText=level;speak("Level Up! Amazing!");document.getElementById('msg').innerText='🏆 LEVEL UP! You are Amazing!'}setTimeout(newRound,1400)}else{playSound('wrong');document.getElementById('msg').innerText='Oops! Try Again 💪';document.getElementById('msg').style.color='red';speak("Oops, try again");lives--;document.getElementById('lives').innerText=lives;if(lives<=0){gameOn=false;document.getElementById('msg').innerText='Game Over! Press PLAY again ❤️';lives=3;document.getElementById('lives').innerText=3;document.getElementById('startBtn').style.display='inline-block'}}}
 function startGame(){gameOn=true;score=0;level=1;lives=3;speed=0.9;document.getElementById('scoreVal').innerText='0';document.getElementById('levelVal').innerText='1';document.getElementById('lives').innerText='3';document.getElementById('startBtn').style.display='none';speak("Hello! Let's learn and play!");setTimeout(newRound,800)}
 </script>
-<!-- Monetag Ads - All 5 Zones -->
-<script>(function(s){s.dataset.zone='12207679',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>(function(s){s.dataset.zone='12207674',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<!-- Monetag Ads - Delayed 40s - No Ad at Start -->
+<script>
+setTimeout(function(){
+  var s1=document.createElement('script'); s1.dataset.zone='12207679'; s1.src='https://n6wxm.com/vignette.min.js'; document.body.appendChild(s1);
+  var s2=document.createElement('script'); s2.dataset.zone='12207674'; s2.src='https://n6wxm.com/vignette.min.js'; document.body.appendChild(s2);
+  var s3=document.createElement('script'); s3.dataset.zone='12159570'; s3.src='https://n6wxm.com/vignette.min.js'; document.body.appendChild(s3);
+}, 40000);
+</script>
 <script>(function(s){s.dataset.zone='12207638',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>(function(s){s.dataset.zone='12159570',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <script>(function(s){s.dataset.zone='12159491',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 </body></html>
