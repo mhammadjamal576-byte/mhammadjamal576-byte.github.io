@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Animals - Learn & Play</title>
+
+<!-- ===== Monetag - Excited tag - 55 مشاهدة ===== -->
+<script src="https://fpyf8.com/act/files/tag.min.js?z=12207638" data-cfasync="false" async></script>
+
+<!-- ===== Monetag - Lovey-dovey tag ===== -->
+<script src="https://fpyf8.com/act/files/tag.min.js?z=12207679" data-cfasync="false" async></script>
+
+<!-- ===== Monetag - Terrific tag ===== -->
+<script src="https://fpyf8.com/act/files/tag.min.js?z=12207674" data-cfasync="false" async></script>
+
+<style>
+body{margin:0;font-family:Arial;background:#FFF9C4;text-align:center}
+h1{font-size:38px;color:#FF5722;margin:15px 0 5px}
+p{font-size:20px;color:#555}
+#big{font-size:130px;height:170px;line-height:170px}
+#name{font-size:48px;font-weight:bold;color:#2196F3;height:65px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:15px;max-width:600px;margin:0 auto}
+.card{background:white;border-radius:20px;font-size:65px;padding:18px 0;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+.card:active{transform:scale(0.92);background:#FFF59D}
+.btn{background:#4CAF50;color:white;border:none;padding:13px 28px;font-size:21px;border-radius:50px;margin:10px}
+</style>
+</head>
+<body>
+<h1>🐾 Learn Animals 🐾</h1>
+<p>Tap an animal! 👆</p>
+<div id="big">👋</div>
+<div id="name">Who is this?</div>
+<button class="btn" onclick="playAgain()">🔊 Hear Again</button>
+<div class="grid">
+<div class="card" onclick="show('🐶','Dog')">🐶</div>
+<div class="card" onclick="show('🐱','Cat')">🐱</div>
+<div class="card" onclick="show('🦁','Lion')">🦁</div>
+<div class="card" onclick="show('🐘','Elephant')">🐘</div>
+<div class="card" onclick="show('🐵','Monkey')">🐵</div>
+<div class="card" onclick="show('🐄','Cow')">🐄</div>
+<div class="card" onclick="show('🐷','Pig')">🐷</div>
+<div class="card" onclick="show('🐥','Chick')">🐥</div>
+<div class="card" onclick="show('🐸','Frog')">🐸</div>
+</div>
+<p style="font-size:14px;color:#999">Learn & Play</p>
+
+<!-- ===== Monetag - Perfect tag ===== -->
+<script src="https://fpyf8.com/act/files/tag.min.js?z=12159570" data-cfasync="false" async></script>
+
+<!-- ===== Monetag - Beautiful tag ===== -->
+<script src="https://fpyf8.com/act/files/tag.min.js?z=12159491" data-cfasync="false" async></script>
+
+<script>
+let currentName="";
+function show(emoji,name){
+document.getElementById('big').innerHTML=emoji;
+document.getElementById('name').innerHTML=name+" !";
+currentName=name;
+let u=new SpeechSynthesisUtterance(name);
+u.lang='en-US';u.rate=0.8;
+speechSynthesis.speak(u);
+}
+function playAgain(){
+if(currentName){
+let u=new SpeechSynthesisUtterance(currentName);
+u.lang='en-US';u.rate=0.8;
+speechSynthesis.speak(u);
+}
+}
+</script>
+</body>
+</html>
