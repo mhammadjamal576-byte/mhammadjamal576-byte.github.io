@@ -4,7 +4,7 @@
 <button class="langBtn" onclick="toggleLang()">🇯🇴 العربية / 🇬🇧 English</button>
 <div id="target">Find Number <b id="targetLetter">?</b></div>
 <div id="stats">⭐ <span id="scoreVal">0</span> | ❤️ <span id="lives">5</span> | 🏆 <span id="best">0</span></div>
-<button id="startBtn" onclick="startGame()">▶ PLAY NOW!</button><div id="msg"></div><div id="gameArea"></div>
+<button id="startBtn" onclick="startGame()">▶ PLAY NOW!</button><div id="msg"></div><div id="gameArea" style="display:none"></div>
 <button onclick="toggleSound()">🔊 Sound: <span id="soundState">ON</span></button><br>
 <div class="watermark">▶ Follow @KidsGamesHub on YouTube ❤️</div><br>
 <div class="more"><a href="../../index.html">🏠 Home</a> <a href="../letter-pop/index.html">🔤 Letter Pop</a> <a href="../animal-friends/index.html">🦁 Animal Game</a></div>
@@ -27,7 +27,7 @@ function fall(el){let top=-120; let id=setInterval(()=>{if(!gameOn||locked){clea
 function missed(){if(!gameOn||locked) return; locked=true; document.getElementById('msg').innerText=cur==='ar'?'انتهى الوقت! حاول مرة أخرى ⏰':'Time is up! Try again ⏰'; loseLife(); if(gameOn) setTimeout(newRound,1300);}
 function loseLife(){lives--; document.getElementById('lives').innerText=lives; if(lives<=0){gameOn=false; document.getElementById('msg').innerText='Game Over! Press PLAY again ❤️'; document.getElementById('startBtn').style.display='inline-block'; document.getElementById('startBtn').innerText='🔄 PLAY AGAIN';}}
 function checkAnswer(item,el){if(!gameOn||locked||!el.isConnected) return; if(item===target){locked=true; playSound('correct'); document.getElementById('msg').innerText='🎉 Great Job! Number '+target+'! 👏'; document.getElementById('msg').style.color='green'; speak("Great Job! Number "+target); score+=10; document.getElementById('scoreVal').innerText=score; if(score>best){best=score; localStorage.setItem('numberDropBest',best); document.getElementById('best').innerText=best;} speed=Math.min(speed+0.08,2.2); setTimeout(newRound,1400)}else{el.remove(); remaining--; playSound('wrong'); document.getElementById('msg').innerText='Oops! Try Again 💪'; document.getElementById('msg').style.color='red'; speak("Oops, try again"); loseLife(); if(gameOn&&remaining<=0){locked=true; setTimeout(newRound,1300)}}}
-function startGame(){gameOn=true; score=0; lives=5; speed=0.9; locked=false; document.getElementById('scoreVal').innerText='0'; document.getElementById('lives').innerText='5'; document.getElementById('msg').innerText=''; document.getElementById('startBtn').style.display='none'; speak("Hello! Let's learn Numbers!"); setTimeout(newRound,800)}
+function startGame(){gameOn=true; document.getElementById('gameArea').style.display='block'; score=0; lives=5; speed=0.9; locked=false; document.getElementById('scoreVal').innerText='0'; document.getElementById('lives').innerText='5'; document.getElementById('msg').innerText=''; document.getElementById('startBtn').style.display='none'; speak("Hello! Let's learn Numbers!"); setTimeout(newRound,800)}
 </script>
 <script> setTimeout(function(){ var s1=document.createElement('script'); s1.dataset.zone='12207674'; s1.src='https://n6wxm.com/vignette.min.js'; document.body.appendChild(s1); }, 25000); </script>
 </body></html>
