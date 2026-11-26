@@ -1,92 +1,122 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>NOVA V2 - 3D</title><style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#050510;color:#fff;font-family:Arial;overflow:hidden;height:100dvh;display:flex;flex-direction:column}
-.top{display:flex;justify-content:space-between;padding:8px 12px;background:#0a0a1f;align-items:center;flex-shrink:0}.logo{font-size:20px;font-weight:900;color:#a855f7}.logo span{color:#00f0ff}.pill{background:#1a1a2e;padding:6px 10px;border-radius:20px;font-weight:700;font-size:13px}
-.round-bar{display:flex;justify-content:space-between;padding:6px 12px;background:#1a0a3e;font-weight:800;font-size:15px;flex-shrink:0}.round-bar b{color:#ffd700}
-canvas{width:100%;flex:1;min-height:320px;display:block;background:radial-gradient(circle at 50% 0%,#2a0a4a,#050510 70%);border-bottom:3px solid #a855f7}
-.hud{display:flex;gap:6px;padding:7px;justify-content:center;flex-wrap:wrap;flex-shrink:0;background:#0a0a1f}
+.top{display:flex;justify-content:space-between;padding:8px 12px;background:#0a0a1f;align-items:center}.logo{font-size:20px;font-weight:900;color:#a855f7}.logo span{color:#00f0ff}.pill{background:#1a1a2e;padding:6px 10px;border-radius:20px;font-weight:700;font-size:13px}
+.round-bar{display:flex;justify-content:space-between;padding:6px 12px;background:#1a0a3e;font-weight:800;font-size:15px}.round-bar b{color:#ffd700}
+canvas{width:100%;flex:1;min-height:340px;display:block;background:linear-gradient(#2a0a4a 0%,#1a0a2e 50%,#050510 100%);border-bottom:3px solid #a855f7}
+.hud{display:flex;gap:6px;padding:7px;justify-content:center;flex-wrap:wrap;background:#0a0a1f}
 .card{background:#1a1a2e;border:1px solid #333;padding:6px 10px;border-radius:12px;text-align:center;min-width:74px}.card b{font-size:16px;color:#ffd700;display:block}
-.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:#0a0a1f;flex-shrink:0;position:sticky;bottom:0;z-index:20;direction:ltr !important}
-.btn{width:78px;height:78px;border-radius:50%;border:3px solid rgba(255,255,255,.35);font-size:34px;color:#fff;cursor:pointer;touch-action:none;user-select:none;display:flex;align-items:center;justify-content:center}
-.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#a855f7;width:88px;height:88px;order:2}.shoot{background:#ef4444;order:3}.musicBtn{background:#00c853;width:52px;height:52px;font-size:20px}
-.tabs{display:flex;gap:6px;padding:8px 12px;background:#050510}.tab{flex:1;background:#1a1a2e;padding:10px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent;font-size:14px}.tab.on{border-color:#a855f7;background:#2a1a3e}
+.controls{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:#0a0a1f;position:sticky;bottom:0;z-index:20;direction:ltr !important}
+.btn{width:80px;height:80px;border-radius:50%;border:3px solid rgba(255,255,255,.4);font-size:34px;color:#fff;touch-action:none;user-select:none;display:flex;align-items:center;justify-content:center}
+.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#a855f7;width:92px;height:92px;order:2;font-size:28px}.shoot{background:#ef4444;order:3}.musicBtn{background:#00c853;width:52px;height:52px;font-size:20px}
+.tabs{display:flex;gap:6px;padding:8px 12px}.tab{flex:1;background:#1a1a2e;padding:10px;border-radius:12px;text-align:center;border:2px solid transparent;font-size:14px}.tab.on{border-color:#a855f7;background:#2a1a3e}
 .panel{margin:0 12px 12px;background:#111124;padding:12px;border-radius:16px;max-height:18vh;overflow:auto}
 .item{display:flex;justify-content:space-between;align-items:center;background:#1e1e35;padding:11px;border-radius:12px;margin:8px 0}.item button{background:#a855f7;color:#fff;border:0;padding:9px 15px;border-radius:20px;font-weight:700}
 .bar{height:10px;background:#333;border-radius:10px;overflow:hidden;margin-top:6px}.bar div{height:100%;background:linear-gradient(90deg,#a855f7,#00f0ff);width:40%}
 .combo{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#ff0055;padding:8px 18px;border-radius:20px;font-weight:900;display:none;z-index:30}
 </style></head><body>
 <div class="top"><div class="logo">NOVA <span>V2 • 3D</span></div><div class="pill">💰 <span id="coins">0</span></div><button class="musicBtn btn" id="musicBtn" onclick="toggleMusic()">🎵</button></div>
-<div class="round-bar"><span>🏆 الجولة <b id="round">1</b> / 5</span><span>⏱ <b id="time">30</b> ثانية</span><span>🎯 الهدف: <b id="goal">10</b> عملة</span></div>
+<div class="round-bar"><span>🏆 الجولة <b id="round">1</b> / 5</span><span>⏱ <b id="time">30</b> ث</span><span>🎯 <b id="goal">10</b> عملة</span></div>
 <div class="combo" id="combo">🔥 كومبو x5 !</div>
 <canvas id="game" width="400" height="380"></canvas>
 <div class="hud"><div class="card">⭐ نقاط<b id="score">0</b></div><div class="card">❤️ صحة<b id="hp">100</b></div><div class="card">🎯 مرحلة<b id="lvl">1</b></div><div class="card">🔥 كومبو<b id="cb">0</b></div><div class="card">🪙 هالجولة<b id="roundCoins">0</b></div></div>
-<div style="padding:0 12px;background:#0a0a1f"><div style="display:flex;justify-content:space-between;font-size:12px"><span>Battle Pass</span><span id="progTxt">0%</span></div><div class="bar"><div id="prog"></div></div><div id="mission" style="color:#00ff88;font-size:13px;padding:4px 0">🎯 اجمع 10 عملات لتخلص الجولة 1!</div></div>
-<!-- الأزرار - الاتجاه LTR عشان ما تنعكس -->
+<div style="padding:0 12px;background:#0a0a1f"><div style="display:flex;justify-content:space-between;font-size:12px"><span>Battle Pass</span><span id="progTxt">0%</span></div><div class="bar"><div id="prog"></div></div><div id="mission" style="color:#00ff88;font-size:13px;padding:4px 0">🎯 اجمع 10 عملات!</div></div>
 <div class="controls" dir="ltr">
 <button class="btn left" id="btnL">◀</button>
-<button class="btn jump" id="btnJump">⬆</button>
+<button class="btn jump" id="btnJump">⬆ قفز</button>
 <button class="btn shoot" id="btnShoot">💥</button>
 <button class="btn right" id="btnR">▶</button>
 </div>
-<div class="tabs"><div class="tab on" onclick="showTab('shop',this)">🛒 متجر</div><div class="tab" onclick="showTab('upgrade',this)">⬆ ترقيات</div><div class="tab" onclick="showTab('pass',this)">🏆 Battle Pass</div><div class="tab" onclick="showTab('daily',this)">🎁 يومي</div></div>
+<div class="tabs"><div class="tab on" onclick="showTab('shop',this)">🛒 متجر</div><div class="tab" onclick="showTab('upgrade',this)">⬆ ترقيات</div><div class="tab" onclick="showTab('pass',this)">🏆 Pass</div><div class="tab" onclick="showTab('daily',this)">🎁 يومي</div></div>
 <div class="panel" id="panel"></div>
 <script>
 let cv=document.getElementById('game'),ctx=cv.getContext('2d');
-let score=parseInt(localStorage.getItem('nova_score')||0),coins=parseInt(localStorage.getItem('nova_coins')||0),lvl=parseInt(localStorage.getItem('nova_lvl')||1),hp=100,combo=0,skin=localStorage.getItem('nova_skin')||'🚀',speed=4;
-let round=1,roundCoins=0,timeLeft=30,goal=10,roundOver=false;
-let px=180,py=280,vx=0,vy=0,dir=0,coinsArr=[],enemies=[],bullets=[],explosions=[];
-for(let i=0;i<6;i++) coinsArr.push({x:Math.random()*360+20,y:Math.random()*160+40,t:Math.random()*10});
-for(let i=0;i<3;i++) enemies.push({x:Math.random()*360+20,y:90,dx:1});
+let score=parseInt(localStorage.getItem('nova_score')||0),coins=parseInt(localStorage.getItem('nova_coins')||0),lvl=parseInt(localStorage.getItem('nova_lvl')||1),hp=100,combo=0,skin=localStorage.getItem('nova_skin')||'🚀',speed=5;
+let round=1,roundCoins=0,timeLeft=30,goal=10;
+let px=180,py=290,vy=0,dir=0,groundY=290,coinsArr=[],enemies=[],bullets=[],explosions=[];
+// العملات هسا واطية - قريبة من الأرض، بتتوصل بسهولة + بالقفزة
+for(let i=0;i<7;i++) coinsArr.push({x:Math.random()*360+20,y:180+Math.random()*110,t:Math.random()*10});
+for(let i=0;i<3;i++) enemies.push({x:Math.random()*360+20,y:260,dx:1,hp:2,color:['#ff2d55','#ff9500','#7d00ff'][i]});
 function save(){localStorage.setItem('nova_score',score);localStorage.setItem('nova_coins',coins);localStorage.setItem('nova_lvl',lvl);localStorage.setItem('nova_skin',skin)}
 function updateHUD(){document.getElementById('score').innerText=score;document.getElementById('coins').innerText=coins;document.getElementById('hp').innerText=hp;document.getElementById('lvl').innerText=lvl;document.getElementById('cb').innerText=combo;document.getElementById('round').innerText=round;document.getElementById('time').innerText=timeLeft;document.getElementById('goal').innerText=goal;document.getElementById('roundCoins').innerText=roundCoins;let p=Math.min(100,score%100);document.getElementById('prog').style.width=p+'%';document.getElementById('progTxt').innerText=p+'%'}
-function jump(){if(py>=280){vy=-16;playSfx(600)}}
-function shoot(){ // انفجار حقيقي
-  bullets.push({x:px+15,y:py}); explosions.push({x:px+15,y:py-20,r:5});
-  playSfx(900); if(navigator.vibrate) navigator.vibrate([20,20,20]);
-  // انفجار يدمر كل الأعداء القريبين
-  enemies.forEach(en=>{if(Math.abs(px-en.x)<90){score+=15;en.x=Math.random()*360+20;}});
+// قفزة أقوى بكثير - توصل لكل العملات
+function jump(){ if(py>=groundY-2){ vy=-19; playSfx(600); if(navigator.vibrate) navigator.vibrate(10);} }
+// انفجار يطير ويصيد الوحش - مش عندك
+function shoot(){
+  // رصاصة انفجارية بتطير لفوق وبتتفجر عند الوحش
+  bullets.push({x:px+18,y:py-10,vy:-12});
+  playSfx(900); if(navigator.vibrate) navigator.vibrate(30);
 }
-// ربط الأزرار - لمس + كبس - مضمون
 let btnL=document.getElementById('btnL'),btnR=document.getElementById('btnR'),btnJ=document.getElementById('btnJump'),btnS=document.getElementById('btnShoot');
-function bindHold(btn,dirVal){let start=e=>{e.preventDefault();dir=dirVal};let end=e=>{e.preventDefault();dir=0};btn.addEventListener('touchstart',start,{passive:false});btn.addEventListener('touchend',end);btn.addEventListener('mousedown',start);btn.addEventListener('mouseup',end);btn.addEventListener('mouseleave',end)}
-bindHold(btnL,-1); // الشمال = -1 = يسار صح
-bindHold(btnR,1);  // اليمين = +1 = يمين صح
+function bindHold(btn,d){let s=e=>{e.preventDefault();dir=d};let e2=e=>{e.preventDefault();dir=0};btn.addEventListener('touchstart',s,{passive:false});btn.addEventListener('touchend',e2);btn.addEventListener('mousedown',s);btn.addEventListener('mouseup',e2);btn.addEventListener('mouseleave',e2)}
+bindHold(btnL,-1); bindHold(btnR,1);
 btnJ.addEventListener('touchstart',e=>{e.preventDefault();jump()},{passive:false}); btnJ.addEventListener('click',jump);
 btnS.addEventListener('touchstart',e=>{e.preventDefault();shoot()},{passive:false}); btnS.addEventListener('click',shoot);
-// Swipe
 let startX=0;cv.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});cv.addEventListener('touchmove',e=>{let dx=e.touches[0].clientX-startX;if(dx>15)dir=1;else if(dx<-15)dir=-1;else dir=0},{passive:true});cv.addEventListener('touchend',()=>dir=0);
-// صوت + موسيقى
 let audioCtx=null,musicOn=false,musicTimer=null;
 function getCtx(){if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();return audioCtx}
 function playSfx(f){try{let a=getCtx(),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.value=.09;o.start();o.stop(a.currentTime+.15)}catch(e){}}
-function playNote(freq,dur){try{let a=getCtx(),o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=freq;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.01,a.currentTime+dur);o.start();o.stop(a.currentTime+dur)}catch(e){}}
-let melody=[523,659,784,1046,784,659,523,659,784,880,1046,880,784,659,587,659];let mi=0;
+function playNote(f,d){try{let a=getCtx(),o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.01,a.currentTime+d);o.start();o.stop(a.currentTime+d)}catch(e){}}
+let melody=[523,659,784,1046,784,659,523,659,784,880,1046,880,784,659,587,659],mi=0;
 function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBtn').innerText=musicOn?'🔇':'🎵';if(musicOn){getCtx().resume();musicTimer=setInterval(()=>{playNote(melody[mi%melody.length],.28);mi++},300)}else clearInterval(musicTimer)}
 document.addEventListener('touchstart',()=>{if(!musicOn) toggleMusic()},{once:true});
-// الجولات - مؤقت
-setInterval(()=>{if(roundOver) return; timeLeft--; if(timeLeft<=0){ if(roundCoins>=goal){ round++; if(round>5){alert('🏆 خلصت كل الجولات! انت بطل NOVA!'); round=1; coins+=200;} goal=10+round*5; roundCoins=0; timeLeft=30; document.getElementById('mission').innerText='🎉 الجولة '+round+' بدأت! اجمع '+goal+' عملة!'; playSfx(1500);} else { alert('⏱ خلص الوقت! ما جمعت كفاية، حاول مرة ثانية - الجولة '+round); roundCoins=0; timeLeft=30; hp=100; } } updateHUD(); },1000);
-function loop(){ctx.clearRect(0,0,400,380);
-// شاشة أوضح وأكبر
-ctx.fillStyle='#1a0a2e';ctx.beginPath();ctx.moveTo(0,380);ctx.lineTo(200,300);ctx.lineTo(400,380);ctx.fill();
-ctx.strokeStyle='#a855f7';ctx.globalAlpha=.5;for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(200,300);ctx.lineTo(i*60-40,380);ctx.stroke()}ctx.globalAlpha=1;
-// خط الجولة
-ctx.fillStyle='rgba(255,255,255,.15)';ctx.fillRect(0,0,400,28);ctx.fillStyle='#fff';ctx.font='bold 15px Arial';ctx.fillText('🏆 الجولة '+round+'  |  جمعت '+roundCoins+' / '+goal,12,20);
-coinsArr.forEach(c=>{c.t+=.1;ctx.font='30px Arial';ctx.fillText('🪙',c.x,c.y+Math.sin(c.t)*6);if(Math.abs(px-c.x)<32 && Math.abs(py-c.y)<34){coins++;score+=10;combo++;roundCoins++;c.x=Math.random()*360+20;c.y=Math.random()*160+40;playSfx(1200);if(combo>=5){document.getElementById('combo').style.display='block';setTimeout(()=>document.getElementById('combo').style.display='none',1000);score+=20}}});
-enemies.forEach(e=>{e.x+=e.dx*(1+round*.4);if(e.x>370||e.x<10)e.dx*=-1;ctx.font='34px Arial';ctx.fillText('👾',e.x,e.y);if(Math.abs(px-e.x)<28 && Math.abs(py-e.y)<28){hp-=10;combo=0;playSfx(200);if(navigator.vibrate)navigator.vibrate(100);if(hp<=0){hp=100;score=Math.max(0,score-50);alert('خسرت! بس رجعت أقوى 💪')}}});
-bullets.forEach((b,i)=>{b.y-=9;ctx.font='24px Arial';ctx.fillText('⚡',b.x,b.y);if(b.y<0)bullets.splice(i,1)});
-explosions.forEach((ex,i)=>{ex.r+=6;ctx.beginPath();ctx.arc(ex.x,ex.y,ex.r,0,Math.PI*2);ctx.fillStyle='rgba(255,100,0,'+(1-ex.r/60)+')';ctx.fill();ctx.font='30px Arial';ctx.fillText('💥',ex.x-15,ex.y+10);if(ex.r>60)explosions.splice(i,1)});
-px+=dir*speed;if(px<10)px=10;if(px>360)px=360;vy+=0.8;py+=vy;if(py>280){py=280;vy=0}
-ctx.save();ctx.translate(px+15,py);ctx.scale(1+Math.sin(Date.now()/200)*.05,1);ctx.font='44px Arial';ctx.shadowColor='#a855f7';ctx.shadowBlur=22;ctx.fillText(skin,0,0);ctx.restore();
-if(score>=lvl*100){lvl++;document.getElementById('mission').innerText='🎉 مبروك! وصلت المرحلة '+lvl;playSfx(1500)}
-updateHUD();save();requestAnimationFrame(loop)} loop();
+setInterval(()=>{timeLeft--; if(timeLeft<=0){ if(roundCoins>=goal){round++; if(round>5){alert('🏆 خلصت كل الجولات! بطل NOVA!');round=1;coins+=200;} goal=10+round*5; roundCoins=0; timeLeft=30; document.getElementById('mission').innerText='🎉 الجولة '+round+' بدأت! اجمع '+goal+' عملة!';} else {alert('⏱ خلص الوقت! حاول مرة ثانية - الجولة '+round); roundCoins=0; timeLeft=30; hp=100;}} updateHUD();},1000);
+// رسم وحش حقيقي - مش ايموجي
+function drawMonster(x,y,color,hp){
+  ctx.save(); ctx.translate(x,y);
+  // قرون
+  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(-18,-18); ctx.lineTo(-10,-38); ctx.lineTo(-2,-18); ctx.fill(); ctx.beginPath(); ctx.moveTo(18,-18); ctx.lineTo(10,-38); ctx.lineTo(2,-18); ctx.fill();
+  // جسم
+  ctx.fillStyle=color; ctx.beginPath(); ctx.ellipse(0,0,26,28,0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='rgba(0,0,0,.2)'; ctx.beginPath(); ctx.ellipse(0,10,18,10,0,0,Math.PI*2); ctx.fill();
+  // عيون
+  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(-10,-6,8,0,Math.PI*2); ctx.arc(10,-6,8,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(-10,-6,3.5,0,Math.PI*2); ctx.arc(10,-6,3.5,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='red'; ctx.beginPath(); ctx.arc(-10,-7,1.5,0,Math.PI*2); ctx.arc(10,-7,1.5,0,Math.PI*2); ctx.fill();
+  // فم بأسنان
+  ctx.fillStyle='#3a0000'; ctx.beginPath(); ctx.ellipse(0,12,14,8,0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; [[-8,8],[0,10],[8,8]].forEach(p=>{ctx.fillRect(p[0]-2,p[1],4,5)});
+  // شريط صحة الوحش
+  ctx.fillStyle='#333'; ctx.fillRect(-20,-48,40,6); ctx.fillStyle='#00ff00'; ctx.fillRect(-20,-48,40*hp/2,6);
+  ctx.restore();
+}
+function drawCoin(x,y,t){
+  ctx.save(); ctx.translate(x,y+Math.sin(t)*6);
+  ctx.fillStyle='#ffd700'; ctx.beginPath(); ctx.ellipse(0,0,14,16,0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#ffb700'; ctx.beginPath(); ctx.ellipse(0,0,9,11,0,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold 14px Arial'; ctx.textAlign='center'; ctx.fillText('N',0,5);
+  ctx.restore();
+}
+function loop(){
+  ctx.clearRect(0,0,400,380);
+  // أرضية أوضح
+  ctx.fillStyle='#1a0a2e'; ctx.fillRect(0,310,400,70);
+  ctx.fillStyle='#a855f7'; ctx.fillRect(0,310,400,4);
+  ctx.strokeStyle='rgba(168,85,247,.4)'; for(let i=0;i<9;i++){ctx.beginPath();ctx.moveTo(i*50,380);ctx.lineTo(i*50-20,310);ctx.stroke()}
+  ctx.fillStyle='rgba(255,255,255,.15)'; ctx.fillRect(0,0,400,28); ctx.fillStyle='#fff'; ctx.font='bold 15px Arial'; ctx.fillText('🏆 الجولة '+round+' | جمعت '+roundCoins+' / '+goal,12,20);
+  coinsArr.forEach(c=>{c.t+=.1; drawCoin(c.x,c.y,c.t); if(Math.abs(px-c.x)<34 && Math.abs(py-c.y)<38){coins++;score+=10;combo++;roundCoins++;c.x=Math.random()*360+20;c.y=180+Math.random()*110;playSfx(1200);if(combo>=5){document.getElementById('combo').style.display='block';setTimeout(()=>document.getElementById('combo').style.display='none',1000);score+=20}}});
+  enemies.forEach(e=>{e.x+=e.dx*(1+round*.3); if(e.x>370||e.x<10)e.dx*=-1; drawMonster(e.x,e.y+10,e.color,e.hp); if(Math.abs(px-e.x)<32 && Math.abs(py-e.y)<32){hp-=8;combo=0;playSfx(200);if(navigator.vibrate)navigator.vibrate(80);if(hp<=0){hp=100;score=Math.max(0,score-50);alert('خسرت! بس رجعت أقوى 💪')}}});
+  // رصاصات الانفجار - بتطير وبتصيد الوحش
+  bullets.forEach((b,i)=>{ b.y+=b.vy; b.vy+=0.4;
+    ctx.save(); ctx.translate(b.x,b.y); ctx.fillStyle='#ff6a00'; ctx.beginPath(); ctx.arc(0,0,10,0,Math.PI*2); ctx.fill(); ctx.fillStyle='#ffdd00'; ctx.beginPath(); ctx.arc(0,0,5,0,Math.PI*2); ctx.fill(); ctx.restore();
+    let hit=false;
+    enemies.forEach(en=>{ if(Math.abs(b.x-en.x)<34 && Math.abs(b.y-en.y)<38){ en.hp--; hit=true; explosions.push({x:en.x,y:en.y,r:5}); playSfx(300); if(en.hp<=0){ score+=25; coins+=2; en.hp=2; en.x=Math.random()*360+20; en.color=['#ff2d55','#ff9500','#7d00ff','#00c853'][Math.floor(Math.random()*4)]; } } });
+    if(hit || b.y<-10 || b.y>340) bullets.splice(i,1);
+  });
+  explosions.forEach((ex,i)=>{ ex.r+=7; ctx.beginPath(); ctx.arc(ex.x,ex.y,ex.r,0,Math.PI*2); ctx.fillStyle='rgba(255,100,0,'+(1-ex.r/70)+')'; ctx.fill(); ctx.font='28px Arial'; ctx.fillText('💥',ex.x-14,ex.y+10); if(ex.r>70) explosions.splice(i,1); });
+  px+=dir*speed; if(px<15)px=15; if(px>365)px=365; vy+=0.7; py+=vy; if(py>groundY){py=groundY;vy=0} // جاذبية أخف - قفزة أعلى وأطول
+  ctx.save(); ctx.translate(px+15,py); ctx.font='44px Arial'; ctx.shadowColor='#a855f7'; ctx.shadowBlur=22; ctx.fillText(skin,0,0); ctx.restore();
+  if(score>=lvl*100){lvl++;document.getElementById('mission').innerText='🎉 مبروك! وصلت المرحلة '+lvl;}
+  updateHUD(); save(); requestAnimationFrame(loop);
+} loop();
 function showTab(t,el){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');let p=document.getElementById('panel');
-if(t=='shop') p.innerHTML=`<h3>🛒 متجر سكنات 3D</h3>${[['🚀',0,'صاروخ'],['🦄',50,'يونيكورن'],['🐉',120,'تنين'],['👑',200,'الملك'],['👽',300,'فضائي NOVA']].map(s=>`<div class="item"><span>${s[0]} ${s[2]}</span><button onclick="buySkin('${s[0]}',${s[1]})">${s[1]==0?'مجاني':s[1]+' 🪙'}</button></div>`).join('')}<p>معك ${coins} عملة</p>`;
+if(t=='shop') p.innerHTML=`<h3>🛒 متجر</h3>${[['🚀',0,'صاروخ'],['🦄',50,'يونيكورن'],['🐉',120,'تنين'],['👑',200,'الملك'],['👽',300,'فضائي']].map(s=>`<div class="item"><span>${s[0]} ${s[2]}</span><button onclick="buySkin('${s[0]}',${s[1]})">${s[1]==0?'مجاني':s[1]+' 🪙'}</button></div>`).join('')}<p>معك ${coins} عملة</p>`;
 if(t=='upgrade') p.innerHTML=`<h3>⬆ ترقيات</h3><div class="item"><span>🏃 سرعة</span><button onclick="buyUp('speed',40)">40 🪙</button></div><div class="item"><span>❤️ صحة +50</span><button onclick="buyUp('hp',25)">25 🪙</button></div>`;
-if(t=='pass') p.innerHTML=`<h3>🏆 Battle Pass</h3><div class="item"><span>🎁 المستوى 1 - 50 عملة</span><button onclick="claimPass(1,50)">خذ</button></div><div class="item"><span>👑 المستوى 5 - سكن الملك</span><button onclick="claimPass(5,0)">خذ</button></div><p>📤 <button onclick="shareScore()">شارك نتيجتك مع صحابك</button></p>`;
+if(t=='pass') p.innerHTML=`<h3>🏆 Battle Pass</h3><div class="item"><span>🎁 مستوى 1 - 50 عملة</span><button onclick="claimPass(1,50)">خذ</button></div><div class="item"><span>👑 مستوى 5 - سكن الملك</span><button onclick="claimPass(5,0)">خذ</button></div><p><button onclick="shareScore()">📤 شارك نتيجتك</button></p>`;
 if(t=='daily') p.innerHTML=`<h3>🎁 مكافأة يومية</h3><button style="width:100%;padding:14px;background:#00c853;color:#fff;border:0;border-radius:12px;font-size:16px" onclick="daily()">خذ 100 عملة 🎁</button><p>🔥 سلسلة: ${localStorage.getItem('nova_streak')||1} أيام</p>`;}
-function buySkin(s,c){if(coins>=c){coins-=c;skin=s;save();updateHUD();alert('تم! سكنك '+s)}else alert('ما معك عملات كفاية!')}
+function buySkin(s,c){if(coins>=c){coins-=c;skin=s;save();updateHUD();alert('تم! سكنك '+s)}else alert('ما معك عملات!')}
 function buyUp(k,c){if(coins>=c){coins-=c;if(k=='speed')speed++;if(k=='hp')hp+=50;save();updateHUD();alert('تمت الترقية! 💪')}else alert('ما معك عملات!')}
-function claimPass(l,reward){if(lvl>=l){coins+=reward;if(l==5)skin='👑';save();updateHUD();alert('مبروك! فتحت جائزة Battle Pass 🎉')}else alert('لسا ما وصلت المستوى '+l)}
-function daily(){let today=new Date().toDateString();if(localStorage.getItem('nova_last')==today){alert('أخذت هديتك اليوم، ارجع بكرا!')}else{coins+=100;localStorage.setItem('nova_last',today);let st=parseInt(localStorage.getItem('nova_streak')||0)+1;localStorage.setItem('nova_streak',st);save();updateHUD();alert('مبروك! +100 عملة 🎉 سلسلتك: '+st+' أيام')}}
-function shareScore(){let txt='انا جبت '+score+' نقطة بلعبة NOVA V2! بتقدر تتحداني؟ '+location.href;if(navigator.share)navigator.share({text:txt});else{prompt('انسخ وشارك:',txt)}}
+function claimPass(l,r){if(lvl>=l){coins+=r;if(l==5)skin='👑';save();updateHUD();alert('مبروك! 🎉')}else alert('لسا ما وصلت المستوى '+l)}
+function daily(){let today=new Date().toDateString();if(localStorage.getItem('nova_last')==today){alert('أخذت هديتك اليوم!')}else{coins+=100;localStorage.setItem('nova_last',today);let st=parseInt(localStorage.getItem('nova_streak')||0)+1;localStorage.setItem('nova_streak',st);save();updateHUD();alert('مبروك! +100 عملة 🎉')}}
+function shareScore(){let txt='انا جبت '+score+' نقطة بلعبة NOVA V2! '+location.href;if(navigator.share)navigator.share({text:txt});else{prompt('انسخ وشارك:',txt)}}
 showTab('shop',document.querySelector('.tab'));updateHUD();
 </script></body></html>
