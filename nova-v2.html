@@ -1,80 +1,58 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>NOVA V2 - 3D</title><style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#050510;color:#fff;font-family:Arial;overflow:hidden}
-.top{display:flex;justify-content:space-between;padding:10px 14px;background:#0a0a1f;align-items:center}
-.logo{font-size:22px;font-weight:900;color:#a855f7}.logo span{color:#00f0ff}
-.pill{background:#1a1a2e;padding:6px 12px;border-radius:20px;font-weight:700}
-canvas{display:block;width:100%;height:52vh;background:radial-gradient(circle at 50% 0%,#2a0a4a,#050510 70%)}
-.hud{display:flex;gap:8px;padding:10px;justify-content:center;flex-wrap:wrap}
-.card{background:#1a1a2e;border:1px solid #333;padding:10px 14px;border-radius:14px;text-align:center;min-width:90px}
-.card b{font-size:20px;color:#ffd700;display:block}
-.controls{display:flex;justify-content:center;gap:15px;padding:10px}
-.btn{width:72px;height:72px;border-radius:50%;border:0;font-size:30px;color:#fff;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.4)}
-.btn:active{transform:translateY(4px);box-shadow:none}
-.left{background:#2563eb}.right{background:#2563eb}.jump{background:#a855f7;width:84px;height:84px}.shoot{background:#ef4444}
-.tabs{display:flex;gap:8px;padding:0 12px}.tab{flex:1;background:#1a1a2e;padding:11px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent}.tab.on{border-color:#a855f7;background:#2a1a3e}
-.panel{margin:12px;background:#111124;padding:14px;border-radius:16px;max-height:26vh;overflow:auto}
-.item{display:flex;justify-content:space-between;align-items:center;background:#1e1e35;padding:11px;border-radius:12px;margin:8px 0}
-.item button{background:#a855f7;color:#fff;border:0;padding:8px 14px;border-radius:20px;font-weight:700}
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>NOVA V2 - 3D</title><style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#050510;color:#fff;font-family:Arial;overflow:hidden;height:100dvh;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;padding:8px 12px;background:#0a0a1f;align-items:center;flex-shrink:0}.logo{font-size:20px;font-weight:900;color:#a855f7}.logo span{color:#00f0ff}.pill{background:#1a1a2e;padding:6px 10px;border-radius:20px;font-weight:700;font-size:13px}
+canvas{width:100%;flex:1;min-height:0;display:block;background:radial-gradient(circle at 50% 0%,#2a0a4a,#050510 70%)}
+.hud{display:flex;gap:6px;padding:8px;justify-content:center;flex-wrap:wrap;flex-shrink:0;background:#0a0a1f}
+.card{background:#1a1a2e;border:1px solid #333;padding:7px 10px;border-radius:12px;text-align:center;min-width:78px}.card b{font-size:17px;color:#ffd700;display:block}
+.controls{display:flex;justify-content:center;gap:14px;padding:12px 12px calc(12px + env(safe-area-inset-bottom));background:#0a0a1f;flex-shrink:0;position:sticky;bottom:0;z-index:20}
+.btn{width:76px;height:76px;border-radius:50%;border:3px solid rgba(255,255,255,.3);font-size:32px;color:#fff;cursor:pointer;touch-action:none;user-select:none}
+.btn:active{transform:scale(.92)} .left{background:#2563eb}.right{background:#2563eb}.jump{background:#a855f7;width:88px;height:88px}.shoot{background:#ef4444}.musicBtn{background:#00c853;width:56px;height:56px;font-size:22px}
+.tabs{display:flex;gap:6px;padding:8px 12px;background:#050510}.tab{flex:1;background:#1a1a2e;padding:10px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent;font-size:14px}.tab.on{border-color:#a855f7;background:#2a1a3e}
+.panel{margin:0 12px 12px;background:#111124;padding:12px;border-radius:16px;max-height:22vh;overflow:auto}
+.item{display:flex;justify-content:space-between;align-items:center;background:#1e1e35;padding:11px;border-radius:12px;margin:8px 0}.item button{background:#a855f7;color:#fff;border:0;padding:9px 15px;border-radius:20px;font-weight:700}
 .bar{height:10px;background:#333;border-radius:10px;overflow:hidden;margin-top:6px}.bar div{height:100%;background:linear-gradient(90deg,#a855f7,#00f0ff);width:40%}
-.mission{color:#00ff88}.combo{position:fixed;top:90px;left:50%;transform:translateX(-50%);background:#ff0055;padding:8px 18px;border-radius:20px;font-weight:900;display:none;z-index:10}
+.combo{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:#ff0055;padding:8px 18px;border-radius:20px;font-weight:900;display:none;z-index:30}
+.swipe-hint{text-align:center;font-size:12px;color:#aaa;padding:2px 0;background:#0a0a1f}
 </style></head><body>
-<div class="top"><div class="logo">NOVA <span>V2 • 3D</span></div><div class="pill">👤 محمد جمال</div><div class="pill">💰 <span id="coins">0</span></div></div>
+<div class="top"><div class="logo">NOVA <span>V2 • 3D</span></div><div class="pill">💰 <span id="coins">0</span></div><button class="musicBtn btn" id="musicBtn" onclick="toggleMusic()">🎵</button></div>
 <div class="combo" id="combo">🔥 كومبو x5 !</div>
-<canvas id="game" width="400" height="340"></canvas>
-<div class="hud">
-<div class="card">⭐ النقاط<b id="score">0</b></div>
-<div class="card">❤️ الصحة<b id="hp">100</b></div>
-<div class="card">🎯 المرحلة<b id="lvl">1</b></div>
-<div class="card">🔥 الكومبو<b id="cb">0</b></div>
-</div>
-<div style="padding:0 12px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>التقدم للمرحلة الجاية</span><span id="progTxt">40%</span></div><div class="bar"><div id="prog"></div></div><div class="mission" id="mission">🎯 المهمة: اجمع 10 عملات لتفتح المتجر!</div></div>
+<canvas id="game" width="400" height="320"></canvas>
+<div class="swipe-hint">👆 اسحب باصبعك يمين / يسار عشان تتحرك - أسهل!</div>
+<div class="hud"><div class="card">⭐ نقاط<b id="score">0</b></div><div class="card">❤️ صحة<b id="hp">100</b></div><div class="card">🎯 مرحلة<b id="lvl">1</b></div><div class="card">🔥 كومبو<b id="cb">0</b></div></div>
+<div style="padding:0 12px;background:#0a0a1f"><div style="display:flex;justify-content:space-between;font-size:12px"><span>Battle Pass - التقدم</span><span id="progTxt">0%</span></div><div class="bar"><div id="prog"></div></div><div id="mission" style="color:#00ff88;font-size:13px;padding:4px 0">🎯 اجمع 10 عملات لتفتح المتجر!</div></div>
 <div class="controls">
-<button class="btn left" ontouchstart="move(-1)" ontouchend="move(0)" onclick="moveClick(-1)">◀</button>
-<button class="btn jump" onclick="jump()">⬆ قفز</button>
+<button class="btn left" id="btnL">◀</button>
+<button class="btn jump" onclick="jump()">⬆</button>
 <button class="btn shoot" onclick="shoot()">💥</button>
-<button class="btn right" ontouchstart="move(1)" ontouchend="move(0)" onclick="moveClick(1)">▶</button>
+<button class="btn right" id="btnR">▶</button>
 </div>
-<div class="tabs"><div class="tab on" onclick="showTab('shop',this)">🛒 المتجر</div><div class="tab" onclick="showTab('upgrade',this)">⬆ ترقيات</div><div class="tab" onclick="showTab('daily',this)">🎁 يومي</div></div>
+<div class="tabs"><div class="tab on" onclick="showTab('shop',this)">🛒 متجر</div><div class="tab" onclick="showTab('upgrade',this)">⬆ ترقيات</div><div class="tab" onclick="showTab('pass',this)">🏆 Battle Pass</div><div class="tab" onclick="showTab('daily',this)">🎁 يومي</div></div>
 <div class="panel" id="panel"></div>
 <script>
 let cv=document.getElementById('game'),ctx=cv.getContext('2d');
-let score=parseInt(localStorage.getItem('nova_score')||0),coins=parseInt(localStorage.getItem('nova_coins')||0),lvl=parseInt(localStorage.getItem('nova_lvl')||1),hp=100,combo=0,skin=localStorage.getItem('nova_skin')||'🚀',dmg=1,speed=3;
-let px=180,py=240,vx=0,vy=0,dir=0,coinsArr=[],enemies=[],bullets=[],particles=[];
+let score=parseInt(localStorage.getItem('nova_score')||0),coins=parseInt(localStorage.getItem('nova_coins')||0),lvl=parseInt(localStorage.getItem('nova_lvl')||1),hp=100,combo=0,skin=localStorage.getItem('nova_skin')||'🚀',dmg=1,speed=4;
+let px=180,py=240,vx=0,vy=0,dir=0,coinsArr=[],enemies=[],bullets=[];
 for(let i=0;i<6;i++) coinsArr.push({x:Math.random()*360+20,y:Math.random()*150+40,t:Math.random()*10});
 for(let i=0;i<3;i++) enemies.push({x:Math.random()*360+20,y:80,dx:1});
 function save(){localStorage.setItem('nova_score',score);localStorage.setItem('nova_coins',coins);localStorage.setItem('nova_lvl',lvl);localStorage.setItem('nova_skin',skin)}
-function updateHUD(){document.getElementById('score').innerText=score;document.getElementById('coins').innerText=coins;document.getElementById('hp').innerText=hp;document.getElementById('lvl').innerText=lvl;document.getElementById('cb').innerText=combo;let p=Math.min(100,(score%100));document.getElementById('prog').style.width=p+'%';document.getElementById('progTxt').innerText=p+'%'}
-function move(d){dir=d} function moveClick(d){px+=d*30;if(px<10)px=10;if(px>360)px=360}
-function jump(){if(py>=240){vy=-14;play(600)}}
-function shoot(){bullets.push({x:px+15,y:py});play(900);if(navigator.vibrate)navigator.vibrate(20)}
-function play(f){try{let a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.value=.08;o.start();o.stop(a.currentTime+.15)}catch(e){}}
-function loop(){
-ctx.clearRect(0,0,400,340);
-// 3D ground
-ctx.fillStyle='#1a0a2e';ctx.beginPath();ctx.moveTo(0,340);ctx.lineTo(200,260);ctx.lineTo(400,340);ctx.fill();
-ctx.strokeStyle='#a855f7';ctx.globalAlpha=.4;for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(200,260);ctx.lineTo(i*60-40,340);ctx.stroke()}ctx.globalAlpha=1;
-// coins
-coinsArr.forEach(c=>{c.t+=.1;ctx.font='26px Arial';ctx.fillText('🪙',c.x,c.y+Math.sin(c.t)*6);if(Math.abs(px-c.x)<28 && Math.abs(py-c.y)<30){coins++;score+=10;combo++;c.x=Math.random()*360+20;c.y=Math.random()*150+40;play(1200);if(combo>=5){document.getElementById('combo').style.display='block';setTimeout(()=>document.getElementById('combo').style.display='none',1000);score+=20;}}});
-// enemies
-enemies.forEach(e=>{e.x+=e.dx*(1+lvl*.3);if(e.x>370||e.x<10)e.dx*=-1;ctx.font='30px Arial';ctx.fillText('👾',e.x,e.y);if(Math.abs(px-e.x)<26 && Math.abs(py-e.y)<26){hp-=10;combo=0;play(200);if(navigator.vibrate)navigator.vibrate(100);if(hp<=0){hp=100;score=Math.max(0,score-50);alert('خسرت! بس رجعت أقوى 💪')}}});
-// bullets
-bullets.forEach((b,i)=>{b.y-=8;ctx.font='20px Arial';ctx.fillText('⚡',b.x,b.y);enemies.forEach(en=>{if(Math.abs(b.x-en.x)<25 && Math.abs(b.y-en.y)<25){score+=15;en.x=Math.random()*360+20;bullets.splice(i,1)}})});
-// player
-px+=dir*speed;if(px<10)px=10;if(px>360)px=360;vy+=0.8;py+=vy;if(py>240){py=240;vy=0}
-ctx.save();ctx.translate(px+15,py);ctx.scale(1+Math.sin(Date.now()/200)*0.05,1);ctx.font='38px Arial';ctx.shadowColor='#a855f7';ctx.shadowBlur=20;ctx.fillText(skin,0,0);ctx.restore();
-// level up
-if(score>=lvl*100){lvl++;document.getElementById('mission').innerText='🎉 مبروك! وصلت المرحلة '+lvl+' - فتحت سكن جديد!';play(1500)}
-updateHUD();save();requestAnimationFrame(loop)}
-loop();
-function showTab(t,el){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');
-let p=document.getElementById('panel');
-if(t=='shop') p.innerHTML=`<h3>🛒 المتجر - سكنات 3D</h3>${[['🚀',0,'صاروخ كلاسيك'],['🦄',50,'يونيكورن نادر'],['🐉',120,'تنين أسطوري'],['👑',200,'الملك'],['👽',300,'فضائي NOVA']].map(s=>`<div class="item"><span>${s[0]} ${s[2]}</span><button onclick="buySkin('${s[0]}',${s[1]})">${s[1]==0?'مجاني':s[1]+' 🪙'}</button></div>`).join('')}<p>معك ${coins} عملة</p>`;
-if(t=='upgrade') p.innerHTML=`<h3>⬆ ترقيات تجعلك أقوى</h3><div class="item"><span>⚡ قوة الضربة (الآن ${dmg})</span><button onclick="buyUp('dmg',30)">30 🪙</button></div><div class="item"><span>🏃 سرعة الحركة</span><button onclick="buyUp('speed',40)">40 🪙</button></div><div class="item"><span>❤️ صحة +50</span><button onclick="buyUp('hp',25)">25 🪙</button></div>`;
-if(t=='daily') p.innerHTML=`<h3>🎁 المكافأة اليومية</h3><p>ارجع كل يوم وخذ هدية!</p><button style="width:100%;padding:14px;background:#00c853;color:#fff;border:0;border-radius:12px;font-size:16px" onclick="daily()">خذ 100 عملة اليوم 🎁</button><p style="margin-top:10px">🔥 سلسلة الأيام: ${localStorage.getItem('nova_streak')||1} أيام - لا تكسر السلسلة!</p><p>🏆 أفضل نتيجة: ${score}</p>`;
-}
-function buySkin(s,c){if(coins>=c){coins-=c;skin=s;save();updateHUD();alert('تم! صار سكنك '+s);showTab('shop',document.querySelector('.tab'))}else alert('ما معك عملات كفاية! اجمع أكثر 🪙')}
-function buyUp(k,c){if(coins>=c){coins-=c;if(k=='dmg')dmg++;if(k=='speed')speed++;if(k=='hp')hp+=50;save();updateHUD();alert('تمت الترقية! 💪')}else alert('ما معك عملات!')}
-function daily(){let last=localStorage.getItem('nova_last');let today=new Date().toDateString();if(last==today){alert('أخذت هديتك اليوم، ارجع بكرا! 🎁')}else{coins+=100;localStorage.setItem('nova_last',today);let st=parseInt(localStorage.getItem('nova_streak')||0)+1;localStorage.setItem('nova_streak',st);save();updateHUD();alert('مبروك! +100 عملة 🎉 سلسلتك: '+st+' أيام')}}
-showTab('shop',document.querySelector('.tab'));updateHUD();
-</script></body></html>
+function updateHUD(){document.getElementById('score').innerText=score;document.getElementById('coins').innerText=coins;document.getElementById('hp').innerText=hp;document.getElementById('lvl').innerText=lvl;document.getElementById('cb').innerText=combo;let p=Math.min(100,score%100);document.getElementById('prog').style.width=p+'%';document.getElementById('progTxt').innerText=p+'%'}
+function move(d){dir=d}
+let btnL=document.getElementById('btnL'),btnR=document.getElementById('btnR');
+[btnL,btnR].forEach((b,i)=>{let d=i==0?-1:1;b.addEventListener('touchstart',e=>{e.preventDefault();dir=d});b.addEventListener('touchend',()=>dir=0);b.addEventListener('mousedown',()=>dir=d);b.addEventListener('mouseup',()=>dir=0)});
+// Swipe - اسحب باصبعك
+let startX=0;cv.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});cv.addEventListener('touchmove',e=>{let dx=e.touches[0].clientX-startX;if(dx>15){dir=1}else if(dx<-15){dir=-1}else dir=0},{passive:true});cv.addEventListener('touchend',()=>dir=0);
+function jump(){if(py>=240){vy=-15;playSfx(600)}} function shoot(){bullets.push({x:px+15,y:py});playSfx(900);if(navigator.vibrate)navigator.vibrate(15)}
+// Sounds + Music - موسيقى حماسية ستايل مشهور + أصوات لعبة
+let audioCtx=null,musicOn=false,musicTimer=null;
+function getCtx(){if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();return audioCtx}
+function playSfx(f){try{let a=getCtx(),o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.value=.08;o.start();o.stop(a.currentTime+.15)}catch(e){}}
+function playNote(freq,dur){try{let a=getCtx(),o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=freq;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.01,a.currentTime+dur);o.start();o.stop(a.currentTime+dur)}catch(e){}}
+// لحن حماسي مشهور الستايل - اصلي بدون حقوق
+let melody=[523,659,784,1046,784,659,523,659,784,880,1046,880,784,659,587,659];
+let mi=0;
+function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBtn').innerText=musicOn?'🔇':'🎵';if(musicOn){getCtx().resume();musicTimer=setInterval(()=>{playNote(melody[mi%melody.length],.28);mi++},300)}else clearInterval(musicTimer)}
+// تشغيل الموسيقى اول لمسة
+document.addEventListener('touchstart',()=>{if(!musicOn) toggleMusic()},{once:true});
+function loop(){ctx.clearRect(0,0,400,340);ctx.fillStyle='#1a0a2e';ctx.beginPath();ctx.moveTo(0,340);ctx.lineTo(200,260);ctx.lineTo(400,340);ctx.fill();ctx.strokeStyle='#a855f7';ctx.globalAlpha=.4;for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(200,260);ctx.lineTo(i*60-40,340);ctx.stroke()}ctx.globalAlpha=1;
+coinsArr.forEach(c=>{c.t+=.1;ctx.font='26px Arial';ctx.fillText('🪙',c.x,c.y+Math.sin(c.t)*6);if(Math.abs(px-c.x)<30 && Math.abs(py-c.y)<32){coins++;score+=10;combo++;c.x=Math.random()*360+20;c.y=Math.random()*150+40;playSfx(1200);if(combo>=5){document.getElementById('combo').style.display='block';setTimeout(()=>document.getElementById('combo').style.display='none',1000);score+=20}}});
+enemies.forEach(e=>{e.x+=e.dx*(1+lvl*.3);if(e.x>370||e.x<10)e.dx*=-1;ctx.font='30px Arial';ctx.fillText('👾',e.x,e
