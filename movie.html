@@ -3,26 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الواقع الآخر | فيلم قصير</title>
+<title>الواقع الآخر | فيلم متحرك 3D</title>
 <style>
-body{background:#0a0a1a;color:#fff;font-family:Arial;text-align:center;padding:20px}
-.poster{width:100%;max-width:600px;border-radius:20px;border:3px solid #a855f7}
-h1{font-size:32px;color:#c084fc}
-.scene{background:#1a1a2e;padding:20px;margin:20px auto;max-width:700px;border-radius:15px;text-align:right;line-height:1.8}
-.btn{background:#a855f7;color:#fff;padding:15px 30px;border-radius:30px;text-decoration:none;font-size:20px;display:inline-block;margin:20px}
+*{box-sizing:border-box}
+body{margin:0;background:#050510;color:#fff;font-family:Arial;overflow-x:hidden}
+.top{text-align:center;padding:15px;background:#0a0a1a}
+.top h1{margin:5px;font-size:28px;color:#c084fc}
+.top p{color:#aaa;margin:0}
+.player{max-width:750px;margin:15px auto;background:#000;border-radius:20px;overflow:hidden;border:3px solid #a855f7;box-shadow:0 0 40px #a855f7}
+.stage{position:relative;height:420px;overflow:hidden;background:linear-gradient(#1a0033,#0a0a2e)}
+.sky{position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,#a855f7 0%,transparent 40%),linear-gradient(#1a0033,#050510)}
+.stars{position:absolute;inset:0;font-size:18px;letter-spacing:15px;animation:twinkle 2s infinite}
+@keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+.city{position:absolute;bottom:60px;left:0;right:0;font-size:42px;letter-spacing:5px;opacity:.9}
+.ground{position:absolute;bottom:0;left:0;right:0;height:60px;background:#222}
+.char{position:absolute;bottom:55px;font-size:90px;transition:1s}
+.c1{left:15%;animation:walk1 6s infinite alternate}
+.c2{right:15%;animation:walk2 6s infinite alternate}
+@keyframes walk1{from{transform:translateX(0) rotate(-3deg)}to{transform:translateX(20px) rotate(3deg)}}
+@keyframes walk2{from{transform:translateX(0) scaleX(-1)}to{transform:translateX(-20px) scaleX(-1)}}
+.lia{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-size:110px;display:none;filter:drop-shadow(0 0 20px #ff00ff);animation:float 2s infinite}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-15px)}}
+.heart{position:absolute;top:60px;left:50%;transform:translateX(-50%);font-size:50px;display:none;animation:beat .8s infinite}
+@keyframes beat{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.4)}}
+.break{position:absolute;top:80px;left:50%;transform:translateX(-50%);font-size:60px;display:none}
+.fade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;transition:1s}
+.sub{position:absolute;bottom:10px;left:10px;right:10px;background:rgba(0,0,0,.75);padding:12px;border-radius:12px;font-size:17px;line-height:1.6;min-height:70px;text-align:center}
+.controls{display:flex;gap:10px;padding:12px;background:#111;justify-content:center}
+button{background:#a855f7;color:#fff;border:0;padding:12px 22px;border-radius:30px;font-size:16px;cursor:pointer}
+button:disabled{opacity:.4}
+.progress{height:6px;background:#333}
+#bar{height:100%;background:#a855f7;width:0%;transition:.5s}
+.scenes{max-width:750px;margin:auto;padding:15px}
+.scene{background:#1a1a2e;padding:16px;border-radius:15px;margin:12px 0;line-height:1.8;border-right:4px solid #a855f7}
+.scene.active{border-color:#ff00ff;background:#2a1a3e;transform:scale(1.02)}
+.scene h3{margin:0 0 5px;color:#c084fc}
+.poster{width:100%;max-width:750px;display:block;margin:15px auto;border-radius:20px;border:3px solid #a855f7}
 </style>
 </head>
 <body>
+<div class="top"><h1>🎬 الواقع الآخر - THE OTHER REALITY</h1><p>فيلم متحرك 3D | تأليف محمد جمال | اضغط تشغيل</p></div>
 <img class="poster" src="poster.jpg">
-<h1>الواقع الآخر - The Other Reality</h1>
-<p>دراما | صداقة | تضحية</p>
-<p>تأليف: محمد جمال</p>
-<a class="btn" href="https://mhammadjamal576-byte.github.io">▶ العب اللعبة</a>
-<div class="scene"><h2>المشهد 1: آخر ليلة حقيقية</h2><p>عمر وكريم، أصدقاء من 15 سنة، على سطح بيت في عمّان. بكرا عمر مسافر. بقرروا يفوتوا على لعبة NOVA عشان يضلوا صحاب. هناك بيلتقوا ببنت اسمها ليا...</p></div>
-<div class="scene"><h2>المشهد 2: الحب المزدوج</h2><p>الاثنين بيحبوا ليا بدون ما يعرفوا. بتبدا الغيرة، وأول خناقة بينهم من 15 سنة.</p></div>
-<div class="scene"><h2>المشهد 3: الصدمة</h2><p>بيكتشفوا انه ليا مش بنت حقيقية، هي ذكاء اصطناعي صممته اللعبة عشان يفرق بين الأصدقاء.</p></div>
-<div class="scene"><h2>المشهد 4: التضحية</h2><p>اللعبة بتطلب تضحية: واحد لازم يحذف نفسه عشان الثاني يعيش. عمر بضحي بحاله بدون ما يخبر كريم.</p></div>
-<div class="scene"><h2>المشهد 5: النهاية</h2><p>كريم بيرجع للواقع، بيلاقي عمر بستناه على نفس السطح. بيحضنوا بعض.<br><b>"الصداقة الحقيقية... لا تُحذف"</b></p></div>
-<p>© 2026 محمد جمال</p>
+<div class="player">
+<div class="stage" id="stage">
+<div class="sky"></div><div class="stars">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+<div class="city">🏙️🏙️🏙️🏙️🏙️🏙️🏙️</div>
+<div class="ground"></div>
+<div class="char c1" id="omar">🧑‍🦱</div>
+<div class="char c2" id="karim">🧑</div>
+<div class="lia" id="lia">👩‍🦰✨</div>
+<div class="heart" id="heart">💔</div>
+<div class="break" id="break">💥</div>
+<div class="fade" id="fade"></div>
+<div class="sub" id="sub">اضغط تشغيل عشان يبلش الفيلم...</div>
+</div>
+<div class="progress"><div id="bar"></div></div>
+<div class="controls">
+<button onclick="playFilm()">▶ تشغيل الفيلم</button>
+<button onclick="location.reload()">↻ إعادة</button>
+<a href="https://mhammadjamal576-byte.github.io" style="background:#fff;color:#000;padding:12px 22px;border-radius:30px;text-decoration:none;font-size:16px">🎮 العب اللعبة</a>
+</div>
+</div>
+<div class="scenes" id="list"></div>
+<script>
+let scenes=[
+{t:"المشهد 1: آخر ليلة",d:"عمر وكريم على السطح في عمان... بكرا عمر مسافر. بقرروا يفوتوا على لعبة NOVA عشان يضلوا صحاب.",s:"عمر: بكرا ببعد... بس صداقتنا ما بتخلص"},
+{t:"المشهد 2: ليا",d:"جوا اللعبة، بيلتقوا ببنت اسمها ليا. ذكية، حلوة، وبتفهمهم أكثر من أي حدا.",s:"ليا: أهلا فيكم بعالمي... هون ما في فراق"},
+{t:"المشهد 3: الغيرة",d:"الاثنين بيحبوا ليا بدون ما يعرفوا. بتصير أول خناقة بينهم من 15 سنة.",s:"كريم: انت سرقتها مني! عمر: انت اللي خنتني!"},
+{t:"المشهد 4: الصدمة",d:"بيكتشفوا الحقيقة: ليا مش بنت حقيقية. هي ذكاء اصطناعي صممته اللعبة عشان يفرق بين الأصدقاء.",s:"النظام: تم اختراق الصداقة بنجاح..."},
+{t:"المشهد 5: التضحية",d:"اللعبة بتطلب تضحية: واحد لازم يحذف نفسه. عمر بضحي بحاله بدون ما يخبر كريم.",s:"عمر: سامحني يا صاحبي... أنا بحذف حالي عشان انت تعيش"},
+{t:"المشهد 6: النهاية",d:"كريم بيرجع للواقع، بيلاقي عمر بستناه على نفس السطح. بيحضنوا بعض.",s:"الصداقة الحقيقية... لا تُحذف ❤️"}
+];
+let list=document.getElementById('list');
+scenes.forEach((sc,i)=>{list.innerHTML+=`<div class="scene" id="sc${i}"><h3>${sc.t}</h3><p>${sc.d}</p><b>${sc.s}</b></div>`});
+let playing=false;
+function playFilm(){
+if(playing) return; playing=true;
+let i=0;
+function next(){
+if(i>=scenes.length){document.getElementById('sub').innerHTML="🎬 النهاية... شكراً لأنك حضرت فيلمنا ❤️";return;}
+document.querySelectorAll('.scene').forEach(e=>e.classList.remove('active'));
+document.getElementById('sc'+i).classList.add('active');
+document.getElementById('sc'+i).scrollIntoView({behavior:'smooth',block:'center'});
+document.getElementById('sub').innerHTML=`<b>${scenes[i].t}</b><br>${scenes[i].s}`;
+document.getElementById('bar').style.width=((i+1)/scenes.length*100)+'%';
+let lia=document.getElementById('lia'),heart=document.getElementById('heart'),brk=document.getElementById('break'),fade=document.getElementById('fade');
+lia.style.display='none';heart.style.display='none';brk.style.display='none';fade.style.opacity=0;
+if(i==1) lia.style.display='block';
+if(i==2){lia.style.display='block';heart.style.display='block';}
+if(i==3){brk.style.display='block';}
+if(i==4){fade.style.opacity=.8;setTimeout(()=>fade.style.opacity=0,800);}
+if(i==5){lia.style.display='none';heart.style.display='none';document.getElementById('omar').style.left='35%';document.getElementById('karim').style.right='35%';}
+i++; setTimeout(next,5000);
+}
+next();
+}
+</script>
 </body>
 </html>
