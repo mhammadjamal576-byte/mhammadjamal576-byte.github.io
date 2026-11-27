@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>فارس وحبيبته - نسخة مصلحة</title><style>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>فارس وحبيبته - دقيق 100%</title><style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#000;color:#fff;font-family:Arial;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;padding:9px 12px;background:#0a0a1f}.logo{font-weight:900;color:#ffd700}.pill{background:#1a1a2e;padding:7px 11px;border-radius:20px;font-weight:800}
 .bar{display:flex;justify-content:space-between;padding:8px 12px;background:#7c2d12;font-weight:900;font-size:13px}
@@ -6,9 +6,9 @@
 #minimap{position:absolute;top:38px;right:10px;width:170px;height:62px;background:rgba(0,0,0,.82);border:2px solid #ffd700;border-radius:12px;z-index:50;padding:4px}
 #minimap .title{font-size:9px;text-align:center;color:#ffd700}
 #minimap .track{position:relative;height:30px;background:linear-gradient(90deg,#4ade80,#ffd700,#ff6b9d);border-radius:10px;margin-top:4px}
-#miniHorse{position:absolute;top:4px;width:22px;height:22px;background:#ffd700;border-radius:50%;border:2px solid #fff;z-index:3}
+#miniHorse{position:absolute;top:4px;width:22px;height:22px;background:#ffd700;border-radius:50%;border:2px solid #fff}
 #miniPrincess{position:absolute;top:4px;right:2px;width:22px;height:22px;background:#ff6b9d;border-radius:50%;border:2px solid #fff}
-.miniMonster{position:absolute;top:9px;width:10px;height:10px;background:#ff0000;border-radius:50%;border:1px solid #fff}
+.miniMonster{position:absolute;top:9px;width:10px;height:10px;border-radius:50%;border:1px solid #fff}
 .miniPit{position:absolute;top:10px;width:12px;height:8px;background:#000;border:1px solid #fff;border-radius:50%}
 .pit{position:absolute;bottom:0;width:110px;height:68px;background:radial-gradient(#000,#1a0a00);border:4px solid #ff0000;border-top:none;border-radius:0 0 50% 50%;z-index:3;box-shadow:0 0 18px #ff0000}
 .pit::after{content:'حفرة! انط!';position:absolute;top:-28px;left:10px;font-size:11px;color:#fff;background:#ff0000;padding:3px 8px;border-radius:10px;white-space:nowrap;font-weight:900}
@@ -16,7 +16,6 @@
 .rope::after{content:'حبل - طير!';position:absolute;top:-20px;left:10px;font-size:11px;background:#ffd700;color:#000;padding:2px 8px;border-radius:10px;white-space:nowrap;font-weight:900}
 .ground{position:absolute;bottom:0;left:0;right:0;height:68px;background:linear-gradient(#4ade80,#16a34a);border-top:5px solid #8B4513;z-index:2}
 #goldPath{position:absolute;bottom:72px;height:4px;background:linear-gradient(90deg,#ffd700,#ff6b9d);z-index:1;opacity:.6}
-/* حصان صغير - 92 مش 150 */
 #knight{position:absolute;bottom:68px;left:20px;width:92px;height:68px;z-index:20;will-change:transform}
 #knight svg{width:100%;height:100%;filter:drop-shadow(0 8px 8px rgba(0,0,0,.5))}
 .leg{transform-origin:20px 10px}
@@ -25,27 +24,25 @@
 #knight.run .leg3{animation:legRun .28s infinite alternate}
 #knight.run .leg4{animation:legRun .28s infinite alternate-reverse}
 @keyframes legRun{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
-#knight.fall{animation:fallAnim .9s forwards}
-@keyframes fallAnim{0%{transform:translateY(0) rotate(0);opacity:1}50%{transform:translateY(35px) rotate(25deg) scale(.8);opacity:.8}100%{transform:translateY(62px) rotate(45deg) scale(.55);opacity:.25}}
 #princess{position:absolute;bottom:68px;width:90px;height:115px;z-index:15;text-align:center}
 #princess svg{width:64px;height:64px;filter:drop-shadow(0 0 12px #ff6b9d)}
 #princess .name{background:#ff6b9d;color:#fff;font-size:11px;border-radius:20px;padding:3px 7px;display:inline-block}
 #princess .heart{font-size:18px;animation:hb 1s infinite;display:block}
 @keyframes hb{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
-.monster{position:absolute;bottom:68px;width:62px;height:70px;z-index:16;text-align:center;will-change:transform}
+.monster{position:absolute;bottom:68px;width:62px;height:78px;z-index:16;text-align:center;will-change:transform}
 .monster svg{width:54px;height:54px;filter:drop-shadow(0 0 8px #ff0000)}
+.monster .mName{font-size:9px;background:#000;color:#fff;padding:1px 5px;border-radius:10px;display:inline-block}
 .monster .hp{height:5px;background:#333;border-radius:5px;margin-top:1px;overflow:hidden}.monster .hp div{height:100%;background:#00ff00;width:100%}
 .monster .warn{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:18px;animation:hb .6s infinite}
-.coin{position:absolute;width:32px;height:32px;background:radial-gradient(#fff176,#ffd700,#ffaa00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:13px;box-shadow:0 0 12px #ffd700;z-index:8;will-change:transform}
+.coin{position:absolute;width:32px;height:32px;background:radial-gradient(#fff176,#ffd700,#ffaa00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:13px;box-shadow:0 0 12px #ffd700;z-index:8}
 .arrow{position:absolute;height:6px;background:#8B4513;border-radius:3px;z-index:25;will-change:transform}
 .arrow::after{content:'';position:absolute;right:-11px;top:-6px;border-left:13px solid #ddd;border-top:8px solid transparent;border-bottom:8px solid transparent}
 .arrow.left{transform:scaleX(-1)}
 .hud{display:flex;gap:6px;padding:8px;justify-content:center;background:#0a0a1f;flex-wrap:wrap}
 .card{background:#1a1a2e;padding:7px 11px;border-radius:14px;text-align:center;min-width:78px}.card b{color:#ffd700;display:block}
-/* أزرار - فوق كل شي، منطقة كبس كبيرة */
 .controls{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:#0a0a1f;border-top:3px solid #ffd700;z-index:2000;direction:ltr !important}
 .btn{width:88px;height:88px;border-radius:50%;border:4px solid #fff;font-size:26px;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;touch-action:none;user-select:none}
-.btn small{font-size:9px}.btn:active{transform:scale(.90);background:#333} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#f59e0b;width:102px;height:102px;order:2;border-color:#fff;box-shadow:0 0 18px #f59e0b}.shoot{background:#dc2626;order:3}.ropeBtn{background:#10b981;order:5;width:72px;height:72px;font-size:20px}
+.btn small{font-size:9px}.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#f59e0b;width:102px;height:102px;order:2;box-shadow:0 0 18px #f59e0b}.shoot{background:#dc2626;order:3}.ropeBtn{background:#10b981;order:5;width:72px;height:72px;font-size:20px}
 #startScreen{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80') center/cover;z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
 #startScreen h1{font-size:28px;color:#ffd700}
 #startScreen p{color:#ddd;font-size:14px;line-height:1.6}
@@ -57,10 +54,10 @@
 #adBox{display:none;background:#fff;color:#999;text-align:center;font-size:11px;padding:7px;margin:4px 12px;border-radius:8px}
 #radar{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:900;z-index:40;white-space:nowrap}
 </style></head><body>
-<div class="top"><div class="logo">فارس وحبيبته - مصلحة</div><div class="pill">💰 <span id="coins">0</span></div><button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div>
+<div class="top"><div class="logo">فارس وحبيبته - دقيق 100%</div><div class="pill">💰 <span id="coins">0</span></div><button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div>
 <div class="bar"><span>المرحلة <b id="level">1</b>/10</span><span>🎵 <b id="musicName">هادئة</b></span><span>💖 <b id="prog">0</b>%</span><span id="lives">❤️❤️❤️❤️❤️</span></div>
 <div class="small" id="small"></div><div id="fallMsg">💥 وقعت بالحفرة!</div><div class="big" id="big"></div>
-<div id="startScreen"><h1>فارس وحبيبته</h1><p>حصان صغير - أزرار بتشتغل<br>سهم يمين وشمال - وقوع واضح<br>مساحة كبيرة قدامك - 85% رؤية<br>10 مراحل - 5 قلوب</p><button class="startBtn" onclick="startGame()">▶ ابدأ اللعب</button></div>
+<div id="startScreen"><h1>فارس وحبيبته</h1><p id="levelInfo">المرحلة 1: وحشين بس - سهلة<br>المرحلة 10: 8 وحوش - صعبة جدا<br>كل وحش له اسم ولون مختلف<br>الحبل بيقفز بجد - السهم يمين وشمال</p><button class="startBtn" onclick="startGame()">▶ ابدأ اللعب</button></div>
 <div id="world">
   <div id="radar">الطريق آمن - اركض!</div>
   <div id="minimap"><div class="title">خريطة - حصان رايح لحبيبته</div><div class="track"><div id="miniHorse"></div><div id="miniPrincess"></div><div id="miniDots"></div></div></div>
@@ -71,34 +68,64 @@
 </div>
 <div class="hud"><div class="card">⭐ نقاط<b id="score">0</b></div><div class="card">🏹 سهام<b id="arrows">99</b></div><div class="card">👾 قتلت<b id="kills">0</b></div><div class="card">🕳️ حفر<b id="pits">0</b></div></div>
 <div id="adBox">Sponsored</div>
-<div style="text-align:center;background:#0a0a1f;padding:6px;font-size:12px;color:#ffd700" id="mission">اركض &nbsp; انط &nbsp; حبل &nbsp; سهم يمين/يسار &nbsp; اوصل لحبيبتك</div>
+<div style="text-align:center;background:#0a0a1f;padding:6px;font-size:12px;color:#ffd700" id="mission">اركض &nbsp; انط &nbsp; حبل بيقفز &nbsp; سهم يمين/يسار</div>
 <div style="height:110px"></div>
 <div class="controls" dir="ltr">
 <button class="btn left" id="btnL">◀<small>ارجع</small></button>
-<button class="btn jump" id="btnJump">🐎<small>قفز - اكبسني</small></button>
+<button class="btn jump" id="btnJump">🐎<small>قفز</small></button>
 <button class="btn shoot" id="btnShoot">🏹<small>سهم</small></button>
 <button class="btn right" id="btnR">▶<small>اركض</small></button>
-<button class="btn ropeBtn" id="btnRope">🪢<small>حبل</small></button>
+<button class="btn ropeBtn" id="btnRope">🪢<small>حبل يقفز</small></button>
 </div>
 <script>
 setTimeout(()=>{let s=document.createElement('script');s.src='https://quge5.com/88/tag.min.js';s.setAttribute('data-zone','314124');s.async=true;s.setAttribute('data-cfasync','false');document.head.appendChild(s);document.getElementById('adBox').style.display='block';},60000);
+// ===== جدول المراحل - من السهل للصعب، دقيق =====
+let LEVEL_CFG=[
+ {monsters:2, speed:1.0, pits:1, hp:1, name:'سهلة جدا'},
+ {monsters:2, speed:1.15, pits:1, hp:1, name:'سهلة'},
+ {monsters:3, speed:1.3, pits:2, hp:2, name:'متوسطة'},
+ {monsters:3, speed:1.45, pits:2, hp:2, name:'متوسطة+'},
+ {monsters:4, speed:1.6, pits:3, hp:2, name:'صعبة'},
+ {monsters:5, speed:1.75, pits:3, hp:2, name:'أصعب'},
+ {monsters:6, speed:1.9, pits:4, hp:3, name:'صعبة جدا'},
+ {monsters:6, speed:2.05, pits:4, hp:3, name:'خطيرة'},
+ {monsters:7, speed:2.2, pits:5, hp:3, name:'ملحمية'},
+ {monsters:8, speed:2.4, pits:6, hp:4, name:'النهاية - مستحيلة'},
+];
+// وحوش غير مكررة - كل واحد اسم ولون وشكل مختلف
+let MONSTER_TYPES=[
+ {name:'غول أحمر', color:'#ff2d55', eye:7},
+ {name:'شيطان بنفسجي', color:'#7d00ff', eye:6},
+ {name:'وحش برتقالي', color:'#ff9500', eye:8},
+ {name:'عفريت أخضر', color:'#00c853', eye:6},
+ {name:'تنين أزرق', color:'#2563eb', eye:7},
+ {name:'ساحر أسود', color:'#111111', eye:5},
+ {name:'ذئب رمادي', color:'#6b7280', eye:6},
+ {name:'عملاق بني', color:'#92400e', eye:9},
+];
 let level=1,score=0,coins=0,lives=5,kills=0,arrows=99,pitsJumped=0,started=false;
-let knightX=20,knightY=0,vy=0,face=1,isJumping=false,dir=0,levelLen=1000+level*150,gameOver=false,lastHit=0,ropeActive=false,falling=false;
+let knightX=20,knightY=0,vy=0,face=1,isJumping=false,dir=0,levelLen=1000+level*150,gameOver=false,lastHit=0,ropeActive=false,falling=false,fallY=0;
 let monsters=[],coinsArr=[],arrowsArr=[],pitsArr=[],ropesArr=[];
 let worldEl=document.getElementById('world'),knightEl=document.getElementById('knight'),princessEl=document.getElementById('princess');
-let musicNames=['هادئة','رومانسية','حماسية','مغامرة','سريعة','خطيرة','ملحمية','نارية','أسطورية','النهاية'];
 function showSmall(t,c){let m=document.getElementById('small');m.innerText=t;m.style.background=c||'#00c853';m.style.display='block';setTimeout(()=>m.style.display='none',1300)}
 function showBig(h){document.getElementById('big').innerHTML=h;document.getElementById('big').style.display='block';gameOver=true}
 function hideBig(){document.getElementById('big').style.display='none';gameOver=false}
-function monsterSVG(color){return `<svg viewBox="0 0 70 70"><path d="M20 18 L14 2 L28 14 Z" fill="#fff"/><path d="M50 18 L56 2 L42 14 Z" fill="#fff"/><ellipse cx="35" cy="40" rx="28" ry="26" fill="${color}"/><circle cx="24" cy="36" r="7" fill="#fff"/><circle cx="46" cy="36" r="7" fill="#fff"/><circle cx="24" cy="36" r="3" fill="#000"/><circle cx="46" cy="36" r="3" fill="#000"/><ellipse cx="35" cy="54" rx="12" ry="7" fill="#3a0000"/></svg>`}
+function monsterSVG(t){return `<svg viewBox="0 0 70 70"><path d="M20 18 L14 2 L28 14 Z" fill="#fff"/><path d="M50 18 L56 2 L42 14 Z" fill="#fff"/><ellipse cx="35" cy="40" rx="28" ry="26" fill="${t.color}"/><circle cx="24" cy="36" r="${t.eye}" fill="#fff"/><circle cx="46" cy="36" r="${t.eye}" fill="#fff"/><circle cx="24" cy="36" r="3" fill="#000"/><circle cx="46" cy="36" r="3" fill="#000"/><ellipse cx="35" cy="54" rx="12" ry="7" fill="#3a0000"/></svg>`}
 function makeLevel(){
-  knightX=20;knightY=0;vy=0;dir=0;face=1;gameOver=false;falling=false;
+  knightX=20;knightY=0;vy=0;dir=0;face=1;gameOver=false;falling=false;fallY=0;
   document.querySelectorAll('.monster,.coin,.arrow,.pit,.rope').forEach(e=>e.remove());monsters=[];coinsArr=[];arrowsArr=[];pitsArr=[];ropesArr=[];
-  document.getElementById('level').innerText=level;document.getElementById('musicName').innerText=musicNames[level-1];
-  let colors=['#ff2d55','#7d00ff','#ff9500','#00c853'];
-  for(let i=0;i<3+level;i++){let d=document.createElement('div');d.className='monster';d.innerHTML=`<span class="warn">⚠️</span>${monsterSVG(colors[i%4])}<div class="hp"><div></div></div>`;worldEl.appendChild(d);monsters.push({el:d,wx:280+i*190,hp:2+Math.floor(level/3),maxHp:2+Math.floor(level/3)});}
-  for(let i=0;i<2+Math.floor(level/2);i++){let d=document.createElement('div');d.className='pit';worldEl.appendChild(d);pitsArr.push({el:d,wx:450+i*360});}
-  for(let i=0;i<2;i++){let d=document.createElement('div');d.className='rope';d.style.width='140px';worldEl.appendChild(d);ropesArr.push({el:d,wx:700+i*480});}
+  let cfg=LEVEL_CFG[level-1];
+  document.getElementById('level').innerText=level;document.getElementById('musicName').innerText=cfg.name;
+  document.getElementById('mission').innerText='المرحلة '+level+' - '+cfg.name+' - '+cfg.monsters+' وحوش مختلفين - '+cfg.pits+' حفر - سرعة '+cfg.speed;
+  // وحوش غير مكررة، مش مع بعض - 280 متر بين كل وحش
+  for(let i=0;i<cfg.monsters;i++){
+    let t=MONSTER_TYPES[i]; // كل وحش نوع مختلف، مش مكرر
+    let d=document.createElement('div');d.className='monster';d.innerHTML=`<span class="warn">⚠️</span>${monsterSVG(t)}<div class="mName">${t.name}</div><div class="hp"><div></div></div>`;worldEl.appendChild(d);
+    monsters.push({el:d,wx:450+i*280, hp:cfg.hp, maxHp:cfg.hp, type:t});
+  }
+  // حفر - مش مع بعض، 360 متر بين كل حفرة
+  for(let i=0;i<cfg.pits;i++){let d=document.createElement('div');d.className='pit';worldEl.appendChild(d);pitsArr.push({el:d,wx:600+i*360});}
+  for(let i=0;i<2;i++){let d=document.createElement('div');d.className='rope';d.style.width='140px';worldEl.appendChild(d);ropesArr.push({el:d,wx:800+i*480});}
   for(let i=0;i<7;i++){let d=document.createElement('div');d.className='coin';d.innerText='N';worldEl.appendChild(d);coinsArr.push({el:d,wx:280+i*170,y:110+Math.random()*70});}
   updateHUD();
 }
@@ -119,25 +146,27 @@ function sWin(){[523,659,784,1046,1318].forEach((f,i)=>setTimeout(()=>tone(f,.35
 function sLose(){[400,250,120].forEach((f,i)=>setTimeout(()=>tone(f,.35,'sawtooth',.13),i*160))}
 function sRope(){tone(880,.2,'sine',.12);setTimeout(()=>tone(1100,.25,'sine',.12),120)}
 function startGame(){document.getElementById('startScreen').style.display='none';started=true;if(!musicOn)toggleMusic();showSmall('يلا! اركض لحبيبتك!');makeLevel();}
-// ===== زر القفز - إصلاح: 3 طرق كبس، مستحيل ما يشتغل =====
-function jump(){
-  if(!started||isJumping||falling) return;
-  isJumping=true; vy=14; sJump(); showSmall('نطيت! 🐎');
+function jump(){if(!started||isJumping||falling||ropeActive) return; isJumping=true; vy=14; sJump(); showSmall('نطيت!');}
+function useRope(){
+  if(!started||ropeActive||falling) return;
+  ropeActive=true; sRope(); showSmall('مسكت الحبل! بيقفز فيك!');
+  // الحبل بيقفز بجد: قفزة عالية + سحب لقدام
+  isJumping=true; vy=18; // قفزة أعلى من القفز العادي
+  let target=knightX+face*220;
+  let step=setInterval(()=>{
+    knightX+=face*9;
+    if((face==1&&knightX>=target)||(face==-1&&knightX<=target)){clearInterval(step);ropeActive=false;}
+  },28);
 }
-function useRope(){if(!started||ropeActive||falling)return;ropeActive=true;sRope();showSmall('مسكت الحبل! طرت 220 متر!');let target=knightX+face*220;let step=setInterval(()=>{knightX+=face*9;if((face==1&&knightX>=target)||(face==-1&&knightX<=target)){clearInterval(step);ropeActive=false;}},28);}
 function shoot(){
   if(!started||falling) return; if(arrows<=0){showSmall('خلصت السهام!','#ff4757');return}
   arrows--; sShoot(); updateHUD();
-  // سهم يمين وشمال حسب اتجاه الفارس
+  // سهم يمين وشمال - حسب face اللي بتتحدث لما تكبس ◀ أو ▶
   let a=document.createElement('div');a.className='arrow'+(face==-1?' left':'');a.style.width='36px';a.style.left=(knightX+ (face==1?90:0))+'px';a.style.bottom='115px';worldEl.appendChild(a);
   arrowsArr.push({el:a,ax:knightX+ (face==1?90:0), dir:face});
+  showSmall(face==1?'سهم يمين! →':'سهم يسار! ←');
 }
-function bindBtn(btn,fn){
-  // touch + click + pointer - 3 طرق عشان يشتغل على كل الهواتف
-  btn.addEventListener('touchstart',e=>{e.preventDefault();e.stopPropagation();fn()},{passive:false});
-  btn.addEventListener('pointerdown',e=>{e.preventDefault();fn()});
-  btn.addEventListener('click',e=>{e.preventDefault();fn()});
-}
+function bindBtn(btn,fn){btn.addEventListener('touchstart',e=>{e.preventDefault();e.stopPropagation();fn()},{passive:false});btn.addEventListener('pointerdown',e=>{e.preventDefault();fn()});btn.addEventListener('click',e=>{e.preventDefault();fn()});}
 function hold(btn,d){
   let s=e=>{e.preventDefault();if(!started)return;dir=d;face=d;knightEl.classList.add('run')};
   let e2=e=>{e.preventDefault();dir=0;knightEl.classList.remove('run')};
@@ -152,11 +181,18 @@ document.addEventListener('keyup',e=>{if(e.key=='ArrowRight'||e.key=='ArrowLeft'
 function doFall(){
   if(falling) return; falling=true; sFall(); if(navigator.vibrate) navigator.vibrate(300);
   document.getElementById('fallMsg').style.display='block';
-  knightEl.classList.add('fall');
   showSmall('وقعت بالحفرة! -1 قلب','#ff4757');
   lives--; lastHit=Date.now(); updateHUD();
   worldEl.style.transform='translateX(6px)'; setTimeout(()=>worldEl.style.transform='translateX(-6px)',80); setTimeout(()=>worldEl.style.transform='',160);
-  setTimeout(()=>{document.getElementById('fallMsg').style.display='none';knightEl.classList.remove('fall');knightEl.style.transform='';falling=false; knightX+=40; if(lives<=0){sLose();showBig(`<h2>وقعت وخسرت!</h2><p>خلصت الـ 5 قلوب</p><button onclick="restartAll()">ابدأ من المرحلة 1</button>`);}},950);
+  // الحصان بيوقع جوات الحفرة بجد: fallY بينزل -55
+  let fallStep=setInterval(()=>{
+    fallY-=6; // بينزل لتحت
+    if(fallY<=-55){clearInterval(fallStep); setTimeout(()=>{
+      document.getElementById('fallMsg').style.display='none';
+      fallY=0; falling=false; knightX+=50; knightY=0;
+      if(lives<=0){sLose();showBig(`<h2>وقعت وخسرت!</h2><p>خلصت الـ 5 قلوب</p><button onclick="restartAll()">ابدأ من المرحلة 1</button>`);}
+    },400);}
+  },30);
 }
 let lastTime=performance.now();
 function loop(now){
@@ -167,41 +203,46 @@ function loop(now){
     if(isJumping){vy-=0.9; knightY+=vy*dt; if(knightY<=0){knightY=0;vy=0;isJumping=false;}}
     if(dir!=0){knightX+=dir*6.5*dt;if(knightX<0)knightX=0;if(knightX>window.innerWidth-110)knightX=window.innerWidth-110;if(Math.random()<0.12)sGallop();}
   }
-  knightEl.style.transform=`translate3d(0, ${-knightY}px, 0) scaleX(${face})`;
+  // الحصان: knightY للقفز، fallY للوقوع بالحفرة - الاثنين بيبينوا
+  let totalY=knightY+fallY;
+  knightEl.style.transform=`translate3d(0, ${-totalY}px, 0) scaleX(${face})`;
   knightEl.style.left=knightX+'px';
-  // مساحة كبيرة قدام: الفارس على 15% من الشاشة، 85% قدامك
+  knightEl.style.opacity=falling? (1+fallY/110) : 1; // لما يوقع، بيختفي تدريجيا جوات الحفرة
   let camX=Math.max(0,knightX-40);
   princessEl.style.left=(levelLen-camX)+'px';
   let gp=document.getElementById('goldPath');gp.style.left=knightX+90+'px';gp.style.width=Math.max(0,(levelLen-camX)-knightX)+'px';
   document.getElementById('miniHorse').style.left=(knightX/levelLen*125)+'px';
   let dots=document.getElementById('miniDots');dots.innerHTML='';
-  monsters.forEach(m=>{let d=document.createElement('div');d.className='miniMonster';d.style.left=(m.wx/levelLen*125)+'px';dots.appendChild(d);});
+  monsters.forEach(m=>{let d=document.createElement('div');d.className='miniMonster';d.style.left=(m.wx/levelLen*125)+'px';d.style.background=m.type.color;dots.appendChild(d);});
   pitsArr.forEach(p=>{let d=document.createElement('div');d.className='miniPit';d.style.left=(p.wx/levelLen*125)+'px';dots.appendChild(d);});
   let nearestDist=9999,pitDist=9999;
   monsters.forEach(m=>{let d=m.wx-knightX;if(d>0&&d<nearestDist)nearestDist=d});
   pitsArr.forEach(p=>{let d=p.wx-knightX;if(d>0&&d<pitDist)pitDist=d});
   let radar=document.getElementById('radar');
-  if(nearestDist<350) radar.innerText='وحش قدامك! على بعد '+Math.floor(nearestDist)+' - سهم أو نط';
+  if(nearestDist<350) radar.innerText='وحش قدامك! '+monsters.find(m=>m.wx-knightX==nearestDist)?.type.name+' على بعد '+Math.floor(nearestDist);
   else if(pitDist<350) radar.innerText='حفرة قدامك! على بعد '+Math.floor(pitDist)+' - انط أو حبل';
   else if(levelLen-knightX<300) radar.innerText='حبيبتك قريبة! '+Math.floor(levelLen-knightX)+' - قربت توصل!';
-  else radar.innerText='الطريق آمن - اركض! - شوف قدامك 85% من الشاشة';
+  else radar.innerText='الطريق آمن - اركض!';
   radar.style.background=nearestDist<350?'#ff4757':pitDist<350?'#f59e0b':'rgba(0,0,0,.75)';
+  let cfg=LEVEL_CFG[level-1];
   monsters.forEach(m=>{
     m.el.style.transform=`translate3d(${m.wx-camX}px, 0, 0)`; m.el.style.left='0px';
     let warn=m.el.querySelector('.warn'); if(warn) warn.style.display=(m.wx-knightX>0&&m.wx-knightX<350)?'block':'none';
-    let chase=1.6+level*0.14;
+    // سرعة حسب المرحلة - من السهل للصعب
+    let chase=1.0*cfg.speed;
     if(m.wx<knightX) m.wx+=chase*dt; else m.wx-=chase*0.7*dt;
-    if(Math.abs(m.wx-knightX)<38 && knightY<20 && !ropeActive && Date.now()-lastHit>1200){
-      lives--;lastHit=Date.now();sHit();if(navigator.vibrate)navigator.vibrate(150);showSmall('وحش مسكك! بقي '+lives+' قلوب','#ff4757');updateHUD();
+    if(Math.abs(m.wx-knightX)<38 && knightY<20 && !ropeActive && !falling && Date.now()-lastHit>1200){
+      lives--;lastHit=Date.now();sHit();if(navigator.vibrate)navigator.vibrate(150);showSmall(m.type.name+' مسكك! بقي '+lives+' قلوب','#ff4757');updateHUD();
       if(lives<=0){sLose();showBig(`<h2>الوحوش منعوك!</h2><p>خلصت الـ 5 قلوب</p><button onclick="restartAll()">ابدأ من المرحلة 1</button>`);}
     }
     if((knightY>20||ropeActive) && Math.abs(m.wx-knightX)<38){score+=2;updateHUD();}
   });
-  pitsArr.forEach(p=>{p.el.style.left=(p.wx-camX)+'px';if(Math.abs(p.wx-knightX)<38){if(knightY<20&&!ropeActive&&Date.now()-lastHit>1200){doFall();} else if(knightY>20||ropeActive){pitsJumped++;updateHUD();}}});
+  pitsArr.forEach(p=>{p.el.style.left=(p.wx-camX)+'px';if(Math.abs(p.wx-knightX)<38){if(knightY<20&&!ropeActive&&!falling&&Date.now()-lastHit>1200){doFall();} else if(knightY>20||ropeActive){pitsJumped++;updateHUD();}}});
   ropesArr.forEach(r=>{r.el.style.left=(r.wx-camX)+'px';r.el.style.bottom='158px';});
   coinsArr.forEach(c=>{c.el.style.transform=`translate3d(${c.wx-camX}px, 0, 0)`;c.el.style.left='0px';c.el.style.bottom=(68+90+c.y*0.3)+'px';if(Math.abs(c.wx-knightX)<36){coins++;score+=10;c.wx=knightX+650+Math.random()*250;sCoin();updateHUD();}});
-  arrowsArr.forEach((a,i)=>{a.ax+=a.dir*12*dt;a.el.style.transform=`translate3d(${a.ax-camX}px, 0, 0)`;a.el.style.left='0px';let hit=false;monsters.forEach(m=>{if(Math.abs(a.ax-m.wx)<28){m.hp--;hit=true;m.el.querySelector('.hp div').style.width=(m.hp/m.maxHp*100)+'%';if(m.hp<=0){score+=30;coins+=2;kills++;m.wx=knightX+750+Math.random()*250;m.hp=m.maxHp;m.el.querySelector('.hp div').style.width='100%';showSmall('صبته! +30');updateHUD();}}});if(hit||Math.abs(a.ax-knightX)>550){a.el.remove();arrowsArr.splice(i,1)}});
-  if(knightX>=levelLen-110){sWin();if(level>=10){showBig(`<h2>خلصت كل الـ 10 مراحل!</h2><p>الفارس وصل لحبيبته!</p><p>⭐ ${score} | 💰 ${coins} | 👾 ${kills}</p><button onclick="restartAll()">العب من جديد</button>`);}else{showBig(`<h2>وصلت لحبيبتك!</h2><p>المرحلة ${level} خلصت! +100</p><button onclick="nextLevel()">المرحلة ${level+1}</button>`);}}
+  arrowsArr.forEach((a,i)=>{a.ax+=a.dir*12*dt;a.el.style.transform=`translate3d(${a.ax-camX}px, 0, 0)`;a.el.style.left='0px';let hit=false;monsters.forEach(m=>{if(Math.abs(a.ax-m.wx)<28){m.hp--;hit=true;m.el.querySelector('.hp div').style.width=(m.hp/m.maxHp*100)+'%';if(m.hp<=0){score+=30;coins+=2;kills++;showSmall('صبت '+m.type.name+'! +30');updateHUD(); // وحش مات - بيرجع وحش جديد مختلف بعد 700 متر
+      m.wx=knightX+750+Math.random()*250;m.hp=m.maxHp;m.el.querySelector('.hp div').style.width='100%';}}});if(hit||Math.abs(a.ax-knightX)>550){a.el.remove();arrowsArr.splice(i,1)}});
+  if(knightX>=levelLen-110){sWin();if(level>=10){showBig(`<h2>خلصت كل الـ 10 مراحل!</h2><p>الفارس وصل لحبيبته!</p><p>⭐ ${score} | 💰 ${coins} | 👾 ${kills}</p><button onclick="restartAll()">العب من جديد</button>`);}else{showBig(`<h2>وصلت لحبيبتك!</h2><p>المرحلة ${level} - ${LEVEL_CFG[level-1].name} خلصت! +100</p><button onclick="nextLevel()">المرحلة ${level+1} - ${LEVEL_CFG[level].name}</button>`);}}
 }
 function nextLevel(){hideBig();level++;score+=100;coins+=50;arrows+=20;levelLen=1000+level*150;makeLevel();startMusic();}
 function restartAll(){hideBig();level=1;score=0;coins=0;lives=5;kills=0;arrows=99;pitsJumped=0;levelLen=1150;makeLevel();startMusic();}
