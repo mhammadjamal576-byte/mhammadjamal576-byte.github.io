@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>فارس وحبيبته - أزرار بتكبس</title><style>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>فارس وحبيبته - نسخة يوتيوب</title><style>
 *{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;padding:9px 12px;background:#0a0a1f}.logo{font-weight:900;color:#ffd700}.pill{background:#1a1a2e;padding:7px 11px;border-radius:20px;font-weight:800}
 .bar{display:flex;justify-content:space-between;padding:8px 12px;background:#7c2d12;font-weight:900;font-size:13px}
@@ -15,7 +15,7 @@
 .ground{position:absolute;bottom:0;left:0;right:0;height:60px;background:#22c55e;border-top:5px solid #8B4513;z-index:2}
 #goldPath{position:absolute;bottom:64px;height:4px;background:#ffd700;z-index:1;opacity:.7}
 #knight{position:absolute;bottom:60px;left:90px;width:92px;height:68px;z-index:20}
-#knightInner{width:100%;height:100%;transition:transform .15s}
+#knightInner{width:100%;height:100%}
 #knightInner svg{width:100%;height:100%}
 .leg{transform-origin:20px 10px}
 #knight.walking .leg1{animation:legRun .28s infinite alternate}
@@ -39,7 +39,6 @@
 .controls{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:#0a0a1f;border-top:3px solid #ffd700;z-index:5000;direction:ltr !important}
 .btn{width:88px;height:88px;border-radius:50%;border:4px solid #fff;font-size:26px;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;touch-action:none}
 .btn small{font-size:9px}.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#f59e0b;width:102px;height:102px;order:2;box-shadow:0 0 18px #f59e0b}.shoot{background:#dc2626;order:3}
-/* زر الحبل - أكبر ومنفصل - z-index 5000 */
 .ropeBtn{background:#10b981;order:5;width:95px;height:95px;font-size:28px;border:4px solid #fff;box-shadow:0 0 20px #10b981}
 .ropeBtn.hanging{background:#ff6b00;box-shadow:0 0 20px #ff6b00}
 #levelPage{position:fixed;inset:0;background:linear-gradient(#0a0a1f,#7c2d12);z-index:3000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
@@ -50,9 +49,10 @@
 #startScreen{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80') center/cover;z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
 #startScreen h1{font-size:28px;color:#ffd700}
 .startBtn{background:linear-gradient(#ffd700,#ff6b00);color:#000;border:0;padding:15px 40px;border-radius:30px;font-size:21px;font-weight:900;margin-top:12px}
-#adBox{display:none;background:#fff;color:#999;text-align:center;font-size:11px;padding:7px;margin:4px 12px;border-radius:8px}
+body.youtube #minimap, body.youtube #toast, body.youtube .hud{display:none}
+body.youtube #world{flex:1}
 </style></head><body>
-<div class="top"><div class="logo">فارس وحبيبته</div><div class="pill">💰 <span id="coins">0</span></div><button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div>
+<div class="top"><div class="logo">فارس وحبيبته</div><div class="pill">💰 <span id="coins">0</span></div><div><button onclick="toggleYoutube()" id="ytBtn" style="background:#ff0000;border:0;color:#fff;padding:8px 12px;border-radius:20px;font-weight:900">🎬 وضع يوتيوب</button> <button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div></div>
 <div class="bar"><span>المرحلة <b id="level">1</b>/10</span><span>🎵 <b id="musicName">سهلة</b></span><span>💖 <b id="prog">0</b>%</span><span id="lives">❤️❤️❤️❤️❤️</span></div>
 <div id="startScreen"><h1>🏇 فارس وحبيبته 💖</h1><p>انت فارس على حصان، لازم توصل لحبيبتك بآخر المرحلة<br>▶ امشي - 🐎 انط فوق الحفرة - 🪢 تعلق بالحبل<br>🏹 اضرب الوحوش - لا توقع بالحفرة<br>10 مراحل ثابتة من السهل للصعب - 5 قلوب</p><button class="startBtn" onclick="startGame()">▶ ابدأ اللعب</button></div>
 <div id="levelPage"><div style="font-size:70px">🏇💖</div><h1 id="levelPageTitle">المرحلة 2</h1><h2 id="levelPageSub">دخلت المرحلة الجديدة!</h2><p id="levelPageInfo">وحوش جداد - حفر جداد</p><p>⭐ <span id="levelPageScore">0</span> &nbsp; 💰 <span id="levelPageCoins">0</span> &nbsp; ❤️ <span id="levelPageLives">5</span></p><button id="levelPageBtn" onclick="enterLevel()">▶ ادخل المرحلة</button></div>
@@ -66,19 +66,16 @@
   <div id="ropeLine" style="position:absolute;width:4px;background:#d4a373;z-index:4;display:none"></div>
 </div>
 <div class="hud"><div class="card">⭐ نقاط<b id="score">0</b></div><div class="card">🏹 سهام<b id="arrows">99</b></div><div class="card">👾 قتلت<b id="kills">0</b></div><div class="card">🕳️ حفر<b id="pits">0</b></div></div>
-<div id="adBox">Sponsored</div>
 <div style="text-align:center;background:#0a0a1f;padding:6px;font-size:12px;color:#ffd700">اركض &nbsp; انط &nbsp; حبل: كبسة تعلق - كبسة تنزل</div>
 <div style="height:110px"></div>
-<!-- أزرار بـ onclick مباشرة - مستحيل ما تكبس -->
 <div class="controls" dir="ltr">
 <button class="btn left" ontouchstart="pressDir(-1)" onmousedown="pressDir(-1)" ontouchend="releaseDir()" onmouseup="releaseDir()">◀<small>ارجع</small></button>
 <button class="btn jump" onclick="doJump()">🐎<small>قفز عالي</small></button>
 <button class="btn shoot" onclick="doShoot()">🏹<small>سهم</small></button>
 <button class="btn right" ontouchstart="pressDir(1)" onmousedown="pressDir(1)" ontouchend="releaseDir()" onmouseup="releaseDir()">▶<small>اركض</small></button>
-<button class="btn ropeBtn" id="btnRope" onclick="doRope()"><span id="ropeIcon">🪢</span><small id="ropeLabel">حبل - اكبسني</small></button>
+<button class="btn ropeBtn" id="btnRope" onclick="doRope()"><span id="ropeIcon">🪢</span><small id="ropeLabel">حبل</small></button>
 </div>
 <script>
-setTimeout(()=>{let s=document.createElement('script');s.src='https://quge5.com/88/tag.min.js';s.setAttribute('data-zone','314124');s.async=true;s.setAttribute('data-cfasync','false');document.head.appendChild(s);document.getElementById('adBox').style.display='block';},60000);
 let LEVELS=[
  {name:'سهلة جدا', monsters:[{type:0,x:550},{type:1,x:950}], pits:[750], coins:[320,500,680,860,1040], speed:1.0, hp:1},
  {name:'سهلة', monsters:[{type:0,x:550},{type:1,x:950}], pits:[750], coins:[320,500,680,860,1040], speed:1.15, hp:1},
@@ -97,10 +94,11 @@ let KNIGHT_SCREEN_X=90, knightWorldX=90, knightY=0, vy=0, face=1, isJumping=fals
 let monsters=[],coinsArr=[],arrowsArr=[],pitsArr=[];
 let worldEl=document.getElementById('world'), knightEl=document.getElementById('knight'), princessEl=document.getElementById('princess');
 function toast(t){let el=document.getElementById('toast'); el.innerText=t; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{el.innerText='اركض لحبيبتك!';},1600);}
+function toggleYoutube(){ document.body.classList.toggle('youtube'); document.getElementById('ytBtn').innerText=document.body.classList.contains('youtube')?'🎬 وضع يوتيوب: ON':'🎬 وضع يوتيوب'; }
 function monsterSVG(t){return `<svg viewBox="0 0 70 70"><path d="M20 18 L14 2 L28 14 Z" fill="#fff"/><path d="M50 18 L56 2 L42 14 Z" fill="#fff"/><ellipse cx="35" cy="40" rx="28" ry="26" fill="${t.color}"/><circle cx="24" cy="36" r="${t.eye}" fill="#fff"/><circle cx="46" cy="36" r="${t.eye}" fill="#fff"/><circle cx="24" cy="36" r="3" fill="#000"/><circle cx="46" cy="36" r="3" fill="#000"/><ellipse cx="35" cy="54" rx="12" ry="7" fill="#3a0000"/></svg>`}
 function makeLevel(){
   knightWorldX=KNIGHT_SCREEN_X; knightY=0; vy=0; dir=0; face=1; gameOver=false; falling=false; fallY=0; hanging=false; maxProg=0;
-  document.getElementById('btnRope').classList.remove('hanging'); document.getElementById('ropeIcon').innerText='🪢'; document.getElementById('ropeLabel').innerText='حبل - اكبسني'; document.getElementById('ropeLine').style.display='none';
+  document.getElementById('btnRope').classList.remove('hanging'); document.getElementById('ropeIcon').innerText='🪢'; document.getElementById('ropeLabel').innerText='حبل'; document.getElementById('ropeLine').style.display='none';
   document.querySelectorAll('.monster,.coin,.arrow,.pit').forEach(e=>e.remove()); monsters=[]; coinsArr=[]; arrowsArr=[]; pitsArr=[];
   let cfg=LEVELS[level-1]; levelLen=1300+level*120;
   document.getElementById('level').innerText=level; document.getElementById('musicName').innerText=cfg.name;
@@ -141,24 +139,22 @@ function showLevelPage(){
 function enterLevel(){ document.getElementById('levelPage').style.display='none'; level++; score+=100; coins+=50; arrows+=20; makeLevel(); startMusic(); gameOver=false; toast('المرحلة '+level+' - '+LEVELS[level-1].name+' - يلا!'); }
 function pressDir(d){ if(!started||hanging) return; dir=d; face=d; }
 function releaseDir(){ dir=0; }
-// ===== القفزة العالية - vy=18 وجاذبية 0.85 - بتوصل 150px فوق، مش واطية =====
 function doJump(){
   if(!started||falling||hanging||isJumping||gameOver){ toast('اكبس ابدأ اللعب أول!'); return; }
-  isJumping=true; vy=18; sJump(); toast('نطيت عالي! 150 فوق الحفرة');
+  isJumping=true; vy=18; sJump(); toast('نطيت عالي!');
 }
-// ===== الحبل - onclick مباشرة - بيكبس من أول مرة =====
 function doRope(){
   if(!started||falling||gameOver){ toast('اكبس ابدأ اللعب أول!'); return; }
   let btn=document.getElementById('btnRope');
   if(!hanging){
     hanging=true; isJumping=false; vy=0; knightY=110;
-    btn.classList.add('hanging'); document.getElementById('ropeIcon').innerText='⬇️'; document.getElementById('ropeLabel').innerText='انزل - اكبسني';
+    btn.classList.add('hanging'); document.getElementById('ropeIcon').innerText='⬇️'; document.getElementById('ropeLabel').innerText='انزل';
     document.getElementById('ropeLine').style.display='block';
     sRope(); toast('تعلقت بالحبل! اكبس مرة ثانية عشان تنزل');
     if(navigator.vibrate) navigator.vibrate(50);
   } else {
     hanging=false; knightY=0;
-    btn.classList.remove('hanging'); document.getElementById('ropeIcon').innerText='🪢'; document.getElementById('ropeLabel').innerText='حبل - اكبسني';
+    btn.classList.remove('hanging'); document.getElementById('ropeIcon').innerText='🪢'; document.getElementById('ropeLabel').innerText='حبل';
     document.getElementById('ropeLine').style.display='none';
     toast('نزلت من الحبل!');
   }
