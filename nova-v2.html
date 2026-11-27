@@ -1,71 +1,61 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"><title>فارس وحبيبته - كاميرا صحيحة</title><style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:#000;color:#fff;font-family:Arial;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>فارس وحبيبته - بعد الفيديو</title><style>
+*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;padding:9px 12px;background:#0a0a1f}.logo{font-weight:900;color:#ffd700}.pill{background:#1a1a2e;padding:7px 11px;border-radius:20px;font-weight:800}
 .bar{display:flex;justify-content:space-between;padding:8px 12px;background:#7c2d12;font-weight:900;font-size:13px}
-#world{position:relative;flex:1;overflow:hidden;min-height:420px;background:linear-gradient(#87CEEB 0%,#a78bfa 55%,#f59e0b 75%,#22c55e 75%,#22c55e 100%)}
-#minimap{position:absolute;top:38px;right:10px;width:170px;height:62px;background:rgba(0,0,0,.82);border:2px solid #ffd700;border-radius:12px;z-index:50;padding:4px}
-#minimap .title{font-size:9px;text-align:center;color:#ffd700}
-#minimap .track{position:relative;height:30px;background:linear-gradient(90deg,#4ade80,#ffd700,#ff6b9d);border-radius:10px;margin-top:4px}
-#miniHorse{position:absolute;top:4px;width:22px;height:22px;background:#ffd700;border-radius:50%;border:2px solid #fff}
-#miniPrincess{position:absolute;top:4px;right:2px;width:22px;height:22px;background:#ff6b9d;border-radius:50%;border:2px solid #fff}
-.miniMonster{position:absolute;top:9px;width:10px;height:10px;border-radius:50%;border:1px solid #fff}
-.miniPit{position:absolute;top:10px;width:12px;height:8px;background:#000;border:1px solid #fff;border-radius:50%}
-.pit{position:absolute;bottom:0;width:80px;height:68px;background:linear-gradient(#000,#1a0a00);border:4px solid #ff0000;border-top:none;border-radius:0 0 40% 40%;z-index:3;box-shadow:0 0 18px #ff0000}
-.pit::before{content:'🚩';position:absolute;top:-34px;left:0;font-size:22px}
-.pit::after{content:'حفرة! انط!';position:absolute;top:-50px;left:-10px;font-size:11px;color:#fff;background:#ff0000;padding:3px 8px;border-radius:10px;white-space:nowrap;font-weight:900}
-.rope{position:absolute;height:6px;background:#d4a373;border-radius:3px;z-index:4}
-.rope::after{content:'حبل - تعلق!';position:absolute;top:-20px;left:10px;font-size:11px;background:#ffd700;color:#000;padding:2px 8px;border-radius:10px;white-space:nowrap;font-weight:900}
-.ground{position:absolute;bottom:0;left:0;right:0;height:68px;background:#22c55e;border-top:5px solid #8B4513;z-index:2}
-#goldPath{position:absolute;bottom:72px;height:4px;background:linear-gradient(90deg,#ffd700,#ff6b9d);z-index:1;opacity:.6}
-/* الحصان ثابت على اليسار - مش بيروح لحافة الشاشة */
-#knight{position:absolute;bottom:68px;left:90px;width:92px;height:68px;z-index:20;will-change:transform}
-#knight svg{width:100%;height:100%;filter:drop-shadow(0 8px 8px rgba(0,0,0,.5))}
+/* رسالة وحدة بس - مش رسائل فوق بعض */
+#toast{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:900;z-index:60;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+#world{position:relative;flex:1;overflow:hidden;background:linear-gradient(#87CEEB 0%,#a78bfa 55%,#f59e0b 78%,#22c55e 78%)}
+#minimap{position:absolute;top:44px;right:10px;width:150px;height:48px;background:rgba(0,0,0,.8);border:2px solid #ffd700;border-radius:12px;z-index:50;padding:4px}
+#minimap .track{position:relative;height:22px;background:linear-gradient(90deg,#4ade80,#ffd700,#ff6b9d);border-radius:10px;margin-top:4px}
+#miniHorse{position:absolute;top:3px;width:16px;height:16px;background:#ffd700;border-radius:50%;border:2px solid #fff}
+#miniPrincess{position:absolute;top:3px;right:2px;width:16px;height:16px;background:#ff6b9d;border-radius:50%;border:2px solid #fff}
+.miniMonster{position:absolute;top:6px;width:9px;height:9px;border-radius:50%;border:1px solid #fff}
+.miniPit{position:absolute;top:7px;width:10px;height:7px;background:#000;border:1px solid #fff;border-radius:50%}
+.pit{position:absolute;bottom:60px;width:80px;height:60px;background:#000;border:4px solid #ff0000;border-top:none;border-radius:0 0 40% 40%;z-index:3;box-shadow:0 0 14px #ff0000}
+.pit::after{content:'حفرة!';position:absolute;top:-24px;left:15px;font-size:11px;color:#fff;background:#ff0000;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.ground{position:absolute;bottom:0;left:0;right:0;height:60px;background:#22c55e;border-top:5px solid #8B4513;z-index:2}
+#goldPath{position:absolute;bottom:64px;height:4px;background:#ffd700;z-index:1;opacity:.7}
+/* الحصان على الأرض بجد - bottom = 60 + knightY */
+#knight{position:absolute;bottom:60px;left:90px;width:92px;height:68px;z-index:20;will-change:transform}
+#knight svg{width:100%;height:100%;filter:drop-shadow(0 6px 6px rgba(0,0,0,.4))}
 .leg{transform-origin:20px 10px}
 #knight.walking .leg1{animation:legRun .28s infinite alternate}
 #knight.walking .leg2{animation:legRun .28s infinite alternate-reverse}
 #knight.walking .leg3{animation:legRun .28s infinite alternate}
 #knight.walking .leg4{animation:legRun .28s infinite alternate-reverse}
 @keyframes legRun{from{transform:rotate(-20deg)}to{transform:rotate(20deg)}}
-#princess{position:absolute;bottom:68px;width:90px;height:115px;z-index:15;text-align:center}
+#princess{position:absolute;bottom:60px;width:90px;height:115px;z-index:15;text-align:center}
 #princess svg{width:64px;height:64px;filter:drop-shadow(0 0 12px #ff6b9d)}
 #princess .name{background:#ff6b9d;color:#fff;font-size:11px;border-radius:20px;padding:3px 7px;display:inline-block}
-#princess .heart{font-size:18px;animation:hb 1s infinite;display:block}
-@keyframes hb{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
-.monster{position:absolute;bottom:68px;width:62px;height:78px;z-index:16;text-align:center;will-change:transform}
+.monster{position:absolute;bottom:60px;width:62px;height:78px;z-index:16;text-align:center}
 .monster svg{width:54px;height:54px;filter:drop-shadow(0 0 8px #ff0000)}
 .monster .mName{font-size:9px;background:#000;color:#fff;padding:1px 5px;border-radius:10px;display:inline-block}
 .monster .hp{height:5px;background:#333;border-radius:5px;margin-top:1px;overflow:hidden}.monster .hp div{height:100%;background:#00ff00;width:100%}
-.monster .warn{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-size:18px;animation:hb .6s infinite}
 .coin{position:absolute;width:32px;height:32px;background:radial-gradient(#fff176,#ffd700,#ffaa00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:13px;box-shadow:0 0 12px #ffd700;z-index:8}
-.arrow{position:absolute;height:6px;background:#8B4513;border-radius:3px;z-index:25;will-change:transform}
+.arrow{position:absolute;height:6px;background:#8B4513;border-radius:3px;z-index:25}
 .arrow::after{content:'';position:absolute;right:-11px;top:-6px;border-left:13px solid #ddd;border-top:8px solid transparent;border-bottom:8px solid transparent}
 .arrow.left{transform:scaleX(-1)}
-.hud{display:flex;gap:6px;padding:8px;justify-content:center;background:#0a0a1f;flex-wrap:wrap}
+.hud{display:flex;gap:6px;padding:8px;justify-content:center;background:#0a0a1f}
 .card{background:#1a1a2e;padding:7px 11px;border-radius:14px;text-align:center;min-width:78px}.card b{color:#ffd700;display:block}
 .controls{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:#0a0a1f;border-top:3px solid #ffd700;z-index:2000;direction:ltr !important}
-.btn{width:88px;height:88px;border-radius:50%;border:4px solid #fff;font-size:26px;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;touch-action:none;user-select:none}
-.btn small{font-size:9px}.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#f59e0b;width:102px;height:102px;order:2;box-shadow:0 0 18px #f59e0b}.shoot{background:#dc2626;order:3}.ropeBtn{background:#10b981;order:5;width:72px;height:72px;font-size:20px}.ropeBtn.hanging{background:#ff6b00;box-shadow:0 0 18px #ff6b00}
+.btn{width:88px;height:88px;border-radius:50%;border:4px solid #fff;font-size:26px;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;touch-action:none}
+.btn small{font-size:9px}.btn:active{transform:scale(.90)} .left{background:#2563eb;order:1}.right{background:#2563eb;order:4}.jump{background:#f59e0b;width:102px;height:102px;order:2;box-shadow:0 0 18px #f59e0b}.shoot{background:#dc2626;order:3}.ropeBtn{background:#10b981;order:5;width:72px;height:72px;font-size:20px}.ropeBtn.hanging{background:#ff6b00}
 #startScreen{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80') center/cover;z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
 #startScreen h1{font-size:28px;color:#ffd700}
-#startScreen p{color:#ddd;font-size:14px;line-height:1.6}
 .startBtn{background:linear-gradient(#ffd700,#ff6b00);color:#000;border:0;padding:15px 40px;border-radius:30px;font-size:21px;font-weight:900;margin-top:12px}
 .big{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;padding:24px;border-radius:22px;border:3px solid #ffd700;text-align:center;display:none;z-index:2500;width:92%}
 .big button{background:#ffd700;border:0;padding:12px 22px;border-radius:20px;font-weight:900;margin-top:10px;font-size:16px}
-.small{position:fixed;top:110px;left:50%;transform:translateX(-50%);background:#00c853;padding:10px 20px;border-radius:20px;font-weight:900;display:none;z-index:2500;text-align:center}
-#fallMsg{position:fixed;top:38%;left:50%;transform:translate(-50%,-50%);background:#ff0000;color:#fff;padding:14px 28px;border-radius:20px;font-size:22px;font-weight:900;display:none;z-index:2500;box-shadow:0 0 30px #ff0000}
 #adBox{display:none;background:#fff;color:#999;text-align:center;font-size:11px;padding:7px;margin:4px 12px;border-radius:8px}
-#radar{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:900;z-index:40;white-space:nowrap}
 </style></head><body>
-<div class="top"><div class="logo">فارس وحبيبته - كاميرا صحيحة</div><div class="pill">💰 <span id="coins">0</span></div><button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div>
+<div class="top"><div class="logo">فارس وحبيبته</div><div class="pill">💰 <span id="coins">0</span></div><button onclick="toggleMusic()" id="musicBtn" style="background:#00c853;border:0;width:50px;height:50px;border-radius:50%;font-size:20px">🎵</button></div>
 <div class="bar"><span>المرحلة <b id="level">1</b>/10</span><span>🎵 <b id="musicName">سهلة</b></span><span>💖 <b id="prog">0</b>%</span><span id="lives">❤️❤️❤️❤️❤️</span></div>
-<div class="small" id="small"></div><div id="fallMsg">💥 وقعت بالحفرة!</div><div class="big" id="big"></div>
-<div id="startScreen"><h1>🏇 فارس وحبيبته 💖</h1><p><b>شو هي اللعبة؟</b><br>انت فارس على حصان، لازم توصل لحبيبتك بآخر المرحلة<br>▶ امشي - 🐎 انط فوق الحفرة - 🪢 تعلق بالحبل<br>🏹 اضرب الوحوش - لا توقع بالحفرة<br>10 مراحل من السهل للصعب - 5 قلوب</p><button class="startBtn" onclick="startGame()">▶ ابدأ اللعب</button></div>
+<div id="startScreen"><h1>🏇 فارس وحبيبته 💖</h1><p>انت فارس على حصان، لازم توصل لحبيبتك بآخر المرحلة<br>▶ امشي - 🐎 انط فوق الحفرة - 🪢 تعلق بالحبل<br>🏹 اضرب الوحوش - لا توقع بالحفرة<br>10 مراحل من السهل للصعب - 5 قلوب</p><button class="startBtn" onclick="startGame()">▶ ابدأ اللعب</button></div>
 <div id="world">
-  <div id="radar">الطريق آمن - اركض!</div>
-  <div id="minimap"><div class="title">خريطة - حصان رايح لحبيبته</div><div class="track"><div id="miniHorse"></div><div id="miniPrincess"></div><div id="miniDots"></div></div></div>
+  <div id="toast">اركض لحبيبتك!</div>
+  <div id="minimap"><div style="font-size:9px;text-align:center;color:#ffd700">خريطة - حصان رايح لحبيبته</div><div class="track"><div id="miniHorse"></div><div id="miniPrincess"></div><div id="miniDots"></div></div></div>
   <div id="goldPath"></div>
   <div class="ground"></div>
-  <div id="princess"><span class="heart">💖</span><br><svg viewBox="0 0 80 80"><circle cx="40" cy="22" r="14" fill="#ffdbac"/><path d="M26 18 Q40 2 54 18 L54 10 L40 4 L26 10 Z" fill="#5b21b6"/><rect x="32" y="2" width="16" height="8" fill="#ffd700"/><path d="M40 36 L18 78 L62 78 Z" fill="#ff6b9d"/><circle cx="34" cy="22" r="2" fill="#000"/><circle cx="46" cy="22" r="2" fill="#000"/></svg><div class="name">حبيبتك</div></div>
+  <div id="princess"><svg viewBox="0 0 80 80"><circle cx="40" cy="22" r="14" fill="#ffdbac"/><path d="M26 18 Q40 2 54 18 L54 10 L40 4 L26 10 Z" fill="#5b21b6"/><rect x="32" y="2" width="16" height="8" fill="#ffd700"/><path d="M40 36 L18 78 L62 78 Z" fill="#ff6b9d"/><circle cx="34" cy="22" r="2" fill="#000"/><circle cx="46" cy="22" r="2" fill="#000"/></svg><div class="name">حبيبتك</div></div>
   <div id="knight"><svg viewBox="0 0 150 110"><ellipse cx="75" cy="100" rx="55" ry="6" fill="rgba(0,0,0,.3)"/><g class="leg leg1"><line x1="45" y1="60" x2="38" y2="95" stroke="#8B4513" stroke-width="7" stroke-linecap="round"/></g><g class="leg leg2"><line x1="65" y1="60" x2="72" y2="95" stroke="#8B4513" stroke-width="7" stroke-linecap="round"/></g><g class="leg leg3"><line x1="95" y1="60" x2="88" y2="95" stroke="#8B4513" stroke-width="7" stroke-linecap="round"/></g><g class="leg leg4"><line x1="115" y1="60" x2="122" y2="95" stroke="#8B4513" stroke-width="7" stroke-linecap="round"/></g><ellipse cx="80" cy="55" rx="42" ry="18" fill="#8B4513"/><ellipse cx="118" cy="38" rx="10" ry="18" fill="#8B4513" transform="rotate(-20 118 38)"/><ellipse cx="128" cy="24" rx="16" ry="8" fill="#8B4513"/><circle cx="133" cy="22" r="2.5" fill="#000"/><path d="M110 22 Q110 8 118 8 Q112 20 114 28" fill="#000"/><path d="M38 52 Q20 60 26 82" stroke="#5a2d0a" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="62" y="8" width="20" height="24" rx="4" fill="#1e3a8a"/><rect x="62" y="18" width="20" height="5" fill="#ffd700"/><circle cx="72" cy="6" r="9" fill="#ffdbac"/><path d="M63 4 Q72 -6 81 4 L81 0 L63 0 Z" fill="#c0c0c0"/><path d="M72 -6 L76 2 L68 2 Z" fill="#ef4444"/></svg></div>
   <div id="ropeLine" style="position:absolute;width:4px;background:#d4a373;z-index:4;display:none"></div>
 </div>
@@ -75,187 +65,123 @@
 <div style="height:110px"></div>
 <div class="controls" dir="ltr">
 <button class="btn left" id="btnL">◀<small>ارجع</small></button>
-<button class="btn jump" id="btnJump">🐎<small>قفز فوق الحفرة</small></button>
+<button class="btn jump" id="btnJump">🐎<small>قفز</small></button>
 <button class="btn shoot" id="btnShoot">🏹<small>سهم</small></button>
 <button class="btn right" id="btnR">▶<small>اركض</small></button>
-<button class="btn ropeBtn" id="btnRope">🪢<small>حبل: تعلق/انزل</small></button>
+<button class="btn ropeBtn" id="btnRope">🪢<small>حبل</small></button>
 </div>
 <script>
 setTimeout(()=>{let s=document.createElement('script');s.src='https://quge5.com/88/tag.min.js';s.setAttribute('data-zone','314124');s.async=true;s.setAttribute('data-cfasync','false');document.head.appendChild(s);document.getElementById('adBox').style.display='block';},60000);
-let LEVEL_CFG=[
- {monsters:2, speed:1.0, pits:1, hp:1, name:'سهلة جدا'},
- {monsters:2, speed:1.15, pits:1, hp:1, name:'سهلة'},
- {monsters:3, speed:1.3, pits:2, hp:2, name:'متوسطة'},
- {monsters:3, speed:1.45, pits:2, hp:2, name:'متوسطة+'},
- {monsters:4, speed:1.6, pits:3, hp:2, name:'صعبة'},
- {monsters:5, speed:1.75, pits:3, hp:2, name:'أصعب'},
- {monsters:6, speed:1.9, pits:4, hp:3, name:'صعبة جدا'},
- {monsters:6, speed:2.05, pits:4, hp:3, name:'خطيرة'},
- {monsters:7, speed:2.2, pits:5, hp:3, name:'ملحمية'},
- {monsters:8, speed:2.4, pits:6, hp:4, name:'النهاية'},
-];
-let MONSTER_TYPES=[
- {name:'غول أحمر', color:'#ff2d55', eye:7},
- {name:'شيطان بنفسجي', color:'#7d00ff', eye:6},
- {name:'وحش برتقالي', color:'#ff9500', eye:8},
- {name:'عفريت أخضر', color:'#00c853', eye:6},
- {name:'تنين أزرق', color:'#2563eb', eye:7},
- {name:'ساحر أسود', color:'#111111', eye:5},
- {name:'ذئب رمادي', color:'#6b7280', eye:6},
- {name:'عملاق بني', color:'#92400e', eye:9},
-];
+let LEVEL_CFG=[{monsters:2,speed:1.0,pits:1,hp:1,name:'سهلة جدا'},{monsters:2,speed:1.15,pits:1,hp:1,name:'سهلة'},{monsters:3,speed:1.3,pits:2,hp:2,name:'متوسطة'},{monsters:3,speed:1.45,pits:2,hp:2,name:'متوسطة+'},{monsters:4,speed:1.6,pits:3,hp:2,name:'صعبة'},{monsters:5,speed:1.75,pits:3,hp:2,name:'أصعب'},{monsters:6,speed:1.9,pits:4,hp:3,name:'صعبة جدا'},{monsters:6,speed:2.05,pits:4,hp:3,name:'خطيرة'},{monsters:7,speed:2.2,pits:5,hp:3,name:'ملحمية'},{monsters:8,speed:2.4,pits:6,hp:4,name:'النهاية'}];
+let MONSTER_TYPES=[{name:'غول أحمر',color:'#ff2d55',eye:7},{name:'شيطان بنفسجي',color:'#7d00ff',eye:6},{name:'وحش برتقالي',color:'#ff9500',eye:8},{name:'عفريت أخضر',color:'#00c853',eye:6},{name:'تنين أزرق',color:'#2563eb',eye:7},{name:'ساحر أسود',color:'#111111',eye:5},{name:'ذئب رمادي',color:'#6b7280',eye:6},{name:'عملاق بني',color:'#92400e',eye:9}];
 let level=1,score=0,coins=0,lives=5,kills=0,arrows=99,pitsJumped=0,started=false;
-// ===== إصلاح الكاميرا: الحصان ثابت على الشاشة، العالم هو اللي بيتحرك =====
-let KNIGHT_SCREEN_X=90; // الحصان دايما على 90px من اليسار - مش بيروح للحافة
-let knightWorldX=90,knightY=0,vy=0,face=1,isJumping=false,dir=0,levelLen=1150,gameOver=false,lastHit=0,hanging=false,falling=false,fallY=0;
+let KNIGHT_SCREEN_X=90, knightWorldX=90, knightY=0, vy=0, face=1, isJumping=false, dir=0, levelLen=1150, gameOver=false, lastHit=0, hanging=false, falling=false, fallY=0, maxProg=0, toastTimer=null;
 let monsters=[],coinsArr=[],arrowsArr=[],pitsArr=[],ropesArr=[];
-let worldEl=document.getElementById('world'),knightEl=document.getElementById('knight'),princessEl=document.getElementById('princess');
-function showSmall(t,c){let m=document.getElementById('small');m.innerText=t;m.style.background=c||'#00c853';m.style.display='block';setTimeout(()=>m.style.display='none',1300)}
-function showBig(h){document.getElementById('big').innerHTML=h;document.getElementById('big').style.display='block';gameOver=true}
-function hideBig(){document.getElementById('big').style.display='none';gameOver=false}
+let worldEl=document.getElementById('world'), knightEl=document.getElementById('knight'), princessEl=document.getElementById('princess');
+// رسالة وحدة بس - بتمنع التداخل اللي شفته بالفيديو
+function toast(t){
+  let el=document.getElementById('toast'); el.innerText=t;
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>{el.innerText='اركض لحبيبتك!';},1800);
+}
+function showBig(h){document.getElementById('big')?.remove(); let d=document.createElement('div'); d.id='big'; d.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#000;padding:24px;border-radius:22px;border:3px solid #ffd700;text-align:center;z-index:2500;width:92%'; d.innerHTML=h; document.body.appendChild(d); gameOver=true;}
+function hideBig(){document.getElementById('big')?.remove(); gameOver=false;}
 function monsterSVG(t){return `<svg viewBox="0 0 70 70"><path d="M20 18 L14 2 L28 14 Z" fill="#fff"/><path d="M50 18 L56 2 L42 14 Z" fill="#fff"/><ellipse cx="35" cy="40" rx="28" ry="26" fill="${t.color}"/><circle cx="24" cy="36" r="${t.eye}" fill="#fff"/><circle cx="46" cy="36" r="${t.eye}" fill="#fff"/><circle cx="24" cy="36" r="3" fill="#000"/><circle cx="46" cy="36" r="3" fill="#000"/><ellipse cx="35" cy="54" rx="12" ry="7" fill="#3a0000"/></svg>`}
 function makeLevel(){
-  knightWorldX=KNIGHT_SCREEN_X;knightY=0;vy=0;dir=0;face=1;gameOver=false;falling=false;fallY=0;hanging=false;document.getElementById('btnRope').classList.remove('hanging');
-  document.querySelectorAll('.monster,.coin,.arrow,.pit,.rope').forEach(e=>e.remove());monsters=[];coinsArr=[];arrowsArr=[];pitsArr=[];ropesArr=[];
+  knightWorldX=KNIGHT_SCREEN_X; knightY=0; vy=0; dir=0; face=1; gameOver=false; falling=false; fallY=0; hanging=false; maxProg=0; document.getElementById('btnRope').classList.remove('hanging');
+  document.querySelectorAll('.monster,.coin,.arrow,.pit,.rope').forEach(e=>e.remove()); monsters=[]; coinsArr=[]; arrowsArr=[]; pitsArr=[]; ropesArr=[];
   let cfg=LEVEL_CFG[level-1];
-  document.getElementById('level').innerText=level;document.getElementById('musicName').innerText=cfg.name;
-  document.getElementById('mission').innerText='المرحلة '+level+' - '+cfg.name+' - '+cfg.monsters+' وحوش - '+cfg.pits+' حفر';
-  for(let i=0;i<cfg.monsters;i++){let t=MONSTER_TYPES[i];let d=document.createElement('div');d.className='monster';d.innerHTML=`<span class="warn">⚠️</span>${monsterSVG(t)}<div class="mName">${t.name}</div><div class="hp"><div></div></div>`;worldEl.appendChild(d);monsters.push({el:d,wx:450+i*280,hp:cfg.hp,maxHp:cfg.hp,type:t});}
-  for(let i=0;i<cfg.pits;i++){let d=document.createElement('div');d.className='pit';worldEl.appendChild(d);pitsArr.push({el:d,wx:600+i*360});}
-  for(let i=0;i<2;i++){let d=document.createElement('div');d.className='rope';d.style.width='140px';worldEl.appendChild(d);ropesArr.push({el:d,wx:800+i*480});}
-  for(let i=0;i<7;i++){let d=document.createElement('div');d.className='coin';d.innerText='N';worldEl.appendChild(d);coinsArr.push({el:d,wx:280+i*170,y:110+Math.random()*70});}
+  document.getElementById('level').innerText=level; document.getElementById('musicName').innerText=cfg.name;
+  for(let i=0;i<cfg.monsters;i++){let t=MONSTER_TYPES[i]; let d=document.createElement('div'); d.className='monster'; d.innerHTML=`${monsterSVG(t)}<div class="mName">${t.name}</div><div class="hp"><div></div></div>`; worldEl.appendChild(d); monsters.push({el:d,wx:500+i*300,hp:cfg.hp,maxHp:cfg.hp,type:t});}
+  for(let i=0;i<cfg.pits;i++){let d=document.createElement('div'); d.className='pit'; worldEl.appendChild(d); pitsArr.push({el:d,wx:650+i*380});}
+  for(let i=0;i<2;i++){let d=document.createElement('div'); d.className='rope'; d.style.width='140px'; d.innerText=''; worldEl.appendChild(d); ropesArr.push({el:d,wx:850+i*500});}
+  for(let i=0;i<7;i++){let d=document.createElement('div'); d.className='coin'; d.innerText='N'; worldEl.appendChild(d); coinsArr.push({el:d,wx:320+i*180,y:110+Math.random()*70});}
   updateHUD();
 }
-function updateHUD(){document.getElementById('coins').innerText=coins;document.getElementById('score').innerText=score;document.getElementById('arrows').innerText=arrows;document.getElementById('kills').innerText=kills;document.getElementById('pits').innerText=pitsJumped;document.getElementById('lives').innerText='❤️'.repeat(lives)+'🖤'.repeat(5-lives);document.getElementById('prog').innerText=Math.min(100,Math.floor((knightWorldX-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*100));}
-let AC=null,musicOn=false,musicTimer=null,mi=0;
-function ac(){if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)();return AC}
-function tone(f,d,type='triangle',v=.09){try{let a=ac(),o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(v,a.currentTime);g.gain.exponentialRampToValueAtTime(.01,a.currentTime+d);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function updateHUD(){
+  // التقدم ما بيرجع لورا - maxProg
+  let p=Math.floor((knightWorldX-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*100); if(p>maxProg) maxProg=p; if(maxProg>100) maxProg=100;
+  document.getElementById('coins').innerText=coins; document.getElementById('score').innerText=score; document.getElementById('arrows').innerText=arrows; document.getElementById('kills').innerText=kills; document.getElementById('pits').innerText=pitsJumped; document.getElementById('lives').innerText='❤️'.repeat(lives)+'🖤'.repeat(5-lives); document.getElementById('prog').innerText=maxProg;
+}
+let AC=null, musicOn=false, musicTimer=null, mi=0;
+function ac(){if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)(); return AC}
+function tone(f,d,type='triangle',v=.09){try{let a=ac(),o=a.createOscillator(),g=a.createGain(); o.type=type; o.frequency.value=f; o.connect(g); g.connect(a.destination); g.gain.setValueAtTime(v,a.currentTime); g.gain.exponentialRampToValueAtTime(.01,a.currentTime+d); o.start(); o.stop(a.currentTime+d)}catch(e){}}
 let melodies=[[523,659,784,659,523,587,659,784],[659,784,880,784,659,880,1046,880],[784,880,1046,880,784,1046,1318,1046],[523,784,1046,784,659,880,1046,1318],[880,1046,1318,1046,880,1318,1568,1318],[1046,880,1046,784,1046,880,784,659],[523,659,784,1046,1318,1568,1318,1046],[880,1100,1318,1568,1318,1100,880,1046],[1046,1318,1568,1760,1568,1318,1046,880],[523,659,784,1046,784,659,784,1046]];
-function startMusic(){if(musicTimer)clearInterval(musicTimer);let speed=Math.max(140,320-level*18);musicTimer=setInterval(()=>{if(musicOn){tone(melodies[level-1][mi%8],.28,'triangle',.08);mi++}},speed)}
-function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBtn').innerText=musicOn?'🔇':'🎵';if(musicOn){ac().resume();startMusic()}else clearInterval(musicTimer)}
-function sGallop(){tone(170,.05,'square',.06);setTimeout(()=>tone(140,.05,'square',.06),90)}
-function sJump(){tone(400,.12,'sine',.13);setTimeout(()=>tone(750,.15,'sine',.11),80)}
+function startMusic(){if(musicTimer)clearInterval(musicTimer); let speed=Math.max(140,320-level*18); musicTimer=setInterval(()=>{if(musicOn){tone(melodies[level-1][mi%8],.28,'triangle',.08); mi++}},speed)}
+function toggleMusic(){musicOn=!musicOn; document.getElementById('musicBtn').innerText=musicOn?'🔇':'🎵'; if(musicOn){ac().resume(); startMusic()} else clearInterval(musicTimer)}
+function sJump(){tone(400,.12,'sine',.13); setTimeout(()=>tone(750,.15,'sine',.11),80)}
 function sShoot(){tone(1200,.06,'sine',.11)}
-function sCoin(){tone(1300,.1,'sine',.12);setTimeout(()=>tone(1650,.16,'sine',.11),70)}
+function sCoin(){tone(1300,.1,'sine',.12); setTimeout(()=>tone(1650,.16,'sine',.11),70)}
 function sHit(){tone(170,.4,'sawtooth',.16)}
-function sFall(){tone(300,.3,'sawtooth',.16);setTimeout(()=>tone(120,.5,'sawtooth',.18),200)}
+function sFall(){tone(300,.3,'sawtooth',.16); setTimeout(()=>tone(120,.5,'sawtooth',.18),200)}
 function sWin(){[523,659,784,1046,1318].forEach((f,i)=>setTimeout(()=>tone(f,.35,'triangle',.13),i*130))}
 function sLose(){[400,250,120].forEach((f,i)=>setTimeout(()=>tone(f,.35,'sawtooth',.13),i*160))}
-function sRope(){tone(880,.2,'sine',.12);setTimeout(()=>tone(1100,.25,'sine',.12),120)}
-function startGame(){document.getElementById('startScreen').style.display='none';started=true;if(!musicOn)toggleMusic();showSmall('يلا! اركض لحبيبتك!');makeLevel();}
-function jump(){
-  if(!started||falling||hanging) return;
-  if(isJumping) return;
-  isJumping=true; vy=16; sJump(); showSmall('نطيت فوق الحفرة!');
-}
+function sRope(){tone(880,.2,'sine',.12); setTimeout(()=>tone(1100,.25,'sine',.12),120)}
+function startGame(){document.getElementById('startScreen').style.display='none'; started=true; if(!musicOn) toggleMusic(); toast('يلا! اركض لحبيبتك!'); makeLevel();}
+function jump(){ if(!started||falling||hanging||isJumping) return; isJumping=true; vy=16; sJump(); toast('نطيت فوق الحفرة!'); }
 function toggleRope(){
   if(!started||falling) return;
-  if(!hanging){
-    hanging=true; isJumping=false; vy=0; knightY=110;
-    document.getElementById('btnRope').classList.add('hanging');
-    document.getElementById('ropeLine').style.display='block';
-    sRope(); showSmall('تعلقت بالحبل! اكبس مرة ثانية عشان تنزل');
-  } else {
-    hanging=false; knightY=0;
-    document.getElementById('btnRope').classList.remove('hanging');
-    document.getElementById('ropeLine').style.display='none';
-    showSmall('نزلت من الحبل!');
-  }
+  if(!hanging){ hanging=true; isJumping=false; vy=0; knightY=110; document.getElementById('btnRope').classList.add('hanging'); document.getElementById('ropeLine').style.display='block'; sRope(); toast('تعلقت بالحبل! اكبس مرة ثانية عشان تنزل'); }
+  else { hanging=false; knightY=0; document.getElementById('btnRope').classList.remove('hanging'); document.getElementById('ropeLine').style.display='none'; toast('نزلت من الحبل!'); }
 }
 function shoot(){
-  if(!started||falling) return; if(arrows<=0){showSmall('خلصت السهام!','#ff4757');return}
+  if(!started||falling) return; if(arrows<=0){toast('خلصت السهام!'); return}
   arrows--; sShoot(); updateHUD();
-  // السهم بيطلع من الحصان الثابت، وبيطير بالعالم - يمين وشمال
   let startWorldX=knightWorldX + (face==1?90:0);
-  let a=document.createElement('div');a.className='arrow'+(face==-1?' left':'');a.style.width='36px';a.style.bottom='115px';worldEl.appendChild(a);
-  arrowsArr.push({el:a,worldX:startWorldX, dir:face});
-  showSmall(face==1?'سهم يمين! →':'سهم يسار! ←');
+  let a=document.createElement('div'); a.className='arrow'+(face==-1?' left':''); a.style.width='36px'; a.style.bottom='115px'; worldEl.appendChild(a);
+  arrowsArr.push({el:a,worldX:startWorldX,dir:face}); toast(face==1?'سهم يمين!':'سهم يسار!');
 }
-function bindBtn(btn,fn){btn.addEventListener('touchstart',e=>{e.preventDefault();e.stopPropagation();fn()},{passive:false});btn.addEventListener('pointerdown',e=>{e.preventDefault();fn()});btn.addEventListener('click',e=>{e.preventDefault();fn()});}
-function hold(btn,d){
-  let s=e=>{e.preventDefault();if(!started||hanging)return;dir=d;face=d;};
-  let e2=e=>{e.preventDefault();dir=0;};
-  btn.addEventListener('touchstart',s,{passive:false});btn.addEventListener('touchend',e2);btn.addEventListener('pointerdown',s);btn.addEventListener('pointerup',e2);btn.addEventListener('mousedown',s);btn.addEventListener('mouseup',e2);btn.addEventListener('mouseleave',e2);
-}
-hold(document.getElementById('btnL'),-1);hold(document.getElementById('btnR'),1);
-bindBtn(document.getElementById('btnJump'),jump);
-bindBtn(document.getElementById('btnShoot'),shoot);
-bindBtn(document.getElementById('btnRope'),toggleRope);
-document.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){dir=1;face=1}if(e.key=='ArrowLeft'){dir=-1;face=-1}if(e.key==' ')jump();if(e.key=='f')shoot();if(e.key=='r')toggleRope()});
+function bindBtn(btn,fn){ btn.addEventListener('touchstart',e=>{e.preventDefault(); e.stopPropagation(); fn()},{passive:false}); btn.addEventListener('pointerdown',e=>{e.preventDefault(); fn()}); }
+function hold(btn,d){ let s=e=>{e.preventDefault(); if(!started||hanging) return; dir=d; face=d;}; let e2=e=>{e.preventDefault(); dir=0;}; btn.addEventListener('touchstart',s,{passive:false}); btn.addEventListener('touchend',e2); btn.addEventListener('pointerdown',s); btn.addEventListener('pointerup',e2); btn.addEventListener('mousedown',s); btn.addEventListener('mouseup',e2); }
+hold(document.getElementById('btnL'),-1); hold(document.getElementById('btnR'),1);
+bindBtn(document.getElementById('btnJump'),jump); bindBtn(document.getElementById('btnShoot'),shoot); bindBtn(document.getElementById('btnRope'),toggleRope);
+document.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){dir=1;face=1} if(e.key=='ArrowLeft'){dir=-1;face=-1} if(e.key==' ')jump(); if(e.key=='f')shoot(); if(e.key=='r')toggleRope()});
 document.addEventListener('keyup',e=>{if(e.key=='ArrowRight'||e.key=='ArrowLeft')dir=0});
 function doFall(){
   if(falling) return; falling=true; sFall(); if(navigator.vibrate) navigator.vibrate(300);
-  document.getElementById('fallMsg').style.display='block';
-  showSmall('وقعت بالحفرة! -1 قلب','#ff4757');
-  lives--; lastHit=Date.now(); updateHUD();
-  let fallStep=setInterval(()=>{
-    fallY-=6;
-    if(fallY<=-55){clearInterval(fallStep); setTimeout(()=>{
-      document.getElementById('fallMsg').style.display='none';
-      fallY=0; falling=false; knightWorldX+=50; knightY=0;
-      if(lives<=0){sLose();showBig(`<h2>وقعت وخسرت!</h2><p>خلصت الـ 5 قلوب</p><button onclick="restartAll()">ابدأ من المرحلة 1</button>`);}
-    },400);}
-  },30);
+  toast('💥 وقعت بالحفرة! -1 قلب'); lives--; lastHit=Date.now(); updateHUD();
+  let fallStep=setInterval(()=>{ fallY-=6; if(fallY<=-55){clearInterval(fallStep); setTimeout(()=>{fallY=0; falling=false; knightWorldX+=50; knightY=0; if(lives<=0){sLose(); showBig(`<h2>وقعت وخسرت!</h2><button onclick="restartAll()" style="background:#ffd700;border:0;padding:12px 22px;border-radius:20px;font-weight:900">ابدأ من جديد</button>`);} },400);} },30);
 }
 let lastTime=performance.now();
 function loop(now){
-  requestAnimationFrame(loop);
-  if(!started||gameOver) return;
+  requestAnimationFrame(loop); if(!started||gameOver) return;
   let dt=Math.min(32,now-lastTime)/16.6; lastTime=now;
-  if(dir!=0 && !hanging && !falling){
-    knightEl.classList.add('walking');
-    knightWorldX+=dir*6.5*dt;
-    if(knightWorldX<KNIGHT_SCREEN_X)knightWorldX=KNIGHT_SCREEN_X;
-    if(Math.random()<0.12)sGallop();
-  } else {
-    knightEl.classList.remove('walking');
-  }
-  if(!falling && !hanging){
-    if(isJumping){vy-=0.7; knightY+=vy*dt; if(knightY<=0){knightY=0;vy=0;isJumping=false;}}
-  }
-  // ===== الكاميرا الصحيحة: الحصان ثابت، العالم بيتحرك =====
-  let scroll=knightWorldX-KNIGHT_SCREEN_X; // كل شي بالعالم بينطرح منه scroll
+  if(dir!=0 && !hanging && !falling){ knightEl.classList.add('walking'); knightWorldX+=dir*6.5*dt; if(knightWorldX<KNIGHT_SCREEN_X) knightWorldX=KNIGHT_SCREEN_X; } else knightEl.classList.remove('walking');
+  if(!falling && !hanging && isJumping){ vy-=0.7; knightY+=vy*dt; if(knightY<=0){knightY=0; vy=0; isJumping=false;} }
+  let scroll=knightWorldX-KNIGHT_SCREEN_X;
   let totalY=knightY+fallY;
-  knightEl.style.transform=`translate3d(0, ${-totalY}px, 0) scaleX(${face})`;
-  knightEl.style.left=KNIGHT_SCREEN_X+'px'; // ثابت - مش بيروح للحافة
+  // حصان واحد بس - bottom ثابت 60 + knightY - مش طاير بالهوا
+  knightEl.style.bottom=(60+totalY)+'px';
+  knightEl.style.transform=`scaleX(${face})`;
+  knightEl.style.left=KNIGHT_SCREEN_X+'px';
   knightEl.style.opacity=falling? (1+fallY/110) : 1;
-  let ropeLine=document.getElementById('ropeLine');
-  if(hanging){ropeLine.style.left=(KNIGHT_SCREEN_X+40)+'px';ropeLine.style.top='0px';ropeLine.style.height='150px';}
+  let ropeLine=document.getElementById('ropeLine'); if(hanging){ropeLine.style.left=(KNIGHT_SCREEN_X+40)+'px'; ropeLine.style.top='0px'; ropeLine.style.height='150px';}
   princessEl.style.left=(levelLen-scroll)+'px';
-  let gp=document.getElementById('goldPath');gp.style.left=KNIGHT_SCREEN_X+90+'px';gp.style.width=Math.max(0,(levelLen-scroll)-KNIGHT_SCREEN_X)+'px';
+  let gp=document.getElementById('goldPath'); gp.style.left=KNIGHT_SCREEN_X+90+'px'; gp.style.width=Math.max(0,(levelLen-scroll)-KNIGHT_SCREEN_X)+'px';
   document.getElementById('miniHorse').style.left=((knightWorldX-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*125)+'px';
-  let dots=document.getElementById('miniDots');dots.innerHTML='';
-  monsters.forEach(m=>{let d=document.createElement('div');d.className='miniMonster';d.style.left=((m.wx-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*125)+'px';d.style.background=m.type.color;dots.appendChild(d);});
-  pitsArr.forEach(p=>{let d=document.createElement('div');d.className='miniPit';d.style.left=((p.wx-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*125)+'px';dots.appendChild(d);});
-  let nearestDist=9999,pitDist=9999;
-  monsters.forEach(m=>{let d=m.wx-knightWorldX;if(d>0&&d<nearestDist)nearestDist=d});
-  pitsArr.forEach(p=>{let d=p.wx-knightWorldX;if(d>0&&d<pitDist)pitDist=d});
-  let radar=document.getElementById('radar');
-  if(nearestDist<350) radar.innerText='وحش قدامك! على بعد '+Math.floor(nearestDist)+' - سهم أو نط';
-  else if(pitDist<350) radar.innerText='حفرة قدامك! على بعد '+Math.floor(pitDist)+' - انط! القفزة بتعديها';
-  else if(levelLen-knightWorldX<300) radar.innerText='حبيبتك قريبة! '+Math.floor(levelLen-knightWorldX)+' - قربت توصل!';
-  else radar.innerText='الطريق آمن - اركض! - بتشوف 90% قدامك';
-  radar.style.background=nearestDist<350?'#ff4757':pitDist<350?'#f59e0b':'rgba(0,0,0,.75)';
+  let dots=document.getElementById('miniDots'); dots.innerHTML='';
+  monsters.forEach(m=>{let d=document.createElement('div'); d.className='miniMonster'; d.style.left=((m.wx-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*125)+'px'; d.style.background=m.type.color; dots.appendChild(d);});
+  pitsArr.forEach(p=>{let d=document.createElement('div'); d.className='miniPit'; d.style.left=((p.wx-KNIGHT_SCREEN_X)/(levelLen-KNIGHT_SCREEN_X)*125)+'px'; dots.appendChild(d);});
+  let nearestDist=9999, pitDist=9999;
+  monsters.forEach(m=>{let d=m.wx-knightWorldX; if(d>0&&d<nearestDist) nearestDist=d});
+  pitsArr.forEach(p=>{let d=p.wx-knightWorldX; if(d>0&&d<pitDist) pitDist=d});
+  // الرادار صار جوا toast - مش رسالتين فوق بعض
+  if(nearestDist<350) toast('وحش قدامك! على بعد '+Math.floor(nearestDist)+' - سهم أو نط');
+  else if(pitDist<350) toast('حفرة قدامك! على بعد '+Math.floor(pitDist)+' - انط!');
   let cfg=LEVEL_CFG[level-1];
   monsters.forEach(m=>{
-    // كل وحش: موقعه بالعالم ناقص scroll - بيجي من اليمين لليسار بسلاسة، مش فجأة
     m.el.style.left=(m.wx-scroll)+'px';
-    let warn=m.el.querySelector('.warn'); if(warn) warn.style.display=(m.wx-knightWorldX>0&&m.wx-knightWorldX<350)?'block':'none';
-    let chase=1.0*cfg.speed;
-    if(m.wx<knightWorldX) m.wx+=chase*dt; else m.wx-=chase*0.7*dt;
-    if(Math.abs(m.wx-knightWorldX)<38 && knightY<20 && !hanging && !falling && Date.now()-lastHit>1200){
-      lives--;lastHit=Date.now();sHit();if(navigator.vibrate)navigator.vibrate(150);showSmall(m.type.name+' مسكك! بقي '+lives+' قلوب','#ff4757');updateHUD();
-      if(lives<=0){sLose();showBig(`<h2>الوحوش منعوك!</h2><p>خلصت الـ 5 قلوب</p><button onclick="restartAll()">ابدأ من المرحلة 1</button>`);}
-    }
-    if((knightY>20||hanging) && Math.abs(m.wx-knightWorldX)<38){score+=2;updateHUD();}
+    let chase=1.0*cfg.speed; if(m.wx<knightWorldX) m.wx+=chase*dt; else m.wx-=chase*0.7*dt;
+    if(Math.abs(m.wx-knightWorldX)<38 && knightY<20 && !hanging && !falling && Date.now()-lastHit>1200){ lives--; lastHit=Date.now(); sHit(); toast(m.type.name+' مسكك! بقي '+lives+' قلوب'); updateHUD(); if(lives<=0){sLose(); showBig(`<h2>الوحوش منعوك!</h2><button onclick="restartAll()" style="background:#ffd700;border:0;padding:12px 22px;border-radius:20px;font-weight:900">ابدأ من جديد</button>`);} }
+    if((knightY>20||hanging) && Math.abs(m.wx-knightWorldX)<38){score+=2; updateHUD();}
   });
-  pitsArr.forEach(p=>{p.el.style.left=(p.wx-scroll)+'px';if(Math.abs(p.wx-knightWorldX)<32){if(knightY<20&&!hanging&&!falling&&Date.now()-lastHit>1200){doFall();} else if(knightY>20||hanging){pitsJumped++;updateHUD();}}});
-  ropesArr.forEach(r=>{r.el.style.left=(r.wx-scroll)+'px';r.el.style.bottom='158px';});
-  coinsArr.forEach(c=>{c.el.style.left=(c.wx-scroll)+'px';c.el.style.bottom=(68+90+c.y*0.3)+'px';if(Math.abs(c.wx-knightWorldX)<36){coins++;score+=10;c.wx=knightWorldX+650+Math.random()*250;sCoin();updateHUD();}});
-  arrowsArr.forEach((a,i)=>{a.worldX+=a.dir*12*dt;a.el.style.left=(a.worldX-scroll)+'px';let hit=false;monsters.forEach(m=>{if(Math.abs(a.worldX-m.wx)<28){m.hp--;hit=true;m.el.querySelector('.hp div').style.width=(m.hp/m.maxHp*100)+'%';if(m.hp<=0){score+=30;coins+=2;kills++;showSmall('صبت '+m.type.name+'! +30');updateHUD();m.wx=knightWorldX+750+Math.random()*250;m.hp=m.maxHp;m.el.querySelector('.hp div').style.width='100%';}}});if(hit||Math.abs(a.worldX-knightWorldX)>550){a.el.remove();arrowsArr.splice(i,1)}});
-  if(knightWorldX>=levelLen-10){sWin();if(level>=10){showBig(`<h2>خلصت كل الـ 10 مراحل!</h2><p>الفارس وصل لحبيبته!</p><p>⭐ ${score} | 💰 ${coins} | 👾 ${kills}</p><button onclick="restartAll()">العب من جديد</button>`);}else{showBig(`<h2>وصلت لحبيبتك!</h2><p>المرحلة ${level} - ${LEVEL_CFG[level-1].name} خلصت! +100</p><button onclick="nextLevel()">المرحلة ${level+1} - ${LEVEL_CFG[level].name}</button>`);}}
+  pitsArr.forEach(p=>{ p.el.style.left=(p.wx-scroll)+'px'; if(Math.abs(p.wx-knightWorldX)<32){ if(knightY<20&&!hanging&&!falling&&Date.now()-lastHit>1200){doFall();} else if(knightY>20||hanging){pitsJumped++; updateHUD();} }});
+  ropesArr.forEach(r=>{ r.el.style.left=(r.wx-scroll)+'px'; r.el.style.bottom='158px'; });
+  coinsArr.forEach(c=>{ c.el.style.left=(c.wx-scroll)+'px'; c.el.style.bottom=(60+90+c.y*0.3)+'px'; if(Math.abs(c.wx-knightWorldX)<36){coins++; score+=10; c.wx=knightWorldX+650+Math.random()*250; sCoin(); updateHUD();} });
+  arrowsArr.forEach((a,i)=>{ a.worldX+=a.dir*12*dt; a.el.style.left=(a.worldX-scroll)+'px'; let hit=false; monsters.forEach(m=>{if(Math.abs(a.worldX-m.wx)<28){m.hp--; hit=true; m.el.querySelector('.hp div').style.width=(m.hp/m.maxHp*100)+'%'; if(m.hp<=0){score+=30; coins+=2; kills++; toast('صبت '+m.type.name+'! +30'); updateHUD(); m.wx=knightWorldX+750+Math.random()*250; m.hp=m.maxHp; m.el.querySelector('.hp div').style.width='100%';}}}); if(hit||Math.abs(a.worldX-knightWorldX)>550){a.el.remove(); arrowsArr.splice(i,1)} });
+  updateHUD();
+  if(knightWorldX>=levelLen-10){ sWin(); if(level>=10){showBig(`<h2>خلصت كل الـ 10 مراحل!</h2><p>الفارس وصل لحبيبته!</p><p>⭐ ${score} | 💰 ${coins} | 👾 ${kills}</p><button onclick="restartAll()" style="background:#ffd700;border:0;padding:12px 22px;border-radius:20px;font-weight:900">العب من جديد</button>`);} else {showBig(`<h2>وصلت لحبيبتك!</h2><p>المرحلة ${level} خلصت! +100</p><button onclick="nextLevel()" style="background:#ffd700;border:0;padding:12px 22px;border-radius:20px;font-weight:900">المرحلة ${level+1}</button>`);} }
 }
-function nextLevel(){hideBig();level++;score+=100;coins+=50;arrows+=20;levelLen=1000+level*150;makeLevel();startMusic();}
-function restartAll(){hideBig();level=1;score=0;coins=0;lives=5;kills=0;arrows=99;pitsJumped=0;levelLen=1150;makeLevel();startMusic();}
+function nextLevel(){hideBig(); level++; score+=100; coins+=50; arrows+=20; levelLen=1000+level*150; makeLevel(); startMusic();}
+function restartAll(){hideBig(); level=1; score=0; coins=0; lives=5; kills=0; arrows=99; pitsJumped=0; levelLen=1150; makeLevel(); startMusic();}
 makeLevel(); requestAnimationFrame(loop);
 </script></body></html>
