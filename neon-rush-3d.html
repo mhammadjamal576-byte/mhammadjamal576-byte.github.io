@@ -3,85 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>NEON RUSH 3D 🔥</title>
+<title>NEON RUSH 3D - كوكو 🔥</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#05010f;font-family:'Segoe UI',Tahoma,sans-serif;overflow:hidden;color:#fff;touch-action:none;user-select:none}
 #game{position:fixed;inset:0;width:100%;height:100%;display:block}
-.hud{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:12px 14px;z-index:10;pointer-events:none}
-.pill{background:rgba(10,0,30,.75);border:1.5px solid #a855f7;border-radius:999px;padding:7px 14px;font-weight:900;font-size:15px;backdrop-filter:blur(6px);box-shadow:0 0 18px rgba(168,85,247,.45)}
-.pill span{color:#facc15}
-.pill2{border-color:#22d3ee;box-shadow:0 0 18px rgba(34,211,238,.45)}
-.pill2 b{color:#22d3ee}
-#levelBar{position:fixed;top:58px;left:14px;right:14px;height:8px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden;z-index:10}
+.hud{position:fixed;top:42px;left:0;right:0;display:flex;justify-content:space-between;padding:10px 12px;z-index:10;pointer-events:none}
+.pill{background:rgba(10,0,30,.8);border:1.5px solid #a855f7;border-radius:999px;padding:7px 13px;font-weight:900;font-size:14px;box-shadow:0 0 16px rgba(168,85,247,.4)}
+.pill span{color:#facc15}.pill2{border-color:#22d3ee}.pill2 b{color:#22d3ee}
+#adTop{position:fixed;top:0;left:0;right:0;height:38px;background:linear-gradient(90deg,#facc15,#f97316);color:#000;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;z-index:25;cursor:pointer}
+#adTop small{background:#000;color:#facc15;padding:2px 7px;border-radius:99px;margin:0 6px;font-size:10px}
+#levelBar{position:fixed;top:88px;left:14px;right:14px;height:10px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden;z-index:10}
 #levelFill{height:100%;width:0%;background:linear-gradient(90deg,#a855f7,#22d3ee,#facc15);transition:width .3s}
-#combo{position:fixed;top:78px;left:50%;transform:translateX(-50%);background:#facc15;color:#000;padding:5px 14px;border-radius:999px;font-weight:900;font-size:13px;display:none;z-index:10;box-shadow:0 0 20px #facc15}
-#shieldIcon{position:fixed;top:78px;right:14px;background:#22d3ee;color:#000;padding:5px 10px;border-radius:999px;font-weight:900;font-size:12px;display:none;z-index:10}
-.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:20;padding:20px;background:radial-gradient(circle at 50% 30%,#2a0a5e 0%,#05010f 65%)}
-.screen h1{font-size:52px;line-height:.95;text-shadow:0 0 30px #a855f7,0 0 60px #22d3ee;letter-spacing:-1px}
+#levelText{position:fixed;top:102px;left:0;right:0;text-align:center;font-size:12px;font-weight:900;color:#d8b4fe;z-index:10}
+#combo{position:fixed;top:122px;left:50%;transform:translateX(-50%);background:#facc15;color:#000;padding:5px 14px;border-radius:999px;font-weight:900;font-size:13px;display:none;z-index:10}
+#shieldIcon{position:fixed;top:122px;right:14px;background:#22d3ee;color:#000;padding:5px 10px;border-radius:999px;font-weight:900;font-size:12px;display:none;z-index:10}
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:50;padding:20px;background:radial-gradient(circle at 50% 30%,#2a0a5e 0%,#05010f 65%)}
+.screen h1{font-size:48px;line-height:.95;text-shadow:0 0 30px #a855f7,0 0 60px #22d3ee}
 .screen h1 i{font-style:normal;color:#22d3ee}
-.screen p{margin:14px 0 6px;color:#d8b4fe;font-size:16px;line-height:1.6;max-width:360px}
+.screen p{margin:12px 0 6px;color:#d8b4fe;font-size:15px;line-height:1.6;max-width:360px}
 .badge{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0}
 .badge b{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 10px;border-radius:999px;font-size:12px}
-.btn{background:linear-gradient(90deg,#a855f7,#ec4899);border:none;color:#fff;font-size:22px;font-weight:900;padding:16px 42px;border-radius:999px;box-shadow:0 10px 30px rgba(168,85,247,.6);cursor:pointer;margin-top:14px}
-.btn:active{transform:scale(.96)}
-.btn2{background:#fff;color:#000;box-shadow:0 10px 30px rgba(255,255,255,.3)}
-.small{font-size:12px;color:#aaa;margin-top:12px;line-height:1.6}
+.btn{background:linear-gradient(90deg,#a855f7,#ec4899);border:none;color:#fff;font-size:21px;font-weight:900;padding:15px 40px;border-radius:999px;box-shadow:0 10px 30px rgba(168,85,247,.6);cursor:pointer;margin-top:12px;position:relative;z-index:60;pointer-events:auto}
+.btn:active{transform:scale(.96)}.btn2{background:#fff;color:#000}
+.small{font-size:12px;color:#aaa;margin-top:10px;line-height:1.6}
 .controls{position:fixed;bottom:14px;left:0;right:0;display:flex;justify-content:center;gap:10px;z-index:15}
-.cbtn{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);color:#fff;font-size:26px;backdrop-filter:blur(6px)}
+.cbtn{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);color:#fff;font-size:26px}
 .cbtn:active{background:#a855f7}
 #jumpBtn{width:74px;height:74px;background:linear-gradient(135deg,#a855f7,#22d3ee);font-size:30px}
-#pauseBtn{position:fixed;top:58px;right:14px;z-index:11;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #fff;color:#fff;font-size:16px}
-#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:30}
-#toast{position:fixed;top:110px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 18px;border-radius:999px;font-weight:900;z-index:40;display:none;font-size:15px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.hidden{display:none!important}
-.scoreBig{font-size:64px;font-weight:900;color:#facc15;text-shadow:0 0 30px #facc15}
+#pauseBtn{position:fixed;top:88px;right:14px;z-index:11;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #fff;color:#fff;font-size:16px}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:40}
+#toast{position:fixed;top:150px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:10px 18px;border-radius:999px;font-weight:900;z-index:60;display:none;font-size:15px}
+#adInter{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+#adInter h2{font-size:28px;color:#facc15}
+#adInter p{color:#fff;margin:12px 0;line-height:1.6}
+#adSkip{margin-top:16px;background:#666;color:#fff;border:none;padding:12px 26px;border-radius:999px;font-weight:900;font-size:16px}
+.hidden{display:none!important}.scoreBig{font-size:60px;font-weight:900;color:#facc15;text-shadow:0 0 30px #facc15}
+.levelGrid{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0;max-width:300px}
+.levelGrid b{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:13px}
+.levelGrid b.done{background:#22c55e}.levelGrid b.now{background:#facc15;color:#000;box-shadow:0 0 14px #facc15}
 </style>
 </head>
 <body>
 <canvas id="game"></canvas>
+<div id="adTop" onclick="openAd()">🏆 إعلان <small>AD</small> العب لعبة فارس الجديدة - اكبس هون! 🔥</div>
 <div class="hud">
 <div class="pill">⭐ <span id="score">0</span></div>
 <div class="pill pill2">🪙 <b id="coins">0</b></div>
 <div class="pill">❤️ <span id="lives">3</span></div>
 </div>
 <div id="levelBar"><div id="levelFill"></div></div>
+<div id="levelText">المرحلة 1 / 10 - الهدف: 300 نقطة</div>
 <div id="combo">🔥 كومبو x<span id="comboN">0</span></div>
 <div id="shieldIcon">🛡️ درع</div>
 <button id="pauseBtn">⏸️</button>
 
 <div id="startScreen" class="screen">
 <h1>NEON<br><i>RUSH 3D</i></h1>
-<p>أسرع لعبة نيون ثلاثية الأبعاد! 🏃‍♂️💨<br>اهرب، اقفز، اجمع الذهب، واكسر رقمك القياسي!</p>
-<div class="badge"><b>🌐 3D حقيقي</b><b>🎵 موسيقى حماسية</b><b>🏆 مراحل لا نهائية</b><b>🛡️ درع حماية</b></div>
-<p style="font-size:14px">👈👉 اسحب يمين / يسار للتحرك<br>☝️ اسحب فوق للقفز - 👇 اسحب تحت للانزلاق</p>
+<p>كوكو الولد الشقي رجع! 🧒💨<br>10 مراحل - كل مرحلة أصعب وأسرع!</p>
+<div class="levelGrid" id="levelGridStart"></div>
+<div class="badge"><b>🌐 3D حقيقي</b><b>🎵 موسيقى حماسية</b><b>🏆 10 مراحل</b><b>🛡️ درع</b><b>📢 إعلانات</b></div>
+<p style="font-size:13px">👈👉 اسحب يمين / يسار - ☝️ اقفز - 👇 انزلاق</p>
 <button class="btn" onclick="startGame()">▶️ العب هلأ</button>
 <button class="btn btn2" onclick="toggleMusic()">🎵 موسيقى: <span id="musicState">تشغيل</span></button>
-<div class="small">🏆 أفضل نتيجة: <span id="best1">0</span><br>نصيحة: الدرع الأزرق بيحميك مرة واحدة!</div>
+<div class="small">🏆 أفضل نتيجة: <span id="best1">0</span> | مرحلة وصلتلها: <span id="bestLevel">1</span></div>
 </div>
 
 <div id="overScreen" class="screen hidden">
-<h1 style="font-size:42px">GAME<br><i>OVER</i></h1>
+<h1 style="font-size:40px">GAME<br><i>OVER</i></h1>
 <div class="scoreBig" id="finalScore">0</div>
-<p id="finalMsg">أداء أسطوري! 🔥</p>
-<div class="badge"><b>🪙 عملات: <span id="finalCoins">0</span></b><b>🏆 مرحلة: <span id="finalLevel">1</span></b><b>⭐ الأفضل: <span id="best2">0</span></b></div>
-<button class="btn" onclick="startGame()">🔁 العب مرة تانية</button>
-<button class="btn btn2" onclick="shareGame()">📤 شارك النتيجة</button>
+<p id="finalMsg">حاول مرة تانية!</p>
+<div class="badge"><b>🪙 <span id="finalCoins">0</span></b><b>🏆 مرحلة: <span id="finalLevel">1</span>/10</b><b>⭐ الأفضل: <span id="best2">0</span></b></div>
+<button class="btn" onclick="retryGame()">🔁 العب مرة تانية</button>
+<button class="btn btn2" onclick="goHome()">🏠 القائمة</button>
+</div>
+
+<div id="levelCompleteScreen" class="screen hidden">
+<h1 style="font-size:38px">🎉 خلصت<br><i>المرحلة <span id="lcLevel">1</span>!</i></h1>
+<p id="lcMsg">وحش! كمل للمرحلة الجاي، السرعة راح تزيد!</p>
+<div class="levelGrid" id="levelGridLC"></div>
+<button class="btn" onclick="nextLevel()">➡️ المرحلة الجاي</button>
+<button class="btn btn2" onclick="goHome()">🏠 القائمة</button>
+</div>
+
+<div id="winScreen" class="screen hidden">
+<h1 style="font-size:38px">👑 ختمت<br><i>اللعبة!</i></h1>
+<p>انت ختمت الـ 10 مراحل كلهم! انت أسطورة النيون! 🔥👑</p>
+<div class="scoreBig" id="winScore">0</div>
+<button class="btn" onclick="startGame()">🔁 العب من جديد</button>
+<button class="btn btn2" onclick="shareGame()">📤 شارك فوزك</button>
 </div>
 
 <div id="pauseScreen" class="screen hidden" style="background:rgba(0,0,0,.85)">
-<h1 style="font-size:38px">⏸️ استراحة</h1>
+<h1 style="font-size:36px">⏸️ استراحة</h1>
 <button class="btn" onclick="resumeGame()">▶️ كمل</button>
-<button class="btn btn2" onclick="startGame()">🔁 من جديد</button>
+<button class="btn btn2" onclick="goHome()">🏠 القائمة</button>
 </div>
 
-<div class="controls">
+<div class="controls" id="controls">
 <button class="cbtn" onclick="move(-1)">◀️</button>
 <button class="cbtn" id="jumpBtn" onclick="doJump()">⬆️</button>
 <button class="cbtn" onclick="move(1)">▶️</button>
 <button class="cbtn" onclick="doSlide()">⬇️</button>
 </div>
 <div id="flash"></div><div id="toast"></div>
+
+<div id="adInter">
+<small style="background:#facc15;color:#000;padding:4px 10px;border-radius:99px;font-weight:900">إعلان AD</small>
+<h2>🔥 لعبة فارس - المرحلة الجديدة!</h2>
+<p>أقوى لعبة خيول عربية! 🐎<br>العبها هلأ مجاناً واحصل على 1000 عملة ذهبية!</p>
+<button class="btn" onclick="openAd()">▶️ العب فارس هلأ</button>
+<button id="adSkip" onclick="closeAd()">تخطي بعد 5...</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -90,77 +123,46 @@ let lane=0, lanes=[-2.2,0,2.2], targetX=0;
 let jumping=false, sliding=false, vy=0, yPos=0, slideTimer=0;
 let running=false, paused=false, score=0, coinsCollected=0, lives=3, level=1, speed=0.22, combo=0, shield=false, shieldTime=0;
 let obstacles=[], coinsArr=[], particles=[], roadLines=[], sideBuildings=[];
-let lastSpawn=0, best=parseInt(localStorage.getItem('neon_best')||'0');
-let musicOn=true, audioCtx=null, musicTimer=null, beat=0;
-document.getElementById('best1').textContent=best;
-
+let lastSpawn=0, best=parseInt(localStorage.getItem('neon_best')||'0'), bestLevel=parseInt(localStorage.getItem('neon_bestLevel')||'1');
+let musicOn=true, audioCtx=null, musicTimer=null, beat=0, deaths=0, levelScoreStart=0;
+const LEVEL_GOAL=300, MAX_LEVEL=10;
+document.getElementById('best1').textContent=best; document.getElementById('bestLevel').textContent=bestLevel;
+function renderLevelGrid(elId){ let el=document.getElementById(elId); if(!el) return; let h=''; for(let i=1;i<=10;i++){ let cls=i<level?'done':(i===level?'now':''); h+='<b class="'+cls+'">'+(i<level?'✓':i)+'</b>'; } el.innerHTML=h; }
 function init3D(){
-  scene=new THREE.Scene();
-  scene.background=new THREE.Color(0x05010f);
-  scene.fog=new THREE.Fog(0x05010f,12,38);
-  camera=new THREE.PerspectiveCamera(68,innerWidth/innerHeight,0.1,100);
-  camera.position.set(0,4.2,7.5); camera.lookAt(0,1, -5);
-  renderer=new THREE.WebGLRenderer({canvas:document.getElementById('game'),antialias:true});
-  renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-  // lights
-  scene.add(new THREE.AmbientLight(0xffffff,0.7));
+  scene=new THREE.Scene(); scene.background=new THREE.Color(0x05010f); scene.fog=new THREE.Fog(0x05010f,12,38);
+  camera=new THREE.PerspectiveCamera(68,innerWidth/innerHeight,0.1,100); camera.position.set(0,4.2,7.5); camera.lookAt(0,1,-5);
+  renderer=new THREE.WebGLRenderer({canvas:document.getElementById('game'),antialias:true}); renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  scene.add(new THREE.AmbientLight(0xffffff,0.75));
   let pl=new THREE.PointLight(0xa855f7,1.5,20); pl.position.set(0,6,2); scene.add(pl);
   let pl2=new THREE.PointLight(0x22d3ee,1.2,20); pl2.position.set(-4,3,-5); scene.add(pl2);
-  // ground road
-  let roadGeo=new THREE.PlaneGeometry(9,80);
-  let roadMat=new THREE.MeshBasicMaterial({color:0x0f0520});
-  let road=new THREE.Mesh(roadGeo,roadMat); road.rotation.x=-Math.PI/2; road.position.z=-25; scene.add(road);
-  // lane lines
-  for(let i=-1;i<=1;i++){
-    for(let z=0;z>-80;z-=4){
-      let l=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.02,2), new THREE.MeshBasicMaterial({color:i==0?0x22d3ee:0xa855f7}));
-      l.position.set(i*2.2+ (i==0?1.1:-1.1),0.02,z); scene.add(l); roadLines.push(l);
-    }
-  }
-  // side buildings
-  for(let s=0;s<30;s++){
-    let h=2+Math.random()*6;
-    let c=[0xa855f7,0x22d3ee,0xec4899,0xfacc15][Math.floor(Math.random()*4)];
-    let b=new THREE.Mesh(new THREE.BoxGeometry(1.5,h,1.5), new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:0.85}));
-    let side=Math.random()>0.5?1:-1; b.position.set(side*(6+Math.random()*3),h/2,-Math.random()*70); scene.add(b); sideBuildings.push(b);
-    let top=new THREE.Mesh(new THREE.BoxGeometry(1.6,0.15,1.6), new THREE.MeshBasicMaterial({color:0xffffff}));
-    top.position.set(b.position.x,h+0.1,b.position.z); scene.add(top); sideBuildings.push(top);
-  }
-  // player - neon runner
+  let road=new THREE.Mesh(new THREE.PlaneGeometry(9,80), new THREE.MeshBasicMaterial({color:0x0f0520})); road.rotation.x=-Math.PI/2; road.position.z=-25; scene.add(road);
+  for(let i=-1;i<=1;i++){ for(let z=0;z>-80;z-=4){ let l=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.02,2), new THREE.MeshBasicMaterial({color:i==0?0x22d3ee:0xa855f7})); l.position.set(i*2.2+(i==0?1.1:-1.1),0.02,z); scene.add(l); roadLines.push(l); } }
+  for(let s=0;s<30;s++){ let h=2+Math.random()*6; let c=[0xa855f7,0x22d3ee,0xec4899,0xfacc15][Math.floor(Math.random()*4)]; let b=new THREE.Mesh(new THREE.BoxGeometry(1.5,h,1.5), new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:0.85})); let side=Math.random()>0.5?1:-1; b.position.set(side*(6+Math.random()*3),h/2,-Math.random()*70); scene.add(b); sideBuildings.push(b); }
+  // كوكو - شخصية كرتونية
   playerGroup=new THREE.Group();
-  let body=new THREE.Mesh(new THREE.BoxGeometry(0.9,1.4,0.6), new THREE.MeshBasicMaterial({color:0x22d3ee}));
-  body.position.y=0.9; playerGroup.add(body);
-  let head=new THREE.Mesh(new THREE.BoxGeometry(0.65,0.65,0.6), new THREE.MeshBasicMaterial({color:0xfacc15}));
-  head.position.y=1.95; playerGroup.add(head);
-  let eye1=new THREE.Mesh(new THREE.BoxGeometry(0.14,0.2,0.05), new THREE.MeshBasicMaterial({color:0x000000}));
-  eye1.position.set(-0.15,2,0.32); playerGroup.add(eye1);
-  let eye2=eye1.clone(); eye2.position.x=0.15; playerGroup.add(eye2);
-  let glow=new THREE.Mesh(new THREE.BoxGeometry(1.1,0.15,0.8), new THREE.MeshBasicMaterial({color:0xa855f7}));
-  glow.position.y=0.12; playerGroup.add(glow);
-  player=playerGroup; scene.add(player);
-  animate();
+  let legL=new THREE.Mesh(new THREE.BoxGeometry(0.28,0.6,0.28), new THREE.MeshBasicMaterial({color:0x1e3a8a})); legL.position.set(-0.22,0.3,0); playerGroup.add(legL);
+  let legR=legL.clone(); legR.position.x=0.22; playerGroup.add(legR);
+  let shoeL=new THREE.Mesh(new THREE.BoxGeometry(0.34,0.18,0.5), new THREE.MeshBasicMaterial({color:0xffffff})); shoeL.position.set(-0.22,0.09,0.1); playerGroup.add(shoeL);
+  let shoeR=shoeL.clone(); shoeR.position.x=0.22; playerGroup.add(shoeR);
+  let body=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.9,0.55), new THREE.MeshBasicMaterial({color:0xef4444})); body.position.y=1.05; playerGroup.add(body);
+  let armL=new THREE.Mesh(new THREE.BoxGeometry(0.22,0.7,0.22), new THREE.MeshBasicMaterial({color:0xfcd34d})); armL.position.set(-0.6,1.05,0); playerGroup.add(armL);
+  let armR=armL.clone(); armR.position.x=0.6; playerGroup.add(armR);
+  let head=new THREE.Mesh(new THREE.BoxGeometry(1.15,1.05,0.9), new THREE.MeshBasicMaterial({color:0xfcd9b8})); head.position.y=2.05; playerGroup.add(head);
+  let cap=new THREE.Mesh(new THREE.BoxGeometry(1.25,0.28,1), new THREE.MeshBasicMaterial({color:0xef4444})); cap.position.y=2.65; playerGroup.add(cap);
+  let capTop=new THREE.Mesh(new THREE.BoxGeometry(0.7,0.3,0.7), new THREE.MeshBasicMaterial({color:0xef4444})); capTop.position.y=2.85; playerGroup.add(capTop);
+  let eyeL=new THREE.Mesh(new THREE.BoxGeometry(0.22,0.3,0.05), new THREE.MeshBasicMaterial({color:0x000000})); eyeL.position.set(-0.28,2.1,0.48); playerGroup.add(eyeL);
+  let eyeR=eyeL.clone(); eyeR.position.x=0.28; playerGroup.add(eyeR);
+  let eyeWhiteL=new THREE.Mesh(new THREE.BoxGeometry(0.28,0.36,0.03), new THREE.MeshBasicMaterial({color:0xffffff})); eyeWhiteL.position.set(-0.28,2.1,0.46); playerGroup.add(eyeWhiteL);
+  let eyeWhiteR=eyeWhiteL.clone(); eyeWhiteR.position.x=0.28; playerGroup.add(eyeWhiteR);
+  let smile=new THREE.Mesh(new THREE.BoxGeometry(0.45,0.1,0.05), new THREE.MeshBasicMaterial({color:0x000000})); smile.position.set(0,1.75,0.48); playerGroup.add(smile);
+  let glow=new THREE.Mesh(new THREE.BoxGeometry(1.2,0.12,0.8), new THREE.MeshBasicMaterial({color:0x22d3ee})); glow.position.y=0.02; playerGroup.add(glow);
+  player=playerGroup; scene.add(player); animate();
 }
 function spawn(){
-  let r=Math.random();
-  let laneIdx=Math.floor(Math.random()*3);
-  let z=-38;
-  if(r<0.58){
-    let colors=[0xff2d55,0xff9500,0xa855f7];
-    let o=new THREE.Mesh(new THREE.BoxGeometry(1.6,1.6,1.2), new THREE.MeshBasicMaterial({color:colors[Math.floor(Math.random()*3)]}));
-    o.position.set(lanes[laneIdx],0.8,z); o.userData={type:'block'}; scene.add(o); obstacles.push(o);
-  } else if(r<0.78){
-    let o=new THREE.Mesh(new THREE.BoxGeometry(2.2,0.7,1.2), new THREE.MeshBasicMaterial({color:0xec4899}));
-    o.position.set(lanes[laneIdx],0.35,z); o.userData={type:'low'}; scene.add(o); obstacles.push(o);
-  } else {
-    for(let i=0;i<3;i++){
-      let c=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.18,16), new THREE.MeshBasicMaterial({color:0xfacc15}));
-      c.rotation.x=Math.PI/2; c.position.set(lanes[laneIdx],1.1,z-i*2); c.userData={type:'coin'}; scene.add(c); coinsArr.push(c);
-    }
-    if(Math.random()<0.18){
-      let s=new THREE.Mesh(new THREE.SphereGeometry(0.5,16,16), new THREE.MeshBasicMaterial({color:0x22d3ee}));
-      s.position.set(lanes[Math.floor(Math.random()*3)],1.1,z-1); s.userData={type:'shield'}; scene.add(s); coinsArr.push(s);
-    }
-  }
+  let r=Math.random(); let laneIdx=Math.floor(Math.random()*3); let z=-38;
+  if(r<0.58){ let colors=[0xff2d55,0xff9500,0xa855f7]; let o=new THREE.Mesh(new THREE.BoxGeometry(1.6,1.6,1.2), new THREE.MeshBasicMaterial({color:colors[Math.floor(Math.random()*3)]})); o.position.set(lanes[laneIdx],0.8,z); o.userData={type:'block'}; scene.add(o); obstacles.push(o); }
+  else if(r<0.78){ let o=new THREE.Mesh(new THREE.BoxGeometry(2.2,0.7,1.2), new THREE.MeshBasicMaterial({color:0xec4899})); o.position.set(lanes[laneIdx],0.35,z); o.userData={type:'low'}; scene.add(o); obstacles.push(o); }
+  else { for(let i=0;i<3;i++){ let c=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.18,16), new THREE.MeshBasicMaterial({color:0xfacc15})); c.rotation.x=Math.PI/2; c.position.set(lanes[laneIdx],1.1,z-i*2); c.userData={type:'coin'}; scene.add(c); coinsArr.push(c); } if(Math.random()<0.18){ let s=new THREE.Mesh(new THREE.SphereGeometry(0.5,16,16), new THREE.MeshBasicMaterial({color:0x22d3ee})); s.position.set(lanes[Math.floor(Math.random()*3)],1.1,z-1); s.userData={type:'shield'}; scene.add(s); coinsArr.push(s); } }
 }
 function move(dir){ if(!running||paused) return; lane=Math.max(-1,Math.min(1,lane+dir)); targetX=lanes[lane+1]; playBeep(600); }
 function doJump(){ if(!running||paused||jumping) return; jumping=true; vy=0.28; playBeep(800); }
@@ -168,121 +170,76 @@ function doSlide(){ if(!running||paused) return; sliding=true; slideTimer=18; pl
 function update(){
   if(!running||paused) return;
   score+=1; combo+=0.02;
-  if(score%500===0){ level++; speed+=0.03; showToast('🔥 مرحلة '+level+' - أسرع!'); document.getElementById('flash').style.opacity=0.25; setTimeout(()=>document.getElementById('flash').style.opacity=0,120); }
-  document.getElementById('score').textContent=Math.floor(score/10);
-  document.getElementById('coins').textContent=coinsCollected;
-  document.getElementById('lives').textContent=lives;
-  document.getElementById('levelFill').style.width=Math.min(100,(score%500)/5)+'%';
+  let curLevelScore=Math.floor(score/10)-levelScoreStart;
+  document.getElementById('levelFill').style.width=Math.min(100,curLevelScore/LEVEL_GOAL*100)+'%';
+  document.getElementById('levelText').textContent='المرحلة '+level+' / 10 - الهدف: '+LEVEL_GOAL+' نقطة - جمعت: '+curLevelScore;
+  if(curLevelScore>=LEVEL_GOAL){ levelComplete(); return; }
+  document.getElementById('score').textContent=Math.floor(score/10); document.getElementById('coins').textContent=coinsCollected; document.getElementById('lives').textContent=lives;
   if(combo>5){ document.getElementById('combo').style.display='block'; document.getElementById('comboN').textContent=Math.floor(combo); } else document.getElementById('combo').style.display='none';
-  // player move
-  player.position.x += (targetX-player.position.x)*0.18;
+  player.position.x+=(targetX-player.position.x)*0.18;
   if(jumping){ yPos+=vy; vy-=0.018; if(yPos<=0){yPos=0;jumping=false;} player.position.y=yPos; }
   if(sliding){ slideTimer--; if(slideTimer<=0){sliding=false; player.scale.y=1;} }
   player.rotation.z=(targetX-player.position.x)*0.08;
   if(shield){ shieldTime--; if(shieldTime<=0){shield=false; document.getElementById('shieldIcon').style.display='none';} }
-  // spawn
-  if(Date.now()-lastSpawn> Math.max(450, 950 - level*70)){ spawn(); lastSpawn=Date.now(); }
-  // obstacles
-  for(let i=obstacles.length-1;i>=0;i--){
-    let o=obstacles[i]; o.position.z+=speed*3.2; o.rotation.y+=0.02;
-    if(o.position.z>9){ scene.remove(o); obstacles.splice(i,1); continue; }
-    if(Math.abs(o.position.z-player.position.z)<1 && Math.abs(o.position.x-player.position.x)<1.1){
-      if(o.userData.type==='low' && (jumping||yPos>0.6)) continue;
-      if(o.userData.type==='block' && yPos>1.4) continue;
-      if(o.userData.type==='low' && sliding) continue;
-      // hit
-      scene.remove(o); obstacles.splice(i,1);
-      if(shield){ shield=false; document.getElementById('shieldIcon').style.display='none'; showToast('🛡️ الدرع حماك!'); continue; }
-      lives--; combo=0; document.getElementById('flash').style.background='#ff2d55'; document.getElementById('flash').style.opacity=0.5; setTimeout(()=>{document.getElementById('flash').style.opacity=0;document.getElementById('flash').style.background='#fff'},150);
-      playBeep(150);
-      if(lives<=0){ gameOver(); return; }
-    }
-  }
-  // coins / shield
-  for(let i=coinsArr.length-1;i>=0;i--){
-    let c=coinsArr[i]; c.position.z+=speed*3.2; c.rotation.z+=0.15;
-    if(c.position.z>9){ scene.remove(c); coinsArr.splice(i,1); continue; }
-    if(Math.abs(c.position.z-player.position.z)<1 && Math.abs(c.position.x-player.position.x)<1.1){
-      if(c.userData.type==='coin'){ coinsCollected+=1; score+=80; showToast('🪙 +1'); playBeep(1000); }
-      else { shield=true; shieldTime=600; document.getElementById('shieldIcon').style.display='block'; showToast('🛡️ أخدت درع!'); playBeep(1200); }
-      scene.remove(c); coinsArr.splice(i,1);
-    }
-  }
-  // road move illusion
-  roadLines.forEach(l=>{ l.position.z+=speed*3.2; if(l.position.z>5) l.position.z-=80; });
-  sideBuildings.forEach(b=>{ b.position.z+=speed*3.2; if(b.position.z>5) b.position.z-=70; });
-  // particles
+  if(Date.now()-lastSpawn>Math.max(430,950-level*70)){ spawn(); lastSpawn=Date.now(); }
+  for(let i=obstacles.length-1;i>=0;i--){ let o=obstacles[i]; o.position.z+=speed*3.2; o.rotation.y+=0.02; if(o.position.z>9){scene.remove(o);obstacles.splice(i,1);continue;} if(Math.abs(o.position.z-player.position.z)<1&&Math.abs(o.position.x-player.position.x)<1.1){ if(o.userData.type==='low'&&(jumping||yPos>0.6)) continue; if(o.userData.type==='block'&&yPos>1.4) continue; if(o.userData.type==='low'&&sliding) continue; scene.remove(o); obstacles.splice(i,1); if(shield){shield=false;document.getElementById('shieldIcon').style.display='none';showToast('🛡️ الدرع حماك!');continue;} lives--; combo=0; document.getElementById('flash').style.background='#ff2d55'; document.getElementById('flash').style.opacity=0.5; setTimeout(()=>{document.getElementById('flash').style.opacity=0;document.getElementById('flash').style.background='#fff'},150); playBeep(150); if(lives<=0){gameOver();return;} } }
+  for(let i=coinsArr.length-1;i>=0;i--){ let c=coinsArr[i]; c.position.z+=speed*3.2; c.rotation.z+=0.15; if(c.position.z>9){scene.remove(c);coinsArr.splice(i,1);continue;} if(Math.abs(c.position.z-player.position.z)<1&&Math.abs(c.position.x-player.position.x)<1.1){ if(c.userData.type==='coin'){coinsCollected+=1;score+=80;showToast('🪙 +1');playBeep(1000);} else{shield=true;shieldTime=600;document.getElementById('shieldIcon').style.display='block';showToast('🛡️ أخدت درع!');playBeep(1200);} scene.remove(c);coinsArr.splice(i,1);} }
+  roadLines.forEach(l=>{l.position.z+=speed*3.2; if(l.position.z>5) l.position.z-=80;});
+  sideBuildings.forEach(b=>{b.position.z+=speed*3.2; if(b.position.z>5) b.position.z-=70;});
   if(Math.random()<0.4){ let p=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.12,0.12), new THREE.MeshBasicMaterial({color:Math.random()>0.5?0x22d3ee:0xa855f7})); p.position.set(player.position.x+(Math.random()-0.5),0.2,player.position.z+1); scene.add(p); particles.push(p); }
-  for(let i=particles.length-1;i>=0;i--){ let p=particles[i]; p.position.z+=0.3; p.position.y+=0.05; p.rotation.x+=0.1; if(p.position.z>8){scene.remove(p);particles.splice(i,1);} }
+  for(let i=particles.length-1;i>=0;i--){ let p=particles[i]; p.position.z+=0.3; p.position.y+=0.05; if(p.position.z>8){scene.remove(p);particles.splice(i,1);} }
 }
 function animate(){ requestAnimationFrame(animate); update(); if(renderer) renderer.render(scene,camera); }
+function hideAllScreens(){ ['startScreen','overScreen','levelCompleteScreen','winScreen','pauseScreen'].forEach(id=>document.getElementById(id).classList.add('hidden')); }
+function showControls(v){ document.getElementById('controls').style.display=v?'flex':'none'; document.getElementById('pauseBtn').style.display=v?'block':'none'; }
 function startGame(){
   if(!scene) init3D();
-  obstacles.forEach(o=>scene.remove(o)); obstacles=[];
-  coinsArr.forEach(c=>scene.remove(c)); coinsArr=[];
-  score=0; coinsCollected=0; lives=3; level=1; speed=0.22; combo=0; lane=0; targetX=0; yPos=0; jumping=false; sliding=false; shield=false;
+  obstacles.forEach(o=>scene.remove(o)); obstacles=[]; coinsArr.forEach(c=>scene.remove(c)); coinsArr=[];
+  score=0; coinsCollected=0; lives=3; level=1; speed=0.22; combo=0; lane=0; targetX=0; yPos=0; jumping=false; sliding=false; shield=false; levelScoreStart=0;
   player.position.set(0,0,0); player.scale.set(1,1,1);
-  document.getElementById('startScreen').classList.add('hidden');
-  document.getElementById('overScreen').classList.add('hidden');
-  document.getElementById('pauseScreen').classList.add('hidden');
-  running=true; paused=false; lastSpawn=Date.now();
-  startMusic();
+  hideAllScreens(); showControls(true); running=true; paused=false; lastSpawn=Date.now(); startMusic(); renderLevelGrid('levelGridStart');
 }
+function retryGame(){ hideAllScreens(); showControls(true); startGame(); }
+function goHome(){ running=false; stopMusic(); hideAllScreens(); document.getElementById('startScreen').classList.remove('hidden'); showControls(false); renderLevelGrid('levelGridStart'); }
+function nextLevel(){
+  if(level>=MAX_LEVEL){ winGame(); return; }
+  level++; speed+=0.035; lives=3; levelScoreStart=Math.floor(score/10);
+  obstacles.forEach(o=>scene.remove(o)); obstacles=[]; coinsArr.forEach(c=>scene.remove(c)); coinsArr=[];
+  hideAllScreens(); showControls(true); running=true; paused=false; lastSpawn=Date.now(); startMusic(); renderLevelGrid('levelGridStart');
+}
+function levelComplete(){
+  running=false; stopMusic(); showControls(false);
+  if(level>bestLevel){ bestLevel=level; localStorage.setItem('neon_bestLevel',bestLevel); }
+  document.getElementById('lcLevel').textContent=level; document.getElementById('lcMsg').textContent='خلصت المرحلة '+level+'! جمعت '+Math.floor(score/10)+' نقطة. المرحلة الجاي أسرع!';
+  renderLevelGrid('levelGridLC'); hideAllScreens(); document.getElementById('levelCompleteScreen').classList.remove('hidden');
+}
+function winGame(){ running=false; stopMusic(); showControls(false); document.getElementById('winScore').textContent=Math.floor(score/10); hideAllScreens(); document.getElementById('winScreen').classList.remove('hidden'); }
 function gameOver(){
-  running=false; stopMusic(); playBeep(100);
-  let s=Math.floor(score/10);
-  document.getElementById('finalScore').textContent=s;
-  document.getElementById('finalCoins').textContent=coinsCollected;
-  document.getElementById('finalLevel').textContent=level;
-  if(s>best){ best=s; localStorage.setItem('neon_best',best); }
-  document.getElementById('best1').textContent=best; document.getElementById('best2').textContent=best;
-  document.getElementById('finalMsg')= s>500?'🔥🔥 أسطوووري! انت ملك النيون!': s>200?'💪 قوي! قربت تكسر الرقم!':'👍 حاول مرة تانية، بتقدر أحسن!';
-  document.getElementById('overScreen').classList.remove('hidden');
+  running=false; stopMusic(); playBeep(100); deaths++;
+  let s=Math.floor(score/10); document.getElementById('finalScore').textContent=s; document.getElementById('finalCoins').textContent=coinsCollected; document.getElementById('finalLevel').textContent=level;
+  if(s>best){best=s; localStorage.setItem('neon_best',best);} document.getElementById('best1').textContent=best; document.getElementById('best2').textContent=best;
+  document.getElementById('finalMsg').textContent=s>500?'🔥🔥 أسطوووري! انت ملك النيون!':s>200?'💪 قوي! قربت تكسر الرقم!':'👍 حاول مرة تانية، بتقدر أحسن!';
+  hideAllScreens(); document.getElementById('overScreen').classList.remove('hidden'); showControls(false);
+  if(deaths%2===0){ setTimeout(showAd,600); }
 }
-function shareGame(){
-  let t='لعبت NEON RUSH 3D وجبت '+Math.floor(score/10)+' نقطة! 🔥 جرب تكسر رقمي!';
-  if(navigator.share) navigator.share({text:t,url:location.href});
-  else { navigator.clipboard.writeText(t+' '+location.href); showToast('✅ اننسخ الرابط!'); }
-}
+function showAd(){ let ad=document.getElementById('adInter'); ad.style.display='flex'; let btn=document.getElementById('adSkip'); let t=5; btn.textContent='تخطي بعد '+t+'...'; btn.disabled=true; let iv=setInterval(()=>{ t--; if(t<=0){ btn.textContent='❌ تخطي الإعلان'; btn.disabled=false; clearInterval(iv); } else btn.textContent='تخطي بعد '+t+'...'; },1000); }
+function closeAd(){ document.getElementById('adInter').style.display='none'; }
+function openAd(){ window.open('https://mhammadjamal576-byte.github.io/','_blank'); showToast('🔥 لعبة فارس بتفتح...'); }
+function shareGame(){ let t='لعبت NEON RUSH 3D مع كوكو ووصلت المرحلة '+level+' وجبت '+Math.floor(score/10)+' نقطة! 🔥 جرب تكسر رقمي!'; if(navigator.share) navigator.share({text:t,url:location.href}); else { navigator.clipboard.writeText(t+' '+location.href); showToast('✅ اننسخ الرابط!'); } }
 function showToast(m){ let t=document.getElementById('toast'); t.textContent=m; t.style.display='block'; setTimeout(()=>t.style.display='none',1300); }
 function toggleMusic(){ musicOn=!musicOn; document.getElementById('musicState').textContent=musicOn?'تشغيل':'إيقاف'; if(!musicOn) stopMusic(); else if(running) startMusic(); }
-// --- Music ---
 function getCtx(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); return audioCtx; }
 function playBeep(f){ if(!musicOn) return; try{ let ctx=getCtx(); let o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=f; o.type='square'; g.gain.value=0.08; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+0.08); }catch(e){} }
-function startMusic(){
-  if(!musicOn) return; stopMusic();
-  try{
-    let ctx=getCtx(); beat=0;
-    musicTimer=setInterval(()=>{
-      if(!musicOn||!running) return;
-      let notes=[220,261,293,329,392,440,392,329];
-      let n=notes[beat%notes.length]; beat++;
-      let o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=n; o.type='sawtooth'; g.gain.value=0.05; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+0.18);
-      if(beat%4===0){ let b=ctx.createOscillator(), bg=ctx.createGain(); b.frequency.value=110; b.type='sine'; bg.gain.value=0.15; b.connect(bg); bg.connect(ctx.destination); b.start(); b.stop(ctx.currentTime+0.25); }
-    },180);
-  }catch(e){}
-}
+function startMusic(){ if(!musicOn) return; stopMusic(); try{ let ctx=getCtx(); beat=0; musicTimer=setInterval(()=>{ if(!musicOn||!running) return; let notes=[220,261,293,329,392,440,392,329]; let n=notes[beat%notes.length]; beat++; let o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=n; o.type='sawtooth'; g.gain.value=0.05; o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+0.18); if(beat%4===0){ let b=ctx.createOscillator(), bg=ctx.createGain(); b.frequency.value=110; b.type='sine'; bg.gain.value=0.15; b.connect(bg); bg.connect(ctx.destination); b.start(); b.stop(ctx.currentTime+0.25); } },180); }catch(e){} }
 function stopMusic(){ if(musicTimer) clearInterval(musicTimer); musicTimer=null; }
-// pause
-document.getElementById('pauseBtn').onclick=()=>{ if(!running) return; paused=true; document.getElementById('pauseScreen').classList.remove('hidden'); };
-function resumeGame(){ paused=false; document.getElementById('pauseScreen').classList.add('hidden'); }
-// touch swipe
+document.getElementById('pauseBtn').onclick=()=>{ if(!running) return; paused=true; document.getElementById('pauseScreen').classList.remove('hidden'); showControls(false); };
+function resumeGame(){ paused=false; document.getElementById('pauseScreen').classList.add('hidden'); showControls(true); }
 let sx=0, sy=0;
 document.addEventListener('touchstart',e=>{ sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
-document.addEventListener('touchend',e=>{
-  let dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
-  if(Math.abs(dx)>Math.abs(dy) && Math.abs(dx)>25){ move(dx>0?1:-1); }
-  else if(dy<-30) doJump();
-  else if(dy>30) doSlide();
-},{passive:true});
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft') move(-1);
-  if(e.key==='ArrowRight') move(1);
-  if(e.key==='ArrowUp'||e.key===' ') doJump();
-  if(e.key==='ArrowDown') doSlide();
-});
+document.addEventListener('touchend',e=>{ if(!running) return; let dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy; if(Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>25){ move(dx>0?1:-1); } else if(dy<-30) doJump(); else if(dy>30) doSlide(); },{passive:true});
+document.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') move(-1); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowUp'||e.key===' ') doJump(); if(e.key==='ArrowDown') doSlide(); });
 addEventListener('resize',()=>{ if(!camera) return; camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); });
-init3D();
+init3D(); showControls(false); renderLevelGrid('levelGridStart');
 </script>
 </body>
 </html>
